@@ -1,4 +1,6 @@
-# CAD models for OpenVMP robots [WORK-IN-PROGRESS]
+# CAD models for [OpenVMP robots](https://github.com/openvmp/openvmp/) [WORK-IN-PROGRESS]
+
+This package is an optinal part of [the OpenVMP project](https://github.com/openvmp/openvmp). It is only required for hardware design and manufacturing/assembly activities.
 
 ## Introduction
 

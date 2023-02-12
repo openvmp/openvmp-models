@@ -1,4 +1,4 @@
-# CAD models for OpenVMP robots
+# CAD models for OpenVMP robots [WORK-IN-PROGRESS]
 
 ## Introduction
 

@@ -7,6 +7,9 @@ class BomPart:
     def __init__(self, name, path, config, data):
         self.name = name
         self.path = path
+        self.config = config
+        self.data = data
+
         self.desc = None
         if "desc" in config:
             self.desc = config["desc"]
@@ -19,8 +22,12 @@ class BomPart:
         self.url = None
         if "url" in config:
             self.url = config["url"]
-        self.data = data
         self.count = 1
+
+    def clone(self):
+        cloned = BomPart(self.name, self.path, self.config, self.data)
+        cloned.count = self.count
+        return cloned
 
     def print(self):
         print(self.name, ": ", self.count)
@@ -29,6 +36,7 @@ class BomPart:
 class Bom:
     def __init__(self):
         self.parts = {}
+        self.assemblies = {}
 
     def get_part(self, path):
         part = json.loads(open(path + "/part.json").read())
@@ -56,13 +64,24 @@ class Bom:
         return part
 
     def get_assembly(self, path):
-        model = cqgi.parse(open(path).read())
-        build_result = model.build()
-        result = build_result.results[0]
-        shape = result.shape.toCompound()
-        bom_base = result.options["bom"]
+        # Load the data if it's not there yet
+        result = None
+        if not path in self.assemblies:
+            file = open(path)
+            model = cqgi.parse(file.read())
+            file.close()
+            build_result = model.build()
+            result = build_result.results[0]
 
+            self.assemblies[path] = result
+        else:
+            result = self.assemblies[path]
+
+        shape = result.shape.toCompound()
+
+        bom_base = result.options["bom"]
         self.extend(bom_base)
+
         return shape, result.options["name"]
 
     def add_assembly(self, assembly, path, name=None):
@@ -78,9 +97,10 @@ class Bom:
             if path in self.parts:
                 self.parts[path].count += part.count
             else:
-                self.parts[path] = part
+                self.parts[path] = part.clone()
 
     def print(self):
+        print("BoM:")
         for path in self.parts:
             part = self.parts[path]
             part.print()

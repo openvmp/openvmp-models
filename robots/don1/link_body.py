@@ -70,10 +70,6 @@ if __name__ == "__main__":
     shape = result.toCompound()
 
     print("Generating STL...")
-    cq.exporters.export(
-        shape,
-        "../platform/src/openvmp_robot_don1/meshes/body.stl",
-        opt={"linearDeflection": 0.01, "angularDeflection": 0.5},
-    )
+    shape.exportStl("../platform/src/openvmp_robot_don1/meshes/body.stl", 0.5, 5.0)
 else:
     show_object(result, options={"bom": bom, "name": "body_link"})

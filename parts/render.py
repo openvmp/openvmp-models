@@ -33,6 +33,6 @@ for path in paths:
             "strokeWidth": 0.25,
             "strokeColor": [64, 255, 64],
             "hiddenColor": [32, 64, 32],
-            "showHidden": True,
+            "showHidden": False,
         },
     )

@@ -111,7 +111,7 @@ class Bom:
             bom_lines.append(
                 "| ["
                 + name
-                + "](../../"
+                + "](../../../"
                 + part.path
                 + "/README.md) | "
                 + str(part.count)

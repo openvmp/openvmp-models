@@ -34,10 +34,7 @@ by running `./models/robots/don1/bom.py`.
 
 | Robot                    | Preview                                                                                          |
 | ------------------------ | ------------------------------------------------------------------------------------------------ |
-| [Don1](./don1/README.md) | <img alt="Don1" style="background-color: #000;" src="./generated_files/robots/don1/robot.svg"/> |
-
-- [robots](./robots/README.md): CAD models and assembly instructions
-for whole robots
+| [Don1](./robots/don1/) | <a href="./robots/don1"><img alt="Don1" style="background-color: #000;" src="./generated_files/robots/don1/robot.svg"/></a> |
 
 ## Robot parts
 

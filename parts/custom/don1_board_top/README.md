@@ -1,6 +1,6 @@
 # Top board of Don1
 
-![Top board of Don1](../../../generated_files/parts/custom/don1_board_top.svg)
+<img alt="Top board of Don1" style="background-color: black;" src="../../../generated_files/parts/custom/don1_board_top.svg" />
 
 ## Materials
 

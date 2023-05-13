@@ -1,6 +1,6 @@
 # Bottom board of Don1
 
-![Bottom board of Don1](../../../generated_files/parts/custom/don1_board_bottom.svg)
+<img alt="Bottom board of Don1" style="background-color: black;" src="../../../generated_files/parts/custom/don1_board_bottom.svg" />
 
 ## Materials
 

@@ -8,10 +8,10 @@ See the bill of materials to learn which parts are required for which robot.
 
 The folder [custom](./custom/) conatins parts that are OpenVMP specific.
 
-| Part                                             | Image                                                                                                               |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
-| [Don1 bottom board](./custom/don1_board_bottom/) | <img alt="Don1 bottom board" src="../generated_files/parts/custom/don1_board_bottom.svg" width="200" height="100"/> |
-| [Don1 top board](./custom/don1_board_top/)       | <img alt="Don1 top board" src="../generated_files/parts/custom/don1_board_top.svg" width="200" height="100"/>       |
+| Part                                             | Image                                                                                                                                                |
+| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Don1 bottom board](./custom/don1_board_bottom/) | <img alt="Don1 bottom board" style="background-color: black;" src="../generated_files/parts/custom/don1_board_bottom.svg" width="200" height="100"/> |
+| [Don1 top board](./custom/don1_board_top/)       | <img alt="Don1 top board" style="background-color: black;" src="../generated_files/parts/custom/don1_board_top.svg" width="200" height="100"/>       |
 
 ## Market
 
@@ -22,3 +22,8 @@ e-commerce platforms (Amazon, AliExpress etc).
 
 The folder [gobilda](./gobilda/) contains parts that can be purchased from
 [goBILDA](https://gobilda.com/).
+
+## STEPPERONLINE
+
+The folder [stepperonline](./stepperonline/) contains parts that can be purchased from
+[STEPPERONLINE](https://stepperonline.com/).

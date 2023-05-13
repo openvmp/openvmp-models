@@ -1,6 +1,6 @@
 # Don1
 
-![Don1](../../generated_files/robots/don1/robot.svg)
+<img alt="Don1" style="background-color: black;" src="../../generated_files/robots/don1/robot.svg"/>
 
 Bill of materials is [here](../../generated_files/robots/don1/bom.md).
 

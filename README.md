@@ -30,18 +30,22 @@ OpenVMP can generate the bill of materials for each robot.
 For example, the bill of materials for Don1 can be printed
 by running `./models/robots/don1/bom.py`.
 
-## Contents
+## Robot CAD models
+
+| Robot                    | Preview                                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------------------ |
+| [Don1](./don1/README.md) | <img alt="Don1" style="background-color: black;" src="./generated_files/robots/don1/robot.svg"/> |
 
 - [robots](./robots/README.md): CAD models and assembly instructions
 for whole robots
-- [parts](./parts/README.md): CAD models and manufacturing/ordering instructions
 
-## Development Hints
+## Robot parts
 
-Use `.` as the current folder for all command line sessions.
-
+CAD models and manufacturing/ordering instructions can be found [here](./parts/README.md).
 
 ### Troubleshooting CadQuery
+
+Use `.` as the current folder for all CadQuery command line sessions.
 
 In a terminal window, run `cd models && cq-server run <path>`,
 where `path` is either `robot/<robot_name>` or `parts/<type>/<part>`.

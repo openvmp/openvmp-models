@@ -7,6 +7,7 @@ import sys
 
 sys.path.append(".")
 from lib.bom import Bom
+from lib.doc import exportSvgOpts
 
 result = cq.Assembly()
 bom = Bom()
@@ -73,26 +74,14 @@ if __name__ == "__main__":
     shape = result.toCompound()
     shape = shape.rotate((0, 0, 0), (1, 0, 0), -90)
 
-    # # Not used yet
-    # print("Generating STL...")
-    # shape.exportStl("generated_files/robots/don1/robot.stl", 0.5, 5.0)
+    print("Generating STL...")
+    shape.exportStl("generated_files/robots/don1/robot.stl", 0.5, 5.0)
 
     print("Generating SVG...")
     cq.exporters.export(
         shape,
         "generated_files/robots/don1/robot.svg",
-        opt={
-            "width": 500,
-            "height": 200,
-            "marginLeft": 12,
-            "marginTop": 12,
-            "showAxes": False,
-            "projectionDir": [0.5, 0.25, 0.5],
-            "strokeWidth": 0.25,
-            "strokeColor": [64, 255, 64],
-            "hiddenColor": [32, 64, 32],
-            "showHidden": False,
-        },
+        opt=exportSvgOpts,
     )
 
     print("Generating BoM...")

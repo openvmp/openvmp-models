@@ -1,29 +1,15 @@
 # OpenVMP Parts
 
-The below are the parts used by at least some OpenVMP robot.
+This folder contains all parts that are used by at least some OpenVMP robot.
+See the bill of materials of the corresponding robot
+to learn which parts are required.
 
-See the bill of materials to learn which parts are required for which robot.
+## Contents
 
-## Custom
+| Folder                            | Description                                                                  |
+| --------------------------------- | ---------------------------------------------------------------------------- |
+| [custom](./custom/)               | Custom made parts                                                            |
+| [gobuilda](./gobuilda)            | Parts that can be purchased from [goBILDA](https://gobilda.com/)             |
+| [stepperonline](./stepperonline/) | Parts that can be purchased from [STEPPERONLINE](https://stepperonline.com/) |
 
-The folder [custom](./custom/) conatins parts that are OpenVMP specific.
-
-| Part                                             | Image                                                                                                                                                |
-| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Don1 bottom board](./custom/don1_board_bottom/) | <img alt="Don1 bottom board" style="background-color: black;" src="../generated_files/parts/custom/don1_board_bottom.svg" width="200" height="100"/> |
-| [Don1 top board](./custom/don1_board_top/)       | <img alt="Don1 top board" style="background-color: black;" src="../generated_files/parts/custom/don1_board_top.svg" width="200" height="100"/>       |
-
-## Market
-
-The folder [market](./market/) conatins parts that can be purchased from
-e-commerce platforms (Amazon, AliExpress etc).
-
-## goBILDA
-
-The folder [gobilda](./gobilda/) contains parts that can be purchased from
-[goBILDA](https://gobilda.com/).
-
-## STEPPERONLINE
-
-The folder [stepperonline](./stepperonline/) contains parts that can be purchased from
-[STEPPERONLINE](https://stepperonline.com/).
+<!-- | [market](./market/)               | Parts that can be purchased from e-commerce platforms (Amazon, AliExpress etc) | -->

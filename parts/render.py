@@ -74,11 +74,11 @@ for folder in folders:
             + "\n\n"
             + "[<img alt='"
             + part["desc"]
-            + "' src='../../../generated_files/parts/"
+            + "' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/parts/"
             + folder_dir
             + "/"
             + part_basename
-            + ".svg'/>](../../../generated_files/parts/"
+            + ".svg'/>](https://github.com/openvmp/openvmp-models/blob/main/generated_files/parts/"
             + folder_dir
             + "/"
             + part_basename
@@ -120,10 +120,10 @@ for folder in folders:
             "| ["
             + part["desc"]
             + "](./"
-            + part["path"]
+            + part["basename"]
             + ") | <img alt='"
             + part["desc"]
-            + "' src='../../generated_files/"
+            + "' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/"
             + part["path"]
             + ".svg' width='300' /> |\n"
         )

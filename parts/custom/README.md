@@ -5,5 +5,5 @@ This folder conatins parts that must be custom made specifically for OpenVMP.
 
   | Part | Image |
   | -- | -- |
-  | [Bottom board of Don1](./parts/custom/don1_board_bottom) | <img alt='Bottom board of Don1' src='../../generated_files/parts/custom/don1_board_bottom.svg' width='300' /> |
-| [Top board of Don1](./parts/custom/don1_board_top) | <img alt='Top board of Don1' src='../../generated_files/parts/custom/don1_board_top.svg' width='300' /> |
+  | [Bottom board of Don1](./don1_board_bottom) | <img alt='Bottom board of Don1' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/parts/custom/don1_board_bottom.svg' width='300' /> |
+| [Top board of Don1](./don1_board_top) | <img alt='Top board of Don1' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/parts/custom/don1_board_top.svg' width='300' /> |

@@ -1,0 +1,6 @@
+{
+  "name": "nema17_mount",
+  "desc": "A mount for NEMA-17 motors to be installed inside of a 48mm channel (43mm inner dimension)",
+  "type": "step",
+  "readme": "## Materials\nThis part is to be 3D-printed using any available material. The harder the material, the better."
+}

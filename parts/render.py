@@ -11,11 +11,13 @@ from lib.doc import exportSvgOpts
 
 titles = {
     "custom": "Custom OpenVMP parts",
+    "dfrobot": "OpenVMP parts from [DFRobot](https://www.dfrobot.com/)",
     "gobilda": "OpenVMP parts from [goBILDA](https://www.gobilda.com/)",
     "stepperonline": "OpenVMP parts from [STEPPERONLINE](https://stepperonline.com/)",
 }
 descriptions = {
     "custom": "This folder conatins parts that must be custom made specifically for OpenVMP.",
+    "dfrobot": "This folder contains parts that can be purchased from [DFRobot](https://www.dfrobot.com/).",
     "gobilda": "This folder contains parts that can be purchased from [goBILDA](https://www.gobilda.com/).",
     "stepperonline": "This folder contains parts that can be purchased from [STEPPERONLINE](https://stepperonline.com/).",
 }
@@ -45,6 +47,7 @@ for folder in folders:
 
         shape = result.toCompound()
         shape = shape.rotate((0, 0, 0), (1, 0, 0), -90)
+        shape.BoundingBox()
 
         print("Exporting " + path + " to STL...")
         shape.exportStl("generated_files/" + path + ".stl", 0.2, 1.0)
@@ -106,11 +109,11 @@ for folder in folders:
         + descriptions[folder_dir]
         + """
 
-  See [openvmp-models](https://github.com/openvmp/openvmp-models) for more info.
+See [openvmp-models](https://github.com/openvmp/openvmp-models) for more info.
 
-  | Part | Image |
-  | -- | -- |
-  """
+| Part | Image |
+| -- | -- |
+"""
     )
     readme = open(folder + "/README.md", "w+")
     readme.write(contents)

@@ -22,7 +22,7 @@ graph TB
   hip1 -.-> turntable1 -.-> base
   hip2 -.-> turntable2 -.-> base
 
-  base("<a href='../../generated_files/robots/don1/base.stl'><img height=140 alt=base style='min-width:400px' src='../../generated_files/robots/don1/base.png' /></a>")
+  base("&lt;a href='../../generated_files/robots/don1/base.stl'&gt;&lt;img height=140 alt=base style='min-width:400px' src='../../generated_files/robots/don1/base.png' /&gt;&lt;/a&gt;")
   turntable1("<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=turn_table style='min-width:200px' src=../../generated_files/robots/don1/turn_table.png /></a>")
   turntable2("<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=turn_table style='min-width:200px' src=../../generated_files/robots/don1/turn_table.png /></a>")
   hip1("<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=hip style='min-width:200px' src=../../generated_files/robots/don1/hip.png /></a>")

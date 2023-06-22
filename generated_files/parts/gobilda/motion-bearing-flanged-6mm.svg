@@ -6,9 +6,9 @@
    height="320.0"
 
 >
-    <g transform="scale(15.82803415452182, -15.82803415452182)   translate(17.40595030835736,-9.683641514702392)" stroke-width="1.0"  fill="none">
+    <g transform="scale(15.82803415452182, -15.82803415452182)   translate(17.40595030835736,-9.683641514702392)" stroke-width="0.1"  fill="none">
        <!-- hidden lines -->
-       <g  stroke="rgb(32,64,32)" fill="none" stroke-dasharray="1.0,1.0" >
+       <g  stroke="rgb(32,64,32)" fill="none" stroke-dasharray="0.1,0.1" >
 
        </g>
 

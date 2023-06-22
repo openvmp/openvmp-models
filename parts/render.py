@@ -1,4 +1,5 @@
 import cadquery as cq
+import cairosvg
 from glob import glob
 import json
 import os
@@ -47,7 +48,12 @@ for folder in folders:
 
         shape = result.toCompound()
         shape = shape.rotate((0, 0, 0), (1, 0, 0), -90)
-        shape.BoundingBox()
+        # len = shape.BoundingBox().DiagonalLength
+        xlen = shape.BoundingBox().xlen
+        ylen = shape.BoundingBox().ylen
+        zlen = shape.BoundingBox().zlen
+        len = max(xlen, ylen, zlen)
+        exportSvgOpts["strokeWidth"] = len / 150.0
 
         print("Exporting " + path + " to STL...")
         shape.exportStl("generated_files/" + path + ".stl", 0.2, 1.0)
@@ -57,6 +63,13 @@ for folder in folders:
             shape,
             "generated_files/" + path + ".svg",
             opt=exportSvgOpts,
+        )
+        print("Exporting " + path + " to PNG...")
+        cairosvg.svg2png(
+            url="generated_files/" + path + ".svg",
+            write_to="generated_files/" + path + ".png",
+            output_width=exportSvgOpts["width"],
+            output_height=exportSvgOpts["height"],
         )
 
         print("Generating README.md in " + path + "...")
@@ -81,7 +94,7 @@ for folder in folders:
             + folder_dir
             + "/"
             + part_basename
-            + ".svg'/>](https://github.com/openvmp/openvmp-models/blob/main/generated_files/parts/"
+            + ".png'/>](https://github.com/openvmp/openvmp-models/blob/main/generated_files/parts/"
             + folder_dir
             + "/"
             + part_basename
@@ -128,7 +141,7 @@ See [openvmp-models](https://github.com/openvmp/openvmp-models) for more info.
             + part["desc"]
             + "' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/"
             + part["path"]
-            + ".svg' width='300' /> |\n"
+            + ".png' width='300' /> |\n"
         )
 
     readme.close()

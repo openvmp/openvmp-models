@@ -3,6 +3,7 @@ if __name__ != "__cqgi__":
 import cadquery.cqgi as cqgi
 import cadquery as cq
 
+import cairosvg
 import sys
 
 sys.path.append(".")
@@ -74,6 +75,14 @@ for half, dir in [("front", 1), ("rear", -1)]:
 if __name__ == "__main__":
     shape = result.toCompound()
     shape = shape.rotate((0, 0, 0), (1, 0, 0), -90)
+    # len = shape.BoundingBox().DiagonalLength
+    xlen = shape.BoundingBox().xlen
+    ylen = shape.BoundingBox().ylen
+    zlen = shape.BoundingBox().zlen
+    len = max(xlen, ylen, zlen)
+    if len > 300.0:
+        len = 300.0
+    exportSvgOpts["strokeWidth"] = len / 150.0
 
     print("Generating STL...")
     shape.exportStl("generated_files/robots/don1/robot.stl", 0.5, 1.0)
@@ -83,6 +92,14 @@ if __name__ == "__main__":
         shape,
         "generated_files/robots/don1/robot.svg",
         opt=exportSvgOpts,
+    )
+
+    print("Generating PNG...")
+    cairosvg.svg2png(
+        url="generated_files/robots/don1/robot.svg",
+        write_to="generated_files/robots/don1/robot.png",
+        output_width=exportSvgOpts["width"],
+        output_height=exportSvgOpts["height"],
     )
 
     print("Generating BoM...")

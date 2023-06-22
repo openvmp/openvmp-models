@@ -2,6 +2,7 @@ if __name__ != "__cqgi__":
     from cq_server.ui import ui, show_object
 import cadquery as cq
 
+import cairosvg
 import sys
 
 sys.path.append(".")
@@ -322,6 +323,15 @@ if __name__ == "__main__":
         "generated_files/robots/don1/hip.svg",
         opt=exportSvgOpts,
     )
+
+    print("Generating PNG...")
+    cairosvg.svg2png(
+        url="generated_files/robots/don1/hip.svg",
+        write_to="generated_files/robots/don1/hip.png",
+        output_width=exportSvgOpts["width"],
+        output_height=exportSvgOpts["height"],
+    )
+
 else:
     show_object(
         result,

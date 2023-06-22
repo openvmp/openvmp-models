@@ -13,9 +13,9 @@ this repository is kept as a separate optional submodule.
 
 This repository contains [the catalog of all parts](./parts/), how they look, how they can be manufactured or where they can be purchased. It also contains CadQuery scripts that codify [the blueprints of entire robots](./robots/), instructions how individual parts come together to form the robot.
 
-| Robot                  | Preview                                                                                                    |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [Don1](./robots/don1/) | [<img alt="Don1" src="./generated_files/robots/don1/robot.svg"/>](./generated_files/robots/don1/robot.stl) |
+| Robot                  | Preview                                                                           |
+| ---------------------- | --------------------------------------------------------------------------------- |
+| [Don1](./robots/don1/) | [<img alt="Don1" src="./generated_files/robots/don1/robot.svg"/>](./robots/don1/) |
 
 The default behavior of CadQuery scripts is extended to gerentate the following:
 

@@ -22,10 +22,11 @@ graph TB
   hip1 -.-> turntable1 -.-> base
   hip2 -.-> turntable2 -.-> base
 
-  base(<img height=140 alt=base style='min-width:400px' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.png' />)
+  base("[!https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.png]")
   click base "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.stl" _blank
-  turntable1("<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=turn_table style='min-width:200px' src=../../generated_files/robots/don1/turn_table.png /></a>")
-  turntable2("<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=turn_table style='min-width:200px' src=../../generated_files/robots/don1/turn_table.png /></a>")
+  turntable1("<img height=80 alt=turn_table style='min-width:200px' src=../../generated_files/robots/don1/turn_table.png />")
+  click turntable1 "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/turn_table.stl" _blank
+  turntable2(<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=turn_table style='min-width:200px' src=../../generated_files/robots/don1/turn_table.png /></a>)
   hip1("<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=hip style='min-width:200px' src=../../generated_files/robots/don1/hip.png /></a>")
   hip2("<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=hip style='min-width:200px' src=../../generated_files/robots/don1/hip.png /></a>")
   thigh1("<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=thigh style='min-width:200px' src=../../generated_files/robots/don1/lower_arm.png /></a>")

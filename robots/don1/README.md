@@ -14,7 +14,7 @@ The major modules are separated from each other by 1 degree of freedom.
 
 
 ```mermaid
-%%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
+%%{init: {"flowchart": {"defaultRenderer": "elk"}, "securityLevel": "loose"} }%%
 graph TB
   foot1 -.-> thigh1 -.-> hip1
   foot2 -.-> thigh2 -.-> hip1

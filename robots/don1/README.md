@@ -22,7 +22,7 @@ graph TB
   hip1 -.-> turntable1 -.-> base
   hip2 -.-> turntable2 -.-> base
 
-  base("Base")
+  base("<img height=80 style='min-width:240px' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.png'/>")
   click base "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.stl" _blank
   turntable1(Turntable)
   click turntable1 "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/turn_table.stl" _blank

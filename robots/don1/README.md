@@ -14,6 +14,7 @@ The major modules are separated from each other by 1 degree of freedom.
 
 
 ```mermaid
+%%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
 graph TB
   foot1 -.-> thigh1 -.-> hip1
   foot2 -.-> thigh2 -.-> hip1
@@ -23,9 +24,9 @@ graph TB
   hip2 -.-> turntable2 -.-> base
 
   base("<img height=80 style='min-width:240px' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.png'/>")
-  click base "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.stl" _blank
+  click base "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.png" _blank
   turntable1(Turntable)
-  click turntable1 "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/turn_table.stl" _blank
+  click turntable1 "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/turn_table.png" _blank
   turntable2(Turntable)
   hip1(Hip)
   hip2(Hip)

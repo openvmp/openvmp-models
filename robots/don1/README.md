@@ -22,9 +22,11 @@ graph TB
   hip1 -.-> turntable1 -.-> base
   hip2 -.-> turntable2 -.-> base
 
-  base("[!https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.png]")
+  base(" ")
+  classDef classNameBase height:80px,min-width:200px;background-image:url(https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.png);
+  class base classNameBase;
   click base "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.stl" _blank
-  turntable1("<img height=80 alt=turn_table style='min-width:200px' src=../../generated_files/robots/don1/turn_table.png />")
+  turntable1("<img height=80 alt=turn_table style='min-width:200px' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/turn_table.png' />")
   click turntable1 "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/turn_table.stl" _blank
   turntable2(<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=turn_table style='min-width:200px' src=../../generated_files/robots/don1/turn_table.png /></a>)
   hip1("<a href='../../generated_files/robots/don1/base.stl'><img height=80 alt=hip style='min-width:200px' src=../../generated_files/robots/don1/hip.png /></a>")

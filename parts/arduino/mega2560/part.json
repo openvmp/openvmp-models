@@ -1,0 +1,8 @@
+{
+  "name": "arduino_mega2560",
+  "desc": "Arduino Mega 2560 Rev3",
+  "vendor": "arduino",
+  "sku": "A000067",
+  "url": "https://store.arduino.cc/products/arduino-mega-2560-rev3",
+  "type": "step"
+}

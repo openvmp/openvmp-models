@@ -11,5 +11,6 @@ to learn which parts are required.
 | [custom](./custom/)                                          | Custom made parts                                                            |
 | [gobilda](https://github.com/openvmp/openvmp-parts-gobilda/) | Parts that can be purchased from [goBILDA](https://gobilda.com/)             |
 | [stepperonline](./stepperonline/)                            | Parts that can be purchased from [STEPPERONLINE](https://stepperonline.com/) |
+| [cloudray](./cloudray/)                                      | Parts that can be purchased from [Cloudray](https://cloudray.com/)           |
 
 <!-- | [market](./market/)               | Parts that can be purchased from e-commerce platforms (Amazon, AliExpress etc) | -->

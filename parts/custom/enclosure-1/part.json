@@ -1,0 +1,6 @@
+{
+  "name": "enclosure_1",
+  "desc": "Part of the enclosure for electronic components",
+  "type": "step",
+  "readme": "## Materials\nThis part is to be 3D-printed using any available material. The harder the material, the better."
+}

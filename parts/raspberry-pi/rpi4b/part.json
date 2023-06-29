@@ -1,0 +1,8 @@
+{
+  "name": "raspberry_pi_4_model_4",
+  "desc": "Raspberry Pi 4 Model B",
+  "vendor": "raspberry-pi",
+  "sku": "PI4-8GB",
+  "url": "https://www.canakit.com/raspberry-pi-4-8gb.html?cid=usd&src=raspberrypi",
+  "type": "step"
+}

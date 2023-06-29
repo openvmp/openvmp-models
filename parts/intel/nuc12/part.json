@@ -1,0 +1,8 @@
+{
+  "name": "nuc12",
+  "desc": "Intel NUC 12th gen board",
+  "vendor": "intel",
+  "sku": "NUC12WSB",
+  "url": "https://ark.intel.com/content/www/us/en/ark/products/121629/intel-nuc-12-pro-board-nuc12wsbv5.html",
+  "type": "step"
+}

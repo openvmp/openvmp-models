@@ -14,7 +14,199 @@ result = cq.Assembly(name="base_link")
 bom = Bom()
 
 bom.add_part(result, "./parts/custom/don1_board_top")
-bom.add_part(result, "./parts/custom/don1_board_bottom")
+
+bottom_assembly = cq.Assembly()
+bom.add_part(bottom_assembly, "./parts/custom/don1_board_bottom")
+
+drv_dm556rs, drv_dm556rs_name = bom.get_part(
+    "./parts/stepperonline/driver-stepper-dm556rs"
+)
+drv_dm556rs, drv_dm556rs_name = bom.get_part(
+    "./parts/stepperonline/driver-stepper-dm556rs"
+)
+drv_dm556rs, drv_dm556rs_name = bom.get_part(
+    "./parts/stepperonline/driver-stepper-dm556rs"
+)
+drv_dm556rs, drv_dm556rs_name = bom.get_part(
+    "./parts/stepperonline/driver-stepper-dm556rs"
+)
+drv_dm556rs, drv_dm556rs_name = bom.get_part(
+    "./parts/stepperonline/driver-stepper-dm556rs"
+)
+drv_dm556rs, drv_dm556rs_name = bom.get_part(
+    "./parts/stepperonline/driver-stepper-dm556rs"
+)
+drv_dm556rs, drv_dm556rs_name = bom.get_part(
+    "./parts/stepperonline/driver-stepper-dm556rs"
+)
+drv_dm556rs, drv_dm556rs_name = bom.get_part(
+    "./parts/stepperonline/driver-stepper-dm556rs"
+)
+bottom_assembly.add(
+    drv_dm556rs,
+    name=drv_dm556rs_name + "_1",
+    loc=cq.Location((245.0, -77.0, -109.0), (0, 0.71, -0.71), 180),
+)
+bottom_assembly.add(
+    drv_dm556rs,
+    name=drv_dm556rs_name + "_2",
+    loc=cq.Location((-245.0, -77.0, -109.0), (0, 0.71, -0.71), 180),
+)
+bottom_assembly.add(
+    drv_dm556rs,
+    name=drv_dm556rs_name + "_9",
+    loc=cq.Location((-90.5, -84.5, -109.0), (0, 0.71, -0.71), 180),
+)
+bottom_assembly.add(
+    drv_dm556rs,
+    name=drv_dm556rs_name + "_5",
+    loc=cq.Location((245.0, -77.0, -146.0), (1.0, 0.0, 0.0), 90),
+)
+# bottom_assembly.add(
+#     drv_dm556rs,
+#     name=drv_dm556rs_name + "_6",
+#     loc=cq.Location((-245.0, -77.0, -146.0), (1.0, 0.0, 0.0), 90),
+# )
+drv_dm556rs = drv_dm556rs.rotate((0.0, 0.0, 0.0), (0.0, 1.0, 0.0), 180)
+bottom_assembly.add(
+    drv_dm556rs,
+    name=drv_dm556rs_name + "_3",
+    loc=cq.Location((245.0, 77.0, -109.0), (0, 0.71, -0.71), 180),
+)
+bottom_assembly.add(
+    drv_dm556rs,
+    name=drv_dm556rs_name + "_4",
+    loc=cq.Location((-245.0, 77.0, -109.0), (0, 0.71, -0.71), 180),
+)
+bottom_assembly.add(
+    drv_dm556rs,
+    name=drv_dm556rs_name + "_10",
+    loc=cq.Location((-90.5, 84.5, -109.0), (0, 0.71, -0.71), 180),
+)
+bottom_assembly.add(
+    drv_dm556rs,
+    name=drv_dm556rs_name + "_7",
+    loc=cq.Location((245.0, 77.0, -146.0), (1.0, 0.0, 0.0), 90),
+)
+# bottom_assembly.add(
+#     drv_dm556rs,
+#     name=drv_dm556rs_name + "_8",
+#     loc=cq.Location((-245.0, 77.0, -145.0), (1.0, 0.0, 0.0), 90),
+# )
+
+drv_dm556sx2, drv_dm556sx2_name = bom.get_part(
+    "./parts/cloudray/driver-stepper-dm556sx2"
+)
+drv_dm556sx2, drv_dm556sx2_name = bom.get_part(
+    "./parts/cloudray/driver-stepper-dm556sx2"
+)
+drv_dm556sx2, drv_dm556sx2_name = bom.get_part(
+    "./parts/cloudray/driver-stepper-dm556sx2"
+)
+drv_dm556sx2, drv_dm556sx2_name = bom.get_part(
+    "./parts/cloudray/driver-stepper-dm556sx2"
+)
+bottom_assembly.add(
+    drv_dm556sx2,
+    name=drv_dm556sx2_name + "_1",
+    loc=cq.Location((0.0, 88.25, 0.0), (1.0, 0.0, 0.0), 0),
+)
+bottom_assembly.add(
+    drv_dm556sx2,
+    name=drv_dm556sx2_name + "_2",
+    loc=cq.Location((-157.0, 88.25, 0.0), (1.0, 0.0, 0.0), 0),
+)
+bottom_assembly.add(
+    drv_dm556sx2,
+    name=drv_dm556sx2_name + "_3",
+    loc=cq.Location((-8.0, -88.25, 0.0), (0.0, 0.0, 1.0), 180),
+)
+bottom_assembly.add(
+    drv_dm556sx2,
+    name=drv_dm556sx2_name + "_4",
+    loc=cq.Location((-8.0 + 157.0, -88.25, 0.0), (0.0, 0.0, 1.0), 180),
+)
+
+drv_bld510s, drv_bld510s_name = bom.get_part(
+    "./parts/stepperonline/driver-brushless-bld510s"
+)
+drv_bld510s, drv_bld510s_name = bom.get_part(
+    "./parts/stepperonline/driver-brushless-bld510s"
+)
+bottom_assembly.add(
+    drv_bld510s,
+    name=drv_bld510s_name + "_1",
+    loc=cq.Location((-186.0, -76.9, -163.1), (1.0, 0.0, 0.0), 0),
+)
+bottom_assembly.add(
+    drv_bld510s,
+    name=drv_bld510s_name + "_2",
+    loc=cq.Location((-304.0, 76.9, -163.1), (0.0, 0.0, 1.0), 180),
+)
+
+case_0, case_0_name = bom.get_part("./parts/custom/enclosure-0")
+bottom_assembly.add(case_0, name=case_0_name)
+case_1, case_1_name = bom.get_part("./parts/custom/enclosure-1")
+bottom_assembly.add(case_1, name=case_1_name)
+case_2, case_2_name = bom.get_part("./parts/custom/enclosure-2")
+bottom_assembly.add(case_2, name=case_2_name)
+case_3, case_3_name = bom.get_part("./parts/custom/enclosure-3")
+bottom_assembly.add(case_3, name=case_3_name)
+case_4, case_4_name = bom.get_part("./parts/custom/enclosure-4")
+bottom_assembly.add(case_4, name=case_4_name)
+case_5, case_5_name = bom.get_part("./parts/custom/enclosure-5")
+bottom_assembly.add(case_5, name=case_5_name)
+case_6, case_6_name = bom.get_part("./parts/custom/enclosure-6")
+bottom_assembly.add(case_6, name=case_6_name)
+case_7, case_7_name = bom.get_part("./parts/custom/enclosure-7")
+bottom_assembly.add(case_7, name=case_7_name)
+
+electronics_assembly = cq.Assembly()
+nuc, nuc_name = bom.get_part("./parts/intel/nuc12")
+nuc, nuc_name = bom.get_part("./parts/intel/nuc12")
+electronics_assembly.add(
+    nuc,
+    name=nuc_name + "_1",
+    loc=cq.Location((198.29, -13.5, 35.79), (-0.98, 0.13, -0.13), 269.02),
+)
+electronics_assembly.add(
+    nuc,
+    name=nuc_name + "_2",
+    loc=cq.Location((99.91, -13.5, 35.80), (-0.98, 0.13, -0.13), 269.02),
+)
+
+rpi, rpi_name = bom.get_part("./parts/raspberry-pi/rpi4b")
+electronics_assembly.add(
+    rpi,
+    name=rpi_name,
+    loc=cq.Location((104.4, -55.0, -1.0), (0.0, 0.0, 1.0), 90),
+)
+
+arduino, arduino_name = bom.get_part("./parts/arduino/mega2560")
+electronics_assembly.add(
+    arduino,
+    name=arduino_name,
+    loc=cq.Location((195.9, 7.5, -29.1), (0.58, 0.58, 0.58), 120),
+)
+
+bottom_assembly.add(
+    electronics_assembly,
+    name="electronics_assembly",
+    loc=cq.Location((75.0, 142.0, -88.0), (0.0, 0.0, 1.0), 270),
+)
+
+result.add(
+    bottom_assembly,
+    name="bottom_assembly",
+    loc=cq.Location((0.0, 0.0, -5.0), (1.0, 0.0, 0.0), 0),
+)
+
+battery, battery_name = bom.get_part("./parts/ego/battery-7.5")
+result.add(
+    battery,
+    name=battery_name,
+    loc=cq.Location((-80.0, -91.0, -49.2), (-1.0, 0.0, 0.0), 270),
+)
 
 for half, dir in [("front", 1), ("rear", -1)]:
     half_assembly = cq.Assembly()

@@ -15,12 +15,22 @@ titles = {
     "dfrobot": "OpenVMP parts from [DFRobot](https://www.dfrobot.com/)",
     "gobilda": "OpenVMP parts from [goBILDA](https://www.gobilda.com/)",
     "stepperonline": "OpenVMP parts from [STEPPERONLINE](https://stepperonline.com/)",
+    "cloudray": "OpenVMP parts from [Cloudray](https://cloudray.com/)",
+    "arduino": "OpenVMP parts from [Arduino](https://arduino.cc/)",
+    "intel": "OpenVMP parts from [Intel](https://intel.com/)",
+    "raspberry-pi": "OpenVMP parts from [Raspberry Pi](https://raspberrypi.com/)",
+    "ego": "OpenVMP parts from [EGO](https://egopowerplus.com/)",
 }
 descriptions = {
     "custom": "This folder conatins parts that must be custom made specifically for OpenVMP.",
     "dfrobot": "This folder contains parts that can be purchased from [DFRobot](https://www.dfrobot.com/).",
     "gobilda": "This folder contains parts that can be purchased from [goBILDA](https://www.gobilda.com/).",
     "stepperonline": "This folder contains parts that can be purchased from [STEPPERONLINE](https://stepperonline.com/).",
+    "cloudray": "This folder contains parts that can be purchased from [Cloudray](https://cloudray.com/).",
+    "arduino": "This folder contains parts that can be purchased from [Arduino](https://arduino.cc/).",
+    "intel": "This folder contains parts that can be purchased from [Intel](https://intel.com/).",
+    "raspberry-pi": "This folder contains parts that can be purchased from [Raspberry Pi](https://raspberrypi.com/).",
+    "ego": "This folder contains parts that can be purchased from [EGO](https://egopowerplus.com/).",
 }
 
 # Walk through all sub-folders.

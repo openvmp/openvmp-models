@@ -7,14 +7,13 @@ The bill of materials can be found [here](../../generated_files/robots/don1/bom.
 
 It is designed to perform tasks on its own. But it also has enough computing power to control a fleet of smaller OpenVMP robots.
 
-
 ## High Level Architecture
 
 The major modules are separated from each other by 1 degree of freedom.
 
-
 ```mermaid
 graph TB
+
   foot1 -.-> thigh1 -.-> hip1
   foot2 -.-> thigh2 -.-> hip1
   foot3 -.-> thigh3 -.-> hip2
@@ -23,9 +22,7 @@ graph TB
   hip2 -.-> turntable2 -.-> base
 
   base(Base)
-  click base "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.png" _blank
   turntable1(Turntable)
-  click turntable1 "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/turn_table.png" _blank
   turntable2(Turntable)
   hip1(Hip)
   hip2(Hip)

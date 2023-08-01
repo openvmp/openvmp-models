@@ -46,9 +46,23 @@ for half, dir in [("front", 1), ("rear", -1)]:
             loc=cq.Location((0, 0, 0), (0, 0, 1), 0),
         )
 
+        upper_arm_assembly = cq.Assembly()
         upper_arm_link, _ = bom.get_assembly("./robots/don1/link_upper_arm.py")
-        side_assembly.add(
+        upper_arm_assembly.add(
             upper_arm_link,
+            name=half + "_" + side + "_upper_arm_link",
+            loc=cq.Location((0, 0, 0), (1, 0, 0), 0),
+        )
+
+        wheel_link, _ = bom.get_assembly("./robots/don1/link_wheel.py")
+        upper_arm_assembly.add(
+            wheel_link,
+            name=half + "_" + side + "_wheel_link",
+            loc=cq.Location((0, -293.5, -75.2), (1, 0, 0), 90),
+        )
+
+        side_assembly.add(
+            upper_arm_assembly,
             name=half + "_" + side + "_upper_arm_link",
             loc=cq.Location((0, -304.90, 108.75), (1, 0, 0), 39),
         )
@@ -85,7 +99,7 @@ if __name__ == "__main__":
     exportSvgOpts["strokeWidth"] = len / 150.0
 
     print("Generating STL...")
-    shape.exportStl("generated_files/robots/don1/robot.stl", 0.5, 1.0)
+    shape.exportStl("generated_files/robots/don1/robot.stl", 0.5, 5.0)
 
     print("Generating SVG...")
     cq.exporters.export(

@@ -6,6 +6,7 @@ import cairosvg
 import sys
 
 sys.path.append(".")
+sys.path.append("models")
 from lib.bom import Bom
 from lib.doc import exportSvgOpts
 
@@ -79,8 +80,7 @@ wheel, wheel_name = bom.get_part("./parts/dfrobot/rubber-wheel")
 result.add(
     wheel,
     name=wheel_name,
-    # The currently used STEP file is already relocated
-    loc=cq.Location((90.5 - 90.5, 12.0 - 12.0, 48.0 - 48.0), (0, 0, 1), 0),
+    loc=cq.Location((90.5, 12.0, 48.0), (1, 0, 0), 90),
 )
 hyper_hub, hyper_hub_name = bom.get_part("./parts/gobilda/motion-hub-hyper-8mmREX")
 result.add(

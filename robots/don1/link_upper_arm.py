@@ -58,12 +58,6 @@ result.add(
     name=shaft_name,
     loc=cq.Location((0.0, -293.5, -75.2), (0, 0, 1), 0),
 )
-wheel, wheel_name = bom.get_part("./parts/dfrobot/rubber-wheel")
-result.add(
-    wheel,
-    name=wheel_name,
-    loc=cq.Location((-90.5, -293.5 - 12.0, -75.2 - 48.0), (0, 0, 1), 0),
-)
 hook, hook_name = bom.get_part("./parts/custom/hook")
 result.add(
     hook,

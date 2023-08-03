@@ -3,6 +3,10 @@ import cadquery as cq
 import cadquery.cqgi as cqgi
 import math
 
+from lib.common import get_models_dir
+
+models = get_models_dir()
+
 
 class BomPart:
     def __init__(self, name, path, config, data):
@@ -49,25 +53,27 @@ class Bom:
         # sel.assemblies contains all assemblies loaded so far
         self.assemblies = {}
 
-    def get_part(self, path):
-        part = json.loads(open(path + "/part.json").read())
+    def get_part(self, path, count=1):
+        part = json.loads(open(models + "/" + path + "/part.json").read())
         result = None
 
         # Create the line item if it's not there yet
         if not path in Bom.parts:
             Bom.parts[path] = BomPart(part["name"], path, part, result)
+            Bom.parts[path].count = count
         else:
-            Bom.parts[path].count = Bom.parts[path].count + 1
+            Bom.parts[path].count = Bom.parts[path].count + count
 
         if not path in self.self_parts:
             self.self_parts[path] = BomPart(part["name"], path, part, None)
+            self.self_parts[path].count = count
         else:
-            self.self_parts[path].count = self.self_parts[path].count + 1
+            self.self_parts[path].count = self.self_parts[path].count + count
 
         # Load the data if it's not there yet
         if Bom.parts[path].data is None:
             if part["type"] == "step":
-                result = cq.importers.importStep(path + "/part.step")
+                result = cq.importers.importStep(models + "/" + path + "/part.step")
             Bom.parts[path].data = result
         else:
             result = Bom.parts[path].data
@@ -84,7 +90,7 @@ class Bom:
         name = None
         # Load the data if it's not processed yet
         if not path in self.assemblies:
-            file = open(path)
+            file = open(models + "/" + path)
             model = cqgi.parse(file.read())
             file.close()
             build_result = model.build()

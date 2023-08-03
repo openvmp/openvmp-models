@@ -21,6 +21,7 @@ The default behavior of CadQuery scripts is extended to gerentate the following:
 
 - images and 3D models
 - bill of materials
+
 ### Images and 3D models
 
 [The main OpenVMP repository](https://github.com/openvmp/openvmp/)
@@ -39,7 +40,11 @@ For example, the bill of materials for Don1 can be found in
 
 ### Rendering from command line
 
-*Note: Use the top level of this repository (e.g. the `models` sub-folder of [the OpenVMP monorepo](https://github.com/openvmp/openvmp/)) as the current folder for all CadQuery command line sessions.*
+Install prerequisites:
+
+```sh
+sudo apt install -y python3-pip && pip3 install -r requirements.txt
+```
 
 Whenever the blueprints change, run `python3 ./parts/render.py`
 to generate updated part images. Run `python3 ./robots/render.py`
@@ -58,6 +63,6 @@ Also, the rendered SVG files can be seen in the markdown preview views.
 
 ### Editing models in CadQuery Editor
 
-```
+```sh
 cd models && CQ-editor robots/<robot_name>/robot.py
 ```

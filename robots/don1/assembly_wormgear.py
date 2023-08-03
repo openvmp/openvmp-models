@@ -1,18 +1,23 @@
 if __name__ != "__cqgi__":
     from cq_server.ui import ui, show_object
+import ocp_vscode as ov
 import cadquery as cq
 
 import sys
 
+sys.path.append("models")
+sys.path.append("..")
 sys.path.append(".")
 from lib.bom import Bom
+from lib.common import get_models_dir
 
 
-result = cq.Assembly(name="worm_gear_assembly")
+models = get_models_dir()
 bom = Bom()
+result = cq.Assembly(name="worm_gear_assembly")
 
 # - worm axle
-worm, worm_name = bom.get_part("./parts/gobilda/motion-worm-8mmREX")
+worm, worm_name = bom.get_part("parts/gobilda/motion-worm-8mmREX")
 result.add(
     worm,
     name=worm_name,
@@ -23,8 +28,7 @@ result.add(
         0,
     ),
 )
-bearing, bearing_name = bom.get_part("./parts/gobilda/motion-bearing-flanged-8mmREX")
-bearing, bearing_name = bom.get_part("./parts/gobilda/motion-bearing-flanged-8mmREX")
+bearing, bearing_name = bom.get_part("parts/gobilda/motion-bearing-flanged-8mmREX", 2)
 result.add(
     bearing,
     name=bearing_name + "_1",
@@ -36,13 +40,7 @@ result.add(
     loc=cq.Location((-46.2, 62.5, 55.4), (0, 0, 1), 180.0),
 )
 spacer_plastic, spacer_plastic_name = bom.get_part(
-    "./parts/gobilda/hardware-spacer-plastic-8mm-1mm"
-)
-spacer_plastic, spacer_plastic_name = bom.get_part(
-    "./parts/gobilda/hardware-spacer-plastic-8mm-1mm"
-)
-spacer_plastic, spacer_plastic_name = bom.get_part(
-    "./parts/gobilda/hardware-spacer-plastic-8mm-1mm"
+    "parts/gobilda/hardware-spacer-plastic-8mm-1mm", 3
 )
 result.add(
     spacer_plastic,
@@ -60,7 +58,7 @@ result.add(
     loc=cq.Location((-46.2, 54.5 + 2.0, 55.4), (0, 0, 1), 0.0),
 )
 spacer_steel, spacer_steel_name = bom.get_part(
-    "./parts/gobilda/hardware-spacer-steel-8mm-4mm"
+    "parts/gobilda/hardware-spacer-steel-8mm-4mm"
 )
 result.add(
     spacer_steel,
@@ -69,14 +67,14 @@ result.add(
 )
 
 # - worm gear axle
-worm_gear, worm_gear_name = bom.get_part("./parts/gobilda/motion-worm-gear-28t")
+worm_gear, worm_gear_name = bom.get_part("parts/gobilda/motion-worm-gear-28t")
 result.add(
     worm_gear,
     name=worm_gear_name,
     loc=cq.Location((-47.14 + 0.8, 2.0 + 35.74, 31.35), (1, 0, 0), 43.6),
 )
 worm_gear_hub, worm_gear_hub_name = bom.get_part(
-    "./parts/gobilda/motion-hub-sonic-8mmREX"
+    "parts/gobilda/motion-hub-sonic-8mmREX"
 )
 result.add(
     worm_gear_hub,
@@ -86,6 +84,16 @@ result.add(
 
 
 if __name__ == "__main__":
+    shape = result.toCompound()
+    shape = shape.rotate((0, 0, 0), (1, 0, 0), -90)
+
+    try:
+        ov.config.status()
+        print("Visualizing...")
+        ov.show(shape)
+    except:
+        print('No VS Code or "OCP CAD Viewer" extension detected.')
+
     print("No need to generate any STL.")
 else:
     show_object(

@@ -2,6 +2,7 @@ import json
 import cadquery as cq
 import cadquery.cqgi as cqgi
 import math
+import os
 
 from lib.common import get_models_dir
 
@@ -54,7 +55,11 @@ class Bom:
         self.assemblies = {}
 
     def get_part(self, path, count=1):
-        part = json.loads(open(models + "/" + path + "/part.json").read())
+        if os.path.isfile(path + "/part.json"):
+            dir_path = path
+        else:
+            dir_path = models + "/" + path
+        part = json.loads(open(dir_path + "/part.json").read())
         result = None
 
         # Create the line item if it's not there yet
@@ -73,7 +78,7 @@ class Bom:
         # Load the data if it's not there yet
         if Bom.parts[path].data is None:
             if part["type"] == "step":
-                result = cq.importers.importStep(models + "/" + path + "/part.step")
+                result = cq.importers.importStep(dir_path + "/part.step")
             Bom.parts[path].data = result
         else:
             result = Bom.parts[path].data

@@ -2,13 +2,18 @@ import cadquery as cq
 import cairosvg
 from glob import glob
 import json
+import concurrent.futures
 import os
 import os.path
 import sys
 
+sys.path.append("models")
+sys.path.append("..")
 sys.path.append(".")
-from lib.bom import Bom
-from lib.doc import exportSvgOpts
+from lib.common import get_models_dir
+
+models = get_models_dir()
+os.chdir(models)
 
 titles = {
     "custom": "Custom OpenVMP parts",
@@ -33,95 +38,80 @@ descriptions = {
     "ego": "This folder contains parts that can be purchased from [EGO](https://egopowerplus.com/).",
 }
 
-# Walk through all sub-folders.
-folders = glob("parts/*")
-for folder in folders:
-    if not os.path.isdir(folder):
-        continue
+pids_pool = concurrent.futures.ThreadPoolExecutor(max_workers=os.cpu_count())
+
+parts = {}
+
+
+def part_thread(path):
+    child_pid = os.fork()
+    if child_pid == 0:
+        os.execv(sys.executable, ["python3", "parts/render_one.py", path])
+    else:
+        os.waitpid(child_pid, 0)
+
+
+def part_process(folder_dir, path):
+    pids_pool.submit(part_thread, path)
+
+    dir = os.path.dirname(path)
+    part_basename = os.path.basename(path)
+
+    print("Loading " + path + "...")
+    part = json.loads(open(path + "/part.json").read())
+
+    print("Generating README.md in " + path + "...")
+    if "url" in part:
+        desc = "[" + part["desc"] + "](" + part["url"] + ")"
+    else:
+        desc = part["desc"]
+    readme = ""
+    if "readme" in part:
+        readme = part["readme"]
+
+    contents = (
+        "# "
+        + titles[folder_dir]
+        + "\n"
+        + "## "
+        + desc
+        + "\n\n"
+        + "[<img alt='"
+        + part["desc"]
+        + "' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/parts/"
+        + folder_dir
+        + "/"
+        + part_basename
+        + ".png'/>](https://github.com/openvmp/openvmp-models/blob/main/generated_files/parts/"
+        + folder_dir
+        + "/"
+        + part_basename
+        + ".stl)\n\n"
+        + readme
+    )
+    readme = open(path + "/README.md", "w+")
+    readme.write(contents)
+    readme.close()
+
+    part["dir"] = dir
+    part["path"] = path
+    part["basename"] = part_basename
+    parts[folder_dir].append(part)
+
+
+def folder_process(folder):
     folder_dir = os.path.basename(folder)
     print("Iterating over " + folder_dir + "...")
 
-    parts = []
+    parts[folder_dir] = []
     paths = glob(folder + "/*")
     for path in paths:
         if not os.path.isdir(path):
             continue
-        dir = os.path.dirname(path)
-        part_basename = os.path.basename(path)
-
-        part = json.loads(open(path + "/part.json").read())
-
-        print("Loading " + path + "...")
-        bom = Bom()
-        result = cq.Assembly()
-        bom.add_part(result, path)
-
-        shape = result.toCompound()
-        shape = shape.rotate((0, 0, 0), (1, 0, 0), -90)
-        # len = shape.BoundingBox().DiagonalLength
-        xlen = shape.BoundingBox().xlen
-        ylen = shape.BoundingBox().ylen
-        zlen = shape.BoundingBox().zlen
-        len = max(xlen, ylen, zlen)
-        exportSvgOpts["strokeWidth"] = len / 150.0
-
-        print("Exporting " + path + " to STL...")
-        shape.exportStl("generated_files/" + path + ".stl", 0.2, 1.0)
-
-        print("Exporting " + path + " to SVG...")
-        cq.exporters.export(
-            shape,
-            "generated_files/" + path + ".svg",
-            opt=exportSvgOpts,
-        )
-        print("Exporting " + path + " to PNG...")
-        cairosvg.svg2png(
-            url="generated_files/" + path + ".svg",
-            write_to="generated_files/" + path + ".png",
-            output_width=exportSvgOpts["width"],
-            output_height=exportSvgOpts["height"],
-        )
-
-        print("Generating README.md in " + path + "...")
-        if "url" in part:
-            desc = "[" + part["desc"] + "](" + part["url"] + ")"
-        else:
-            desc = part["desc"]
-        readme = ""
-        if "readme" in part:
-            readme = part["readme"]
-
-        contents = (
-            "# "
-            + titles[folder_dir]
-            + "\n"
-            + "## "
-            + desc
-            + "\n\n"
-            + "[<img alt='"
-            + part["desc"]
-            + "' src='https://github.com/openvmp/openvmp-models/blob/main/generated_files/parts/"
-            + folder_dir
-            + "/"
-            + part_basename
-            + ".png'/>](https://github.com/openvmp/openvmp-models/blob/main/generated_files/parts/"
-            + folder_dir
-            + "/"
-            + part_basename
-            + ".stl)\n\n"
-            + readme
-        )
-        readme = open(path + "/README.md", "w+")
-        readme.write(contents)
-        readme.close()
-
-        part["dir"] = dir
-        part["path"] = path
-        part["basename"] = part_basename
-        parts.append(part)
+        part_process(folder_dir, path)
 
     # Now sort the parts to keep the top level README's table normalized.
-    parts = sorted(parts, key=lambda x: x["basename"])
+    parts[folder_dir] = sorted(parts[folder_dir], key=lambda x: x["basename"])
 
     # Generate the README file in the top level folder.
     print("Generating README.md in the folder " + folder_dir + "...")
@@ -141,7 +131,7 @@ See [openvmp-models](https://github.com/openvmp/openvmp-models) for more info.
     readme = open(folder + "/README.md", "w+")
     readme.write(contents)
 
-    for part in parts:
+    for part in parts[folder_dir]:
         readme.write(
             "| ["
             + part["desc"]
@@ -155,3 +145,14 @@ See [openvmp-models](https://github.com/openvmp/openvmp-models) for more info.
         )
 
     readme.close()
+
+
+# Walk through all sub-folders.
+folders = glob("parts/*")
+for folder in folders:
+    if not os.path.isdir(folder):
+        continue
+    folder_process(folder)
+
+# Wait for all render processes to get initiated
+pids_pool.shutdown(wait=True)

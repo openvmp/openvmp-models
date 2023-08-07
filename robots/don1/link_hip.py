@@ -289,7 +289,6 @@ result.add(disconnect)
 
 if __name__ == "__main__":
     shape = result.toCompound()
-    shape = shape.rotate((0, 0, 0), (1, 0, 0), -90)
 
     try:
         ov.config.status()
@@ -302,6 +301,8 @@ if __name__ == "__main__":
     shape.exportStl(
         models + "/../platform/src/openvmp_robot_don1/meshes/hip.stl", 0.5, 5.0
     )
+
+    shape = shape.rotate((0, 0, 0), (1, 0, 0), -90)
 
     print("Generating SVG...")
     cq.exporters.export(

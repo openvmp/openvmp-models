@@ -11,6 +11,7 @@ sys.path.append("..")
 sys.path.append(".")
 from lib.bom import Bom
 from lib.doc import exportSvgOpts
+from lib.export import exportOBJ
 from lib.common import get_models_dir
 
 
@@ -158,6 +159,10 @@ if __name__ == "__main__":
     print("Generating STL...")
     shape.exportStl(
         models + "/../platform/src/openvmp_robot_don1/meshes/turn_table.stl", 0.5, 5.0
+    )
+    print("Generating OBJ...")
+    exportOBJ(
+        shape, models + "/../platform/src/openvmp_robot_don1/meshes/turn_table.obj"
     )
 
     shape = shape.rotate((0, 0, 0), (1, 0, 0), -90)

@@ -58,7 +58,7 @@ graph TB
 
 ## Modules
 
-<img style="width: 50%; float:right;" align="right" alt="base" src=../../generated_files/robots/don1/base.png />
+<img style="width: 60%; float:right;" align="right" alt="base" src=../../generated_files/robots/don1/base.png />
 
 ### Base
 
@@ -66,7 +66,7 @@ The base of the robot is where the battery and most of electronics are.
 It has coupled motors to turn front and rear sides of the robot using turntables.
 
 <br style="clear: right;" />
-<img style="width: 50%; float:right;" align="right" alt="turn_table" src=../../generated_files/robots/don1/turn_table.png />
+<img style="width: 60%; float:right;" align="right" alt="turn_table" src=../../generated_files/robots/don1/turn_table.png />
 
 ### Turntable
 
@@ -75,7 +75,7 @@ It's being turned left and right by the base.
 Turntable itself rotates the hip around it's center axle.
 
 <br style="clear: right;" />
-<img style="width: 50%; float:right;" align="right" alt="hip" src=../../generated_files/robots/don1/hip.png />
+<img style="width: 60%; float:right;" align="right" alt="hip" src=../../generated_files/robots/don1/hip.png />
 
 ### Hip
 
@@ -85,14 +85,14 @@ It also has two camera bases attached on each side.
 The only motors it has are servos to turn cameras and connect/disconnect mechanisms.
 
 <br style="clear: right;" />
-<img style="width: 50%; float:right;" alt=thigh src=../../generated_files/robots/don1/lower_arm.png />
+<img style="width: 60%; float:right;" align="right" alt="thigh" src=../../generated_files/robots/don1/lower_arm.png />
 
 ### Thigh
 
 The thigh has motors to both turn itself and to bend the knee.
 
 <br style="clear: right;" />
-<img style="width: 50%; float:right;" alt=foot src=../../generated_files/robots/don1/upper_arm.png />
+<img style="width: 60%; float:right;" align="right" alt="foot" src=../../generated_files/robots/don1/upper_arm.png />
 
 ### Foot
 
@@ -101,7 +101,7 @@ It also has mechanical parts to aid various ways of movement:
 pushing, grabbing etc.
 
 <br style="clear: right;" />
-<img style="width: 60%; float:right;" alt=foot src=../../generated_files/robots/don1/camera_servo.png />
+<img style="width: 60%; float:right;" align="right" alt="camera base" src=../../generated_files/robots/don1/camera_servo.png />
 
 ### Camera Base
 
@@ -109,14 +109,14 @@ This is the lower moving part of the camera assembly.
 It hosts the second servo that adds the second degree of freedom to the camera.
 
 <br style="clear: right;" />
-<img style="width: 60%; float:right;" alt=foot src=../../generated_files/robots/don1/camera.png />
+<img style="width: 60%; float:right;" align="right" alt="camera" src=../../generated_files/robots/don1/camera.png />
 
 ### Camera
 
 This is the housing for the stereo camera assembly.
 
 <br style="clear: right;" />
-<img style="width: 60%; float:right;" alt=foot src=../../generated_files/robots/don1/wheel.png />
+<img style="width: 60%; float:right;" align="right" alt="wheel" src=../../generated_files/robots/don1/wheel.png />
 
 ### Wheel
 

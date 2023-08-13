@@ -7,20 +7,23 @@ The bill of materials can be found [here](../../generated_files/robots/don1/bom.
 
 It is designed to perform tasks on its own. But it also has enough computing power to control a fleet of smaller OpenVMP robots.
 
-
 ## High Level Architecture
 
-The major modules are separated from each other by 1 degree of freedom.
-
+The robot modules are separated from each other by 1 degree of freedom.
 
 ```mermaid
 graph TB
-  foot1 -.-> thigh1 -.-> hip1
-  foot2 -.-> thigh2 -.-> hip1
-  foot3 -.-> thigh3 -.-> hip2
-  foot4 -.-> thigh4 -.-> hip2
-  hip1 -.-> turntable1 -.-> base
-  hip2 -.-> turntable2 -.-> base
+  wheel1 -.-> foot1 -.-> thigh1 -.-> hip1
+  wheel2 -.-> foot2 -.-> thigh2 -.-> hip1
+  wheel4 -.-> foot3 -.-> thigh3 -.-> hip2
+  wheel5 -.-> foot4 -.-> thigh4 -.-> hip2
+  wheel3 -...-> hip1 -.-> turntable1 -.-> base
+  wheel6 -...-> hip2 -.-> turntable2 -.-> base
+
+  camera1 -.-> camera_servo1 -.-> hip1
+  camera2 -.-> camera_servo2 -.-> hip1
+  camera3 -.-> camera_servo3 -.-> hip2
+  camera4 -.-> camera_servo4 -.-> hip2
 
   base(Base)
   click base "https://github.com/openvmp/openvmp-models/blob/main/generated_files/robots/don1/base.png" _blank
@@ -37,40 +40,84 @@ graph TB
   foot2(Foot)
   foot3(Foot)
   foot4(Foot)
+  wheel1(Wheel)
+  wheel2(Wheel)
+  wheel3(Wheel)
+  wheel4(Wheel)
+  wheel5(Wheel)
+  wheel6(Wheel)
+  camera1(Camera)
+  camera2(Camera)
+  camera3(Camera)
+  camera4(Camera)
+  camera_servo1(Camera\nBase)
+  camera_servo2(Camera\nBase)
+  camera_servo3(Camera\nBase)
+  camera_servo4(Camera\nBase)
 ```
 
 ## Modules
 
+<img style="float:right;" alt=base src=../../generated_files/robots/don1/base.png />
+
 ### Base
 
-<img alt=base src=../../generated_files/robots/don1/base.png />
+The base of the robot is where the battery and most of electronics are.
+It has coupled motors to turn front and rear sides of the robot using turntables.
 
-The base of the robot is where the battery and computers are.
-It has coupled motors to turn front and rear sides using turntables to left and right.
+<br style="clear: right;" />
+<img style="float:right;" alt=turn_table src=../../generated_files/robots/don1/turn_table.png />
 
 ### Turntable
 
-<img alt=turn_table src=../../generated_files/robots/don1/turn_table.png />
+There is a turntable on each side of the robot.
+It's being turned left and right by the base.
+Turntable itself rotates the hip around it's center axle.
 
-Turntable is on each side of the robot to rotate the hip around it's own axle.
+<br style="clear: right;" />
+<img style="float:right;" alt=hip src=../../generated_files/robots/don1/hip.png />
 
 ### Hip
 
-<img alt=hip src=../../generated_files/robots/don1/hip.png />
+The hip is connected to the turntable.
+Each hip has a passive (no motor) wheel in the center and two thighs attached on each side.
+It also has two camera bases attached on each side.
+The only motors it has are servos to turn cameras and connect/disconnect mechanisms.
 
-The hip is connected to the turntable. Thighs are attached to each side.
-It only has motors to turn cameras and connect/disconnect mechanisms.
+<br style="clear: right;" />
+<img style="float:right;" alt=thigh src=../../generated_files/robots/don1/lower_arm.png />
 
 ### Thigh
 
-<img alt=thigh src=../../generated_files/robots/don1/lower_arm.png />
-
 The thigh has motors to both turn itself and to bend the knee.
 
-### Foot
+<br style="clear: right;" />
+<img style="float:right;" alt=foot src=../../generated_files/robots/don1/upper_arm.png />
 
-<img alt=foot src=../../generated_files/robots/don1/upper_arm.png />
+### Foot
 
 The foot has a motor to drive the wheel.
 It also has mechanical parts to aid various ways of movement:
 pushing, grabbing etc.
+
+<br style="clear: right;" />
+<img style="float:right;" alt=foot src=../../generated_files/robots/don1/camera_servo.png />
+
+### Camera Base
+
+This is the lower moving part of the camera assembly.
+It hosts the second servo that adds the second degree of freedom to the camera.
+
+<br style="clear: right;" />
+<img style="float:right;" alt=foot src=../../generated_files/robots/don1/camera.png />
+
+### Camera
+
+This is the housing for the stereo camera assembly.
+
+<br style="clear: right;" />
+<img style="float:right;" alt=foot src=../../generated_files/robots/don1/wheel.png />
+
+### Wheel
+
+This wheel provides the grip the robot needs to climb up.

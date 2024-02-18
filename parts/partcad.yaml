@@ -1,0 +1,83 @@
+import:
+  pc-robotics-gobilda:
+    desc: GoBILDA
+    type: git
+    url: https://github.com/openvmp/partcad-robotics-part-vendor-gobilda.git
+
+parts:
+  nema17-mount:
+    type: step
+    desc: A mount for NEMA-17 motors to be installed inside of a 48mm channel (43mm inner dimension)
+  nema17-mount-wide:
+    type: step
+    desc: A mount for NEMA-17 motors to be installed in a 48mm openning
+  nema17-flush-pad:
+    type: step
+    desc: A pad to level the front side of Nema17 motors
+  turntable-attachment-hex:
+    type: step
+    desc: Hex attachment for turntables
+  hook:
+    type: step
+  enclosure-0:
+    type: step
+    desc: Part of the enclosure for electronic components
+  enclosure-1:
+    type: step
+    desc: Part of the enclosure for electronic components
+  enclosure-2:
+    type: step
+    desc: Part of the enclosure for electronic components
+  enclosure-3:
+    type: step
+    desc: Part of the enclosure for electronic components
+  enclosure-4:
+    type: step
+    desc: Part of the enclosure for electronic components
+  enclosure-5:
+    type: step
+    desc: Part of the enclosure for electronic components
+  enclosure-6:
+    type: step
+    desc: Part of the enclosure for electronic components
+  enclosure-7:
+    type: step
+    desc: Part of the enclosure for electronic components
+  don1-board-top:
+    type: step
+    desc: Top board of Don1
+    descLongMarkdown: |
+      ## Materials
+
+      This part is manufactured from a stainless steel sheet like [this one](https://www.lowes.com/pd/Hillman-12-in-x-24-in-Steel-Solid/3054563).
+
+      ## Instructions
+
+      The experimental parts are manufactured using jigsaw and drills.
+      CNC and Plasma table instruction are TODO.
+  don1-board-bottom:
+    type: step
+    desc: Bottom board of Don1
+    descLongMarkdown: |
+      ## Materials
+
+      This part is manufactured from a stainless steel sheet like [this one](https://www.lowes.com/pd/Hillman-12-in-x-24-in-Steel-Solid/3054563).
+
+      ## Instructions
+
+      The experimental parts are manufactured using jigsaw and drills.
+      CNC and Plasma table instruction are TODO.
+  don1-turntable:
+    type: step
+    desc: Turntable for Don1
+    descLongMarkdown: |
+      ## Materials
+
+      This part is manufactured from a stainless steel sheet like [this one](https://www.lowes.com/pd/Hillman-12-in-x-24-in-Steel-Solid/3054563).
+
+      ## Instructions
+
+      The experimental parts are manufactured using jigsaw and drills.
+      CNC and Plasma table instruction are TODO.
+  don1-side-channel:
+    type: cadquery

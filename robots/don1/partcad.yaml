@@ -1,0 +1,69 @@
+import:
+#  partcad-index:
+#    type: git
+#    url: https://github.com/openvmp/partcad-index.git
+#  openvmp-parts:
+#    type: local
+#    path: ../../parts
+
+assemblies:
+  assembly-wormgear:
+    type: assy
+  link-base:
+    type: assy
+    render:
+      svg: ../../generated_files/robots/don1/base.svg
+      png: ../../generated_files/robots/don1/base.png
+  link-camera-servo:
+    type: assy
+    parameters:
+      dir:
+        type: int
+        default: 1
+        enum: [1, -1]
+    render:
+      svg: ../../generated_files/robots/don1/camera_servo.svg
+      png: ../../generated_files/robots/don1/camera_servo.png
+  link-camera:
+    type: assy
+    parameters:
+      dir:
+        type: int
+        default: 1
+        enum: [1, -1]
+    render:
+      svg: ../../generated_files/robots/don1/camera.svg
+      png: ../../generated_files/robots/don1/camera.png
+  link-hip:
+    type: assy
+    render:
+      svg: ../../generated_files/robots/don1/hip.svg
+      png: ../../generated_files/robots/don1/hip.png
+  link-lower-arm:
+    type: assy
+    render:
+      svg: ../../generated_files/robots/don1/lower_arm.svg
+      png: ../../generated_files/robots/don1/lower_arm.png
+  link-turn-table:
+    type: assy
+    render:
+      svg: ../../generated_files/robots/don1/turn_table.svg
+      png: ../../generated_files/robots/don1/turn_table.png
+  link-upper-arm:
+    type: assy
+    render:
+      svg: ../../generated_files/robots/don1/upper_arm.svg
+      png: ../../generated_files/robots/don1/upper_arm.png
+  link-wheel:
+    type: assy
+    render:
+      svg: ../../generated_files/robots/don1/wheel.svg
+      png: ../../generated_files/robots/don1/wheel.png
+  robot:
+    type: assy
+    render:
+      stl:
+        path: ../../generated_files/robots/don1/robot.stl
+        tolerance: 0.5
+        angularTolerance: 5.0
+      png: ../../generated_files/robots/don1/robot.png

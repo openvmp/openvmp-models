@@ -1,0 +1,5 @@
+links:
+  - part: motion/rubber_wheel_136_24
+    package: pc-robotics-dfrobot
+    name: motion/rubber_wheel_136_24
+    location: [[0, 0, 0], [0, 0, 1], 0]

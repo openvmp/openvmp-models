@@ -1,0 +1,25 @@
+links:
+  - part: motion/servo_attach_hub_low_25t
+    package: pc-robotics-gobilda
+    name: motion/servo_attach_hub_low_25t
+    location: [[0, 0, 0], [1, 0, 0], 90]
+
+  - part: structure/mount_servo_43mm_std
+    package: pc-robotics-gobilda
+    name: structure/mount_servo_43mm_std
+    location:
+      [
+        [{{17.0*param_dir}}, 7, {{(15.675+8.875) -15.675*param_dir}}],
+        [0, 1, 0],
+        {{90 - 90*param_dir}},
+      ]
+
+  - part: motion/servo_hs_488hb
+    package: pc-robotics-gobilda
+    name: motion/servo_hs_488hb
+    location:
+      [
+        [{{param_dir * (-14.0)}}, 32.875, {{24.5 + 9.875 * param_dir}}],
+        [{{0.5-0.5*param_dir}}, 0, {{0.5+0.5*param_dir}}],
+        180,
+      ]

@@ -1,6 +1,0 @@
-{
-  "name": "nema17_flush_pad",
-  "desc": "A pad to level the front side of Nema17 motors",
-  "type": "step",
-  "readme": "## Materials\nThis part is to be 3D-printed using any available material. The harder the material, the better."
-}

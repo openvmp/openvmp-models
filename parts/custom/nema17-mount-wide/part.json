@@ -1,6 +1,0 @@
-{
-  "name": "nema17_mount_wide",
-  "desc": "A mount for NEMA-17 motors to be installed in a 48mm openning",
-  "type": "step",
-  "readme": "## Materials\nThis part is to be 3D-printed using any available material. The harder the material, the better."
-}

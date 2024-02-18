@@ -1,0 +1,15 @@
+links:
+  - part: motion/servo_attach_arm_25t
+    package: pc-robotics-gobilda
+    name: motion/servo_attach_arm_25t
+    location:
+      [
+        [{{param_dir * (-2)}}, 0, 0],
+        [{{param_dir * (-0.58)}}, {{param_dir * (-0.58)}}, -0.58],
+        240,
+      ]
+
+  - part: structure/u_channel_low_3
+    package: pc-robotics-gobilda
+    name: structure/u_channel_low_3
+    location: [[48, -24.5, 21.5], [0, 0, 1], 90]

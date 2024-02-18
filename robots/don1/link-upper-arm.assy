@@ -1,0 +1,81 @@
+links:
+  # Main channels
+  - part: structure/u_channel_7
+    package: pc-robotics-gobilda
+    name: main-channel-1
+    location: [[0, -276.8, -53.7], [0, 0, 1], 0]
+
+  - part: structure/u_channel_7
+    package: pc-robotics-gobilda
+    name: main-channel-2
+    location: [[0, -231.3, -291.2], [0, 0.71, 0.71], 180]
+
+  # Radial load support
+  - part: structure/mount_quad_block
+    package: pc-robotics-gobilda
+    name: rls-qmb-1
+    location: [[0, -276.8, -75.2], [0, 0, 1], 0]
+
+  - part: structure/mount_quad_block
+    package: pc-robotics-gobilda
+    name: rls-qmb-2
+    location: [[0, -236.8, -75.2], [0, 0, 1], 0]
+
+  - part: motion/bearing_flanged_6mm
+    package: pc-robotics-gobilda
+    name: rls-bearing-1
+    location: [[0, -276.8, -75.2], [0, 0, 1], 0]
+
+  - part: motion/bearing_flanged_6mm
+    package: pc-robotics-gobilda
+    name: rls-bearing-2
+    location: [[0, -231.8, -75.2], [0, 0, 1], 180]
+
+  - part: motion/shaft_6mmD_70mm
+    package: pc-robotics-gobilda
+    name: rls-shaft
+    location: [[0, -293.5, -75.2], [0, 0, 1], 0]
+
+  # Hook
+  - part: hook
+    package: openvmp-parts
+    name: hook
+    location: [[0, -252.8, -291.2], [0, 0, 1], 0]
+
+  # Symmetric parts
+  {% for dir in [-1, 1] %}
+  - part: motion/hub_sonic_8mmREX
+    package: pc-robotics-gobilda
+    name: motion/hub_sonic_8mmREX
+    location: [[{{ dir * 25.75 }}, -17.7, {{dir * 3.9}}], [0, {{ dir * -1 }}, 0], {{ 90}}]
+
+  - part: structure/bracket_flat_1_2
+    package: pc-robotics-gobilda
+    name: structure/bracket_flat_1_2
+    location: [[{{ dir * 30.76 }}, 0, 0], [0.68, 0.68, -0.28], 148.6]
+
+  - part: structure/bracket_flat_2_3
+    package: pc-robotics-gobilda
+    name: structure/bracket_flat_2_3
+    location: [[{{ dir * 28.25 - 1.25 }}, -83.13, -55.14], [0.7, 0.7, 0.14], 195.85]
+
+  - part: hardware/nut_m4_0_7mm
+    package: pc-robotics-gobilda
+    name: hardware/nut_m4_0_7mm
+    location: [[{{ dir * 25.5}}, -124.7, -59.2], [0, 1, 0], 90]
+
+  - part: hardware/nut_m4_0_7mm
+    package: pc-robotics-gobilda
+    name: hardware/nut_m4_0_7mm-2
+    location: [[{{ dir * 25.5 }}, -124.7, -67.2], [0, 1, 0], 90]
+
+  - part: hardware/nut_m4_0_7mm
+    package: pc-robotics-gobilda
+    name: hardware/nut_m4_0_7mm-3
+    location: [[{{ dir * 25.5 }}, -100.7, -59.2], [0, 1, 0], 90]
+
+  - part: hardware/plate_channel_conn
+    package: pc-robotics-gobilda
+    name: hardware/plate_channel_conn
+    location: [[{{ dir * 24.1}}, -252.8, -99.2], [0, 0, -1], 90]
+  {% endfor %}

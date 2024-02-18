@@ -1,0 +1,180 @@
+links:
+  # Thigh structure
+  - part: structure/u_channel_5
+    package: pc-robotics-gobilda
+    name: channel-1
+    location: [[0, -178, -21.5], [0, 1, 0], 180]
+
+  - part: structure/u_channel_5
+    package: pc-robotics-gobilda
+    name: channel-2
+    location: [[0, -204.66, 39.23], [0, 0.38, 0.92], 180]
+
+  - part: structure/bracket_flat_2_3
+    package: pc-robotics-gobilda
+    name: bracket-1
+    location: [[24, -187.65, 20], [0.7, 0.7, -0.14], 164.14]
+
+  - part: structure/bracket_flat_2_3
+    package: pc-robotics-gobilda
+    name: bracket-2
+    location: [[-26.5, -187.65, 20], [0.7, 0.7, -0.14], 164.14]
+
+  # Radial load support
+  - part: structure/mount_quad_block
+    package: pc-robotics-gobilda
+    name: rls-qbm-1
+    location: [[0, -34, 0], [0, 0, 1], 180]
+
+  - part: structure/mount_quad_block
+    package: pc-robotics-gobilda
+    name: rls-qbm-2
+    location: [[0, -50, 0], [0, 0, 1], 180]
+
+  - part: motion/shaft_8mmREX_56mm
+    package: pc-robotics-gobilda
+    name: rls-shaft
+    location: [[-43.4, 17, -7], [0, 0, 1], 180]
+
+  - part: motion/bearing_flanged_8mmREX
+    package: pc-robotics-gobilda
+    name: rls-bearing-1
+    location: [[0, -55, 0], [0, 0, 1], 0]
+
+  - part: motion/bearing_flanged_8mmREX
+    package: pc-robotics-gobilda
+    name: rls-bearing-2
+    location: [[0, -34, 0], [0, 0, 1], 180]
+
+  - part: hardware/spacer_plastic_8mm_1mm
+    package: pc-robotics-gobilda
+    name: rls-spacer-1
+    location: [[0, -41, 0], [0, 0, 1], 0]
+
+  - part: hardware/spacer_plastic_8mm_1mm
+    package: pc-robotics-gobilda
+    name: rls-spacer-2
+    location: [[0, -40, 0], [0, 0, 1], 0]
+
+  - part: hardware/spacer_plastic_8mm_1mm
+    package: pc-robotics-gobilda
+    name: rls-spacer-3
+    location: [[0, -34, 0], [0, 0, 1], 0]
+
+  - part: hardware/spacer_plastic_8mm_1mm
+    package: pc-robotics-gobilda
+    name: rls-spacer-4
+    location: [[0, -33, 0], [0, 0, 1], 0]
+
+  - part: motion/collar_clamping_8mmREX
+    package: pc-robotics-gobilda
+    name: motion/collar_clamping_8mmREX
+    location: [[-28.9, -50.6, -18.8], [0, 0, 1], 180]
+
+  # Thigh locomotion
+  - part: stepper/nema17-72Ncm-with-brake
+    package: pc-electromechanics-stepperonline
+    name: thigh-motor
+    location: [[0, -141.5, 0], [-1, 0, 0], 90]
+
+  - part: nema17-mount
+    package: openvmp-parts
+    name: motor-mount
+    location: [[0, -153, 21.5], [0, 0, 1], 0]
+
+  - part: gearbox/nema17-planetary-10
+    package: pc-electromechanics-stepperonline
+    name: gearbox
+    location: [[-9.5, -145.2, 0], [-1, 0, 0], 90]
+
+  - part: motion/coupler_hyper_8mm_8mmREX
+    package: pc-robotics-gobilda
+    name: coupler
+    location: [[22.15, -58.4, -17.5], [0, 0, 1], 0]
+
+  # Knee
+  - part: motion/shaft_8mmREX_80mm
+    package: pc-robotics-gobilda
+    name: knee-shaft
+    location: [[63.35, -261.41, 115.1], [0.15, -0.15, 0.98], 91.4]
+
+  - part: motion/bearing_flanged_8mmREX
+    package: pc-robotics-gobilda
+    name: knee-bearing-1
+    location: [[20, -304.9, 108.8], [0, 0, -1], 90]
+
+  - part: motion/bearing_flanged_8mmREX
+    package: pc-robotics-gobilda
+    name: knee-bearing-2
+    location: [[-20, -304.9, 108.8], [0, 0, 1], 90]
+
+  - part: hardware/spacer_steel_8mm_4mm
+    package: pc-robotics-gobilda
+    name: knee-spacer-1
+    location: [[27, -304.9, 108.8], [0, 0, -1], 90]
+
+  - part: hardware/spacer_steel_8mm_4mm
+    package: pc-robotics-gobilda
+    name: knee-spacer-2
+    location: [[-27, -304.9, 108.8], [0, 0, -1], 90]
+
+  # Knee worm
+  - assembly: assembly-wormgear
+    name: assembly-wormgear
+    location: [[46.2, -300.46, 157.63], [1, 0, 0], 225]
+
+  - part: motion/shaft_8mmREX_64mm
+    package: pc-robotics-gobilda
+    name: knee-worm-shaft
+    location: [[43.35, -249.26, 140.33], [1, 0, 0], 225]
+
+  - part: structure/mount_quad_block
+    package: pc-robotics-gobilda
+    name: knee-worm-qbm
+    location: [[0, -304.76, 74.95], [1, 0, 0], 45]
+
+  - part: motion/hub_sonic_8mmREX
+    package: pc-robotics-gobilda
+    name: knee-worm-hub
+    location: [[3.9, -271.66, 133.08], [-1, 0, 0], 45]
+
+  - part: motion/sprocket_plastic_14mm_16t
+    package: pc-robotics-gobilda
+    name: knee-worm-sprocket
+    location: [[0, -263.41, 116.32], [-1, 0, 0], 45]
+
+  # Knee motor
+  - part: stepper/nema17-72Ncm-with-brake
+    package: pc-electromechanics-stepperonline
+    name: knee-motor
+    location: [[0, -241.25, 70.53], [0, 0.38, 0.92], 180]
+
+  - part: nema17-flush-pad
+    package: openvmp-parts
+    name: knee-motor-flush-1
+    location: [[0, -241.25, 70.53], [0, 0.38, 0.92], 180]
+
+  - part: nema17-flush-pad
+    package: openvmp-parts
+    name: knee-motor-flush-2
+    location: [[0, -239.84, 71.95], [0, 0.38, 0.92], 180]
+
+  - part: motion/bearing_flanged_5mm
+    package: pc-robotics-gobilda
+    name: knee-motor-bearing
+    location: [[0, -239.84, 71.95], [0, 0.92, 0.38], 180]
+
+  - part: hardware/spacer_plastic_5mm_1mm
+    package: pc-robotics-gobilda
+    name: knee-motor-spacer
+    location: [[0, -236.3, 75.49], [1, 0, 0], 45]
+
+  - part: motion/hub_sonic_5mm
+    package: pc-robotics-gobilda
+    name: knee-motor-hub
+    location: [[14.6, -238.88, 79.41], [-1, 0, 0], 45]
+
+  - part: motion/sprocket_plastic_14mm_16t
+    package: pc-robotics-gobilda
+    name: knee-motor-sprocket
+    location: [[0, -229.64, 82.13], [-1, 0, 0], 45]

@@ -1,0 +1,10 @@
+import:
+  partcad-index:
+    type: git
+    url: https://github.com/openvmp/partcad-index.git
+  openvmp-robots-don1:
+    type: local
+    path: robots/don1
+  openvmp-parts:
+    type: local
+    path: parts

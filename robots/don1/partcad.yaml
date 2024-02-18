@@ -1,3 +1,5 @@
+partcad: ">=0.4.3"
+
 import:
 #  partcad-index:
 #    type: git

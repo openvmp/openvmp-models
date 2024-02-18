@@ -1,3 +1,5 @@
+partcad: ">=0.4.3"
+
 import:
   pc-robotics-gobilda:
     desc: GoBILDA

@@ -1,160 +1,131 @@
 links:
-  - part: don1-board-top
-    package: openvmp-parts
+  - part: ../../parts:don1-board-top
     name: don1-board-top
     location: [[0, 0, 0], [0, 0, 1], 0]
 
   - name: bottom-assembly
     location: [[0, 0, -5], [1, 0, 0], 0]
     links:
-      - part: don1-board-bottom
-        package: openvmp-parts
+      - part: ../../parts:don1-board-bottom
         name: don1-board-bottom
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: stepper_driver/dm556rs
-        package: pc-electromechanics-stepperonline
+      - part: /pub/electromechanics/stepperonline:stepper_driver/dm556rs
         name: driver-1
         location: [[245, -77, -109], [0, 0.71, -0.71], 180]
 
-      - part: stepper_driver/dm556rs
-        package: pc-electromechanics-stepperonline
+      - part: /pub/electromechanics/stepperonline:stepper_driver/dm556rs
         name: driver-2
         location: [[-245, -77, -109], [0, 0.71, -0.71], 180]
 
-      - part: stepper_driver/dm556rs
-        package: pc-electromechanics-stepperonline
+      - part: /pub/electromechanics/stepperonline:stepper_driver/dm556rs
         name: driver-9
         location: [[-90.5, -84.5, -109], [0, 0.71, -0.71], 180]
 
-      - part: stepper_driver/dm556rs
-        package: pc-electromechanics-stepperonline
+      - part: /pub/electromechanics/stepperonline:stepper_driver/dm556rs
         name: driver-5
         location: [[245, -77, -146], [1, 0, 0], 90]
 
       - location: [[245, 77, -109], [0, 0.71, -0.71], 180]
         links:
-          - part: stepper_driver/dm556rs
-            package: pc-electromechanics-stepperonline
+          - part: /pub/electromechanics/stepperonline:stepper_driver/dm556rs
             name: driver-3
             location: [[0, 0, 0], [0, 1, 0], 180]
 
       - location: [[-245, 77, -109], [0, 0.71, -0.71], 180]
         links:
-          - part: stepper_driver/dm556rs
-            package: pc-electromechanics-stepperonline
+          - part: /pub/electromechanics/stepperonline:stepper_driver/dm556rs
             name: driver-4
             location: [[0, 0, 0], [0, 1, 0], 180]
 
       - location: [[-90.5, 84.5, -109], [0, 0.71, -0.71], 180]
         links:
-          - part: stepper_driver/dm556rs
-            package: pc-electromechanics-stepperonline
+          - part: /pub/electromechanics/stepperonline:stepper_driver/dm556rs
             name: driver-10
             location: [[0, 0, 0], [0, 1, 0], 180]
 
       - location: [[245, 77, -146], [1, 0, 0], 90]
         links:
-          - part: stepper_driver/dm556rs
-            package: pc-electromechanics-stepperonline
+          - part: /pub/electromechanics/stepperonline:stepper_driver/dm556rs
             name: driver-7
             location: [[0, 0, 0], [0, 1, 0], 180]
 
-      - part: stepper-driver/dm556sx2
-        package: pc-electromechanics-cloudray
+      - part: /pub/electromechanics/stepperonline:stepper-driver/dm556sx2
         name: driver-double-1
         location: [[0, 88.25, 0], [1, 0, 0], 0]
 
-      - part: stepper-driver/dm556sx2
-        package: pc-electromechanics-cloudray
+      - part: /pub/electromechanics/stepperonline:stepper-driver/dm556sx2
         name: driver-double-2
         location: [[-157, 88.25, 0], [0, 0, 1], 0]
 
-      - part: stepper-driver/dm556sx2
-        package: pc-electromechanics-cloudray
+      - part: /pub/electromechanics/stepperonline:stepper-driver/dm556sx2
         name: driver-double-3
         location: [[-8, -88.25, 0], [0, 0, 1], 180]
 
-      - part: stepper-driver/dm556sx2
-        package: pc-electromechanics-cloudray
+      - part: /pub/electromechanics/stepperonline:stepper-driver/dm556sx2
         name: driver-double-4
         location: [[149, -88.25, 0], [0, 0, 1], 180]
 
-      - part: brushless_driver/bld510s
-        package: pc-electromechanics-stepperonline
+      - part: /pub/electromechanics/stepperonline:brushless_driver/bld510s
         name: driver-brushless-1
         location: [[-186, -76.9, -163.1], [1, 0, 0], 0]
 
-      - part: brushless_driver/bld510s
-        package: pc-electromechanics-stepperonline
+      - part: /pub/electromechanics/stepperonline:brushless_driver/bld510s
         name: driver-brushless-2
         location: [[-304, 76.9, -163.1], [0, 0, 1], 180]
 
-      - part: enclosure-0
-        package: openvmp-parts
+      - part: ../../parts:enclosure-0
         name: enclosure-0
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: enclosure-1
-        package: openvmp-parts
+      - part: ../../parts:enclosure-1
         name: enclosure-1
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: enclosure-2
-        package: openvmp-parts
+      - part: ../../parts:enclosure-2
         name: enclosure-2
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: enclosure-3
-        package: openvmp-parts
+      - part: ../../parts:enclosure-3
         name: enclosure-3
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: enclosure-4
-        package: openvmp-parts
+      - part: ../../parts:enclosure-4
         name: enclosure-4
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: enclosure-5
-        package: openvmp-parts
+      - part: ../../parts:enclosure-5
         name: enclosure-5
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: enclosure-6
-        package: openvmp-parts
+      - part: ../../parts:enclosure-6
         name: enclosure-6
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: enclosure-7
-        package: openvmp-parts
+      - part: ../../parts:enclosure-7
         name: enclosure-7
         location: [[0, 0, 0], [0, 0, 1], 0]
 
       - name: electronics_assembly
         location: [[75.0, 142.0, -88.0], [0.0, 0.0, 1.0], 270]
         links:
-          - part: nuc12
-            package: pc-electronics-intel
+          - part: /pub/electronics/sbcs/intel:nuc12
             name: sbc-cerebral-1
             location: [[198.29, -13.5, 35.79], [-0.98, 0.13, -0.13], 269.02]
 
-          - part: nuc12
-            package: pc-electronics-intel
+          - part: /pub/electronics/sbcs/intel:nuc12
             name: sbc-cerebral-2
             location: [[99.91, -13.5, 35.80], [-0.98, 0.13, -0.13], 269.02]
 
-          - part: rpi4b
-            package: pc-electronics-raspberrypi
+          - part: /pub/electronics/sbcs/raspberrypi:rpi4b
             name: sbc-spinal
             location: [[104.4, -55, -1], [0, 0, 1], 90]
 
-          - part: mega2560
-            package: pc-electronics-arduino
+          - part: /pub/electronics/sbcs/arduino:mega2560
             name: sbc-io-controller
             location: [[195.9, 7.5, -29.1], [0.58, 0.58, 0.58], 120]
 
-      - part: battery-7_5
-        package: pc-electrical-battery-ego
+      - part: /pub/electrical/battery/ego:battery-7_5
         name: battery
         location: [[-80, -91, -49.2], [-1, 0, 0], 270]
 
@@ -162,8 +133,7 @@ links:
   - name: motion-{{ dir_name }}
     location: [[{{ dir * 290 }}, 0, 27], [0, 0, 1], {{ - (dir - 1 ) * 90 }}]
     links:
-      - part: structure/u_channel_7
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:structure/u_channel_7
         name: motion-{{ dir_name }}-channel
         location: [[4, -96, 0], [0, 1, 0], 90]
 
@@ -171,86 +141,70 @@ links:
         name: motion-{{ dir_name }}-wormgear
         location: [[20.2, 31.3, 46.3], [0.58, -0.58, 0.58], 120]
 
-      - part: motion/shaft_8mmREX_72mm
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/shaft_8mmREX_72mm
         name: motion-{{ dir_name }}-gear-shaft
         location: [[26, 7, -68.5], [1, 0, 0], 90]
 
-      - part: motion/shaft_8mmREX_clip
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/shaft_8mmREX_clip
         name: motion-{{ dir_name }}-gear-shaft-clip
         location: [[26, 7, -68.5], [1, 0, 0], 90]
 
-      - part: motion/bearing_flanged_8mmREX
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
         name: motion-{{ dir_name }}-gear-bearing-1
         location: [[-17.36, 0.02, -25.2], [1, 0, 0], 90]
 
-      - part: motion/bearing_flanged_8mmREX
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
         name: motion-{{ dir_name }}-gear-bearing-2
         location: [[-17.36, 0.02, 20], [1, 0, 0], 90]
 
-      - part: motion/collar_clamping_8mmREX
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/collar_clamping_8mmREX
         name: motion-{{ dir_name }}-worm-collar
         location: [[1.2, 28.8, -20.7], [0.58, 0.58, -0.58], 240]
 
-      - part: motion/shaft_8mmREX_64mm
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/shaft_8mmREX_64mm
         name: motion-{{ dir_name }}-worm-shaft
         location: [[45, -67.5, 7], [0.71, -0.71, 0], 180]
 
-      - part: structure/mount_quad_block
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:structure/mount_quad_block
         name: motion-{{ dir_name }}-worm-qmb
         location: [[-41.5, -24, 0], [0, 0, -1], 90]
 
-      - part: motion/hub_sonic_8mmREX
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/hub_sonic_8mmREX
         name: motion-{{ dir_name }}-worm-hub
         location: [[26.9, -41.7, -3.9], [0, 1, 0], 90]
 
-      - part: motion/sprocket_plastic_14mm_16t
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/sprocket_plastic_14mm_16t
         name: motion-{{ dir_name }}-worm-sproket
         location: [[21, -24, 0], [0, 1, 0], 90]
 
       {% for side_name, side_dir in [["left", -1], ["right", 1]] %}
       - location: [[0, {{ -side_dir * 72 }}, 0], [0.71, 0, 0.71], 180]
         links:
-          - part: stepper/nema17-72Ncm-with-brake
-            package: pc-electromechanics-stepperonline
+          - part: /pub/electromechanics/stepperonline:stepper/nema17-72Ncm-with-brake
             name: motion-{{ dir_name }}-{{ side_name }}-motor
             location: [[0, 0, 0], [0, 0, 1], {{ 90 - side_dir * 90 }}]
 
-      - part: nema17-flush-pad
-        package: openvmp-parts
+      - part: ../../parts:nema17-flush-pad
         name: motion-{{ dir_name }}-{{ side_name }}-pad-1
         location: [[0, {{ -side_dir * 72 }}, 0], [0.71, 0, 0.71], 180]
 
-      - part: nema17-flush-pad
-        package: openvmp-parts
+      - part: ../../parts:nema17-flush-pad
         name: motion-{{ dir_name }}-{{ side_name }}-pad-2
         location: [[2, {{ -side_dir * 72 }}, 0], [0.71, 0, 0.71], 180]
 
-      - part: motion/bearing_flanged_5mm
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/bearing_flanged_5mm
         name: motion-{{ dir_name }}-{{ side_name }}-bearing
         location: [[2.5, {{ -side_dir * 72 }}, 0], [0, 0, -1], 90]
 
-      - part: hardware/spacer_plastic_5mm_1mm
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:hardware/spacer_plastic_5mm_1mm
         name: motion-{{ dir_name }}-{{ side_name }}-spacer
         location: [[-8.5, {{ -side_dir * 72 }}, 0], [0, 0, 1], 90]
 
-      - part: motion/hub_sonic_5mm
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/hub_sonic_5mm
         name: motion-{{ dir_name }}-{{ side_name }}-hub
         location: [[8.5, {{ -side_dir * 72 - 4.6 }}, -14.5], [0, 1, 0], 90]
 
-      - part: motion/sprocket_steel_14mm_14t
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/sprocket_steel_14mm_14t
         name: motion-{{ dir_name }}-{{ side_name }}-sprocket
         location: [[22, {{ -side_dir * 72 }}, 0], [0, 1, 0], 90]
 

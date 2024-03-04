@@ -1,12 +1,4 @@
-partcad: ">=0.4.3"
-
-import:
-#  partcad-index:
-#    type: git
-#    url: https://github.com/openvmp/partcad-index.git
-#  openvmp-parts:
-#    type: local
-#    path: ../../parts
+partcad: ">=0.5.3"
 
 assemblies:
   assembly-wormgear:

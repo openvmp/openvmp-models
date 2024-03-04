@@ -1,100 +1,80 @@
 links:
-  - part: don1-turntable
-    package: openvmp-parts
+  - part: ../../parts:don1-turntable
     name: turntable
     location: [[0, 0, 2.5], [0, 0, 1], 0]
 
-  - part: turntable-attachment-hex
-    package: openvmp-parts
+  - part: ../../parts:turntable-attachment-hex
     name: turntable-attachment
     location: [[250, 0, 139.5], [0, 1, 0], 180]
 
-  - part: structure/u_channel_2
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/u_channel_2
     name: channel
     location: [[98.5, 0, -8.5], [0, 0, 1], 90]
 
-  - part: structure/u_channel_low_7
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/u_channel_low_7
     name: channel-side-1
     location: [[98.5, 48, -8.5], [0, 0, 1], 90]
 
-  - part: structure/u_channel_low_7
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/u_channel_low_7
     name: channel-side-2
     location: [[-93.5, -48, -8.5], [0, 0, 1], -90]
 
-  - part: structure/mount_quad_block
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/mount_quad_block
     name: rls-qbm-1
     location: [[82.5, 0, -30], [0, 0, 1], 90]
 
-  - part: structure/mount_quad_block
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/mount_quad_block
     name: rls-qbm-2
     location: [[98.5, 0, -30], [0, 0, 1], 90]
 
-  - part: motion/shaft_8mmREX_64mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/shaft_8mmREX_64mm
     name: shaft
     location: [[152, 43.4, -37], [0, 0, 1], 90]
 
-  - part: motion/shaft_8mmREX_clip
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/shaft_8mmREX_clip
     name: shaft-clip
     location: [[98, -7, 14], [0.58, 0.58, 0.58], 240]
 
-  - part: motion/bearing_flanged_8mmREX
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
     name: bearing-1
     location: [[98.5, 0, -30], [0, 0, 1], 90]
 
-  - part: motion/bearing_flanged_8mmREX
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
     name: bearing-2
     location: [[77.5, 0, -30], [0, 0, -1], 90]
 
-  - part: hardware/spacer_plastic_8mm_1mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
     name: spacer-1
     location: [[92.5, 0, -30], [0, 0, 1], 90]
 
-  - part: hardware/spacer_plastic_8mm_1mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
     name: spacer-2
     location: [[93.5, 0, -30], [0, 0, 1], 90]
 
-  - part: hardware/spacer_plastic_8mm_1mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
     name: spacer-3
     location: [[99.5, 0, -30], [0, 0, 1], 90]
 
-  - part: hardware/spacer_plastic_8mm_1mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
     name: spacer-4
     location: [[100.5, 0, -30], [0, 0, 1], 90]
 
-  - part: motion/collar_clamping_8mmREX
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/collar_clamping_8mmREX
     name: collar
     location: [[82, 28.87, -48.87], [0, 0, 1], 90]
 
-  - part: stepper/nema17-72Ncm-with-brake
-    package: pc-electromechanics-stepperonline
+  - part: /pub/electromechanics/stepperonline:stepper/nema17-72Ncm-with-brake
     name: motor
     location: [[-18.25, 0, -30], [0.58, 0.58, 0.58], 120]
 
-  - part: nema17-mount-wide
-    package: openvmp-parts
+  - part: ../../parts:nema17-mount-wide
     name: nema17-mount-wide
     location: [[-29, 2.5, -8.5], [0, 0, -1], 90]
 
-  - part: gearbox/nema17-planetary-100
-    package: pc-electromechanics-stepperonline
+  - part: /pub/electromechanics/stepperonline:gearbox/nema17-planetary-100
     name: gearbox/nema17-planetary-100
     location: [[-10.55, -0.8, -20.25], [0, 1, 0], 90]
 
-  - part: motion/coupler_hyper_8mm_8mmREX
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/coupler_hyper_8mm_8mmREX
     name: coupler
     location: [[74.8, -22.15, -47.4], [0, 0, -1], 90]

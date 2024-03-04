@@ -1,122 +1,99 @@
 links:
-  - part: structure/u_channel_9
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/u_channel_9
     name: channel-bottom
     location: [[210.5, 0, 21.35], [0, 0, 1], 90]
 
-  - part: structure/u_channel_9
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/u_channel_9
     name: channel-top
     location: [[210.5, 0, 26.35], [0.71, -0.71, 0], 180]
 
-  - part: structure/mount_quad_block
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/mount_quad_block
     name: qbm-bottom-rear
     location: [[-29.5, 0, 0], [0, 0, -1], 90]
 
-  - part: structure/mount_quad_block
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/mount_quad_block
     name: qbm-bottom-front
     location: [[210.5, 0, 0], [0, 0, 1], 90]
 
-  - part: structure/mount_quad_block
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/mount_quad_block
     name: qbm-top-rear
     location: [[-29.5, 0, 48], [0, 0, -1], 90]
 
-  - part: structure/mount_quad_block
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/mount_quad_block
     name: qbm-top-front
     location: [[210.5, 0, 48], [0, 0, 1], 90]
 
-  - part: structure/standoff_m4_43mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/standoff_m4_43mm
     name: standoff-bottom-rear
     location: [[58.5, 0, -16.2], [0, 0, 1], 0]
 
-  - part: structure/standoff_m4_43mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/standoff_m4_43mm
     name: standoff-bottom-front
     location: [[122.5, 0, -16.2], [0, 0, 1], 0]
 
-  - part: structure/standoff_m4_43mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/standoff_m4_43mm
     name: standoff-top-rear
     location: [[18.5, 0, 63.8], [0, 0, 1], 0]
 
-  - part: structure/standoff_m4_43mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/standoff_m4_43mm
     name: standoff-top-front
     location: [[162.5, 0, 63.8], [0, 0, 1], 0]
 
-  - part: motion/hub_hyper_8mmREX
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/hub_hyper_8mmREX
     name: hub-rear
     location: [[-26.5, 5.75, 15.375], [0, 1, 0], -90]
 
-  - part: motion/shaft_6mmD_70mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/shaft_6mmD_70mm
     name: axle-center-wheel
     location: [[90.5, -35, 48], [0, 0, 1], 0]
 
   {% for dir in [-1.0, 1.0] %}
   # Side channel
-  - part: don1-side-channel
-    package: openvmp-parts
+  - part: ../../parts:don1-side-channel
     name: channel-side
     location: [[{{ 210.5 -120 + 120*dir}}, {{ dir * -48.0 }}, 69.35], [0, 0, 1], {{ dir * 90 }}]
 
-  - part: structure/mount_quad_block
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/mount_quad_block
     name: qbm-side-rear
     location: [[-29.5, {{ dir * -48.0 }}, 48], [0, 0, -1], 90]
 
-  - part: structure/mount_quad_block
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/mount_quad_block
     name: qbm-side-front
     location: [[210.5, {{ dir * -48 }}, 48], [0, 0, 1], 90]
 
   # Side leaf channel
-  - part: structure/u_channel_2
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/u_channel_2
     name: channel-side-leaf
     location: [[26.5, {{ dir * -96 }}, 69.35], [0, 0, 1], 90]
 
-  - part: structure/standoff_m4_43mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/standoff_m4_43mm
     name: standoff-side-rear
     location: [[42.5, {{ dir * -48 }}, 31.8], [0, 0, 1], 0]
 
-  - part: structure/standoff_m4_43mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/standoff_m4_43mm
     name: standoff-side-front
     location: [[138.5, {{ dir * -48 }}, 31.8], [0, 0, 1], 0]
 
   # Servo assembly
-  - part: structure/mount_servo_43mm_std
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:structure/mount_servo_43mm_std
     name: servo-mount-side
     location: [[-20, {{ dir * -111.5 + dir*15.5 - 15.5 }}, 7], [0.58, -0.58, -0.58], 240]
 
-  - part: motion/servo_hs_488hb
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/servo_hs_488hb
     name: servo-side
     location: [[-46, {{ dir * -105.9 + dir*10 - 10 }}, 38], [0.58, 0.58, -0.58], 120]
 
   # Center wheel axle
-  - part: motion/bearing_flanged_6mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/bearing_flanged_6mm
     name: center-wheel-bearing-side
     location: [[90.5, {{ dir * 20 }}, 48], [0, 0, 1], {{ 90 - dir * 90 }}]
 
-  - part: motion/collar_set_6mm
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/collar_set_6mm
     name: center-wheel-bearing-collar
     location: [[{{ 149.75 - 59.25 + dir * 59.25 }}, {{ dir * -39 }}, 23.2], [0, 0, 1], {{ 90 - dir * 90 }}]
 
   # Mounting for a thigh
-  - part: motion/hub_hyper_8mmREX
-    package: pc-robotics-gobilda
+  - part: /pub/robotics/parts/gobilda:motion/hub_hyper_8mmREX
     name: thign-hub
     location: [[84.75, {{ dir * -21 }}, {{ dir * 15.375 }}], [{{ dir * -0.58 }} , {{ dir * 0.58 }}, -0.58], 240]
 
@@ -124,23 +101,19 @@ links:
   - name: vision
     location: [[142.5, {{ dir * -151.75 }}, 135.75], [0, 0, 1], 0]
     links:
-      - part: structure/beam_15
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:structure/beam_15
         name: beam-vision-1
         location: [[-4, {{ dir * -36.25 }}, -71.75], [0, 0, 1], {{ 90 - dir * 90 }}]
 
-      - part: structure/beam_15
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:structure/beam_15
         name: beam-vision-2
         location: [[-36, {{ dir * -36.25 }}, -71.75], [0, 0, 1], {{ 90 - dir * 90 }}]
 
-      - part: structure/mount_servo_43mm_std
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:structure/mount_servo_43mm_std
         name: servo-mount-vision
         location: [[{{ -20.1 - dir * 15.5 }}, {{ dir * -21.25 }}, -63.5], [0.58, {{ dir * -0.58 }}, {{ dir * 0.58 }}], 240]
 
-      - part: motion/servo_hs_488hb
-        package: pc-robotics-gobilda
+      - part: /pub/robotics/parts/gobilda:motion/servo_hs_488hb
         name: servo-vision
         location: [[{{ -20 + dir * 10 }}, {{ dir * 9.75 }}, -89.5], [0.58, {{ dir * 0.58 }}, {{ dir * 0.58 }}], 120]
   {% endfor %}

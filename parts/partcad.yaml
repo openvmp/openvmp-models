@@ -1,10 +1,4 @@
-partcad: ">=0.4.3"
-
-import:
-  pc-robotics-gobilda:
-    desc: GoBILDA
-    type: git
-    url: https://github.com/openvmp/partcad-robotics-part-vendor-gobilda.git
+partcad: ">=0.5.0"
 
 parts:
   nema17-mount:

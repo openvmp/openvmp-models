@@ -1,7 +1,7 @@
 import cadquery as cq
 import partcad as pc
 
-channel = pc.get_part_cadquery("structure/u_channel_9", "pc-robotics-gobilda")
+channel = pc.get_part_cadquery("/pub/robotics/parts/gobilda:structure/u_channel_9")
 
 channel = cq.Workplane(obj=channel)
 

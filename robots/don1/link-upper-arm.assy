@@ -30,7 +30,7 @@ links:
     location: [[0, -293.5, -75.2], [0, 0, 1], 0]
 
   # Hook
-  - part: openvmp-parts:hook
+  - part: /pub/robotics/multimodal/openvmp/parts:hook
     name: hook
     location: [[0, -252.8, -291.2], [0, 0, 1], 0]
 

@@ -1,19 +1,19 @@
 links:
-  - assembly: ":link-base"
+  - assembly: "/pub/robotics/multimodal/openvmp/robots/don1:link-base"
     name: link-base
     location: [[0, 0, 0], [0, 0, 1], 0]
 
   {% for dir_name, dir in [["front", 1], ["rear", -1]] %}
   - location: [[{{ dir * 272.5 }}, 0, -7], [0, 0, 1], {{ 90 - 90 * dir }}]
     links:
-      - assembly: ":link-turn-table"
+      - assembly: "/pub/robotics/multimodal/openvmp/robots/don1:link-turn-table"
         name: {{ dir_name }}-turn-table
         location: [[0, 0, 0], [0, 0, 1], 0]
 
       - name: hip-assembly
         location: [[149.5, 0, -30], [0, 0, 1], 0]
         links:
-          - assembly: ":link-hip"
+          - assembly: "/pub/robotics/multimodal/openvmp/robots/don1:link-hip"
             name: link-hip
             location: [[0, 0, 0], [0, 0, 1], 0]
 
@@ -24,31 +24,31 @@ links:
               - name: vision-assembly
                 location: [[{{ -side_dir * (122.5 - 90) }}, {{ -152 }}, 86], [0, 0, 1], 0]
                 links:
-                  - assembly: ":link-camera-servo"
+                  - assembly: "/pub/robotics/multimodal/openvmp/robots/don1:link-camera-servo"
                     name: link-camera-servo
                     location: [[0, 0, 0], [0, 0, 1], {{side_dir * (-180.0)}}]
                     params:
                       dir: {{side_dir}}
 
-                  - assembly: ":link-camera"
+                  - assembly: "/pub/robotics/multimodal/openvmp/robots/don1:link-camera"
                     name: link-camera
                     location: [[{{ (dir) * side_dir * 4.125 }}, {{ 13.5 }}, 24.5], [0, 0, 1], {{ side_dir*(-90.0)}}]
                     params:
                       dir: {{side_dir}}
 
               # TODO(clairbee): refactor the end of the lower arm to match the real robot, and make sure wheels are aligned
-              - assembly: ":link-lower-arm"
+              - assembly: "/pub/robotics/multimodal/openvmp/robots/don1:link-lower-arm"
                 name: link-lower-arm
                 location: [[0, -11.5, 0], [0, 0, 1], 0]
 
               - name: upper-assembly
                 location: [[0, -304.9, 108.75], [1, 0, 0], 39]
                 links:
-                  - assembly: ":link-upper-arm"
+                  - assembly: "/pub/robotics/multimodal/openvmp/robots/don1:link-upper-arm"
                     name: link-upper-arm
                     location: [[0, 0, 0], [0, 0, 1], 0]
 
-                  - assembly: ":link-wheel"
+                  - assembly: "/pub/robotics/multimodal/openvmp/robots/don1:link-wheel"
                     name: link-wheel
                     location: [[0, -293.5, -75.2], [1, 0, 0], 90]
       {% endfor %}

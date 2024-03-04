@@ -96,7 +96,7 @@ links:
     location: [[-27, -304.9, 108.8], [0, 0, -1], 90]
 
   # Knee worm
-  - assembly: ".:assembly-wormgear"
+  - assembly: /pub/robotics/multimodal/openvmp/robots/don1:assembly-wormgear
     name: assembly-wormgear
     location: [[46.2, -300.46, 157.63], [1, 0, 0], 225]
 

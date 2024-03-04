@@ -137,7 +137,7 @@ links:
         name: motion-{{ dir_name }}-channel
         location: [[4, -96, 0], [0, 1, 0], 90]
 
-      - assembly: .:assembly-wormgear
+      - assembly: /pub/robotics/multimodal/openvmp/robots/don1:assembly-wormgear
         name: motion-{{ dir_name }}-wormgear
         location: [[20.2, 31.3, 46.3], [0.58, -0.58, 0.58], 120]
 

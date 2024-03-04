@@ -49,7 +49,7 @@ links:
 
   {% for dir in [-1.0, 1.0] %}
   # Side channel
-  - part: ../../parts:don1-side-channel
+  - part: /pub/robotics/multimodal/openvmp/parts:don1-side-channel
     name: channel-side
     location: [[{{ 210.5 -120 + 120*dir}}, {{ dir * -48.0 }}, 69.35], [0, 0, 1], {{ dir * 90 }}]
 

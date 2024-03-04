@@ -1,12 +1,12 @@
 links:
-  - part: ../../parts:don1-board-top
+  - part: /pub/robotics/multimodal/openvmp/parts:don1-board-top
     name: don1-board-top
     location: [[0, 0, 0], [0, 0, 1], 0]
 
   - name: bottom-assembly
     location: [[0, 0, -5], [1, 0, 0], 0]
     links:
-      - part: ../../parts:don1-board-bottom
+      - part: /pub/robotics/multimodal/openvmp/parts:don1-board-bottom
         name: don1-board-bottom
         location: [[0, 0, 0], [0, 0, 1], 0]
 
@@ -74,35 +74,35 @@ links:
         name: driver-brushless-2
         location: [[-304, 76.9, -163.1], [0, 0, 1], 180]
 
-      - part: ../../parts:enclosure-0
+      - part: /pub/robotics/multimodal/openvmp/parts:enclosure-0
         name: enclosure-0
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: ../../parts:enclosure-1
+      - part: /pub/robotics/multimodal/openvmp/parts:enclosure-1
         name: enclosure-1
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: ../../parts:enclosure-2
+      - part: /pub/robotics/multimodal/openvmp/parts:enclosure-2
         name: enclosure-2
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: ../../parts:enclosure-3
+      - part: /pub/robotics/multimodal/openvmp/parts:enclosure-3
         name: enclosure-3
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: ../../parts:enclosure-4
+      - part: /pub/robotics/multimodal/openvmp/parts:enclosure-4
         name: enclosure-4
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: ../../parts:enclosure-5
+      - part: /pub/robotics/multimodal/openvmp/parts:enclosure-5
         name: enclosure-5
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: ../../parts:enclosure-6
+      - part: /pub/robotics/multimodal/openvmp/parts:enclosure-6
         name: enclosure-6
         location: [[0, 0, 0], [0, 0, 1], 0]
 
-      - part: ../../parts:enclosure-7
+      - part: /pub/robotics/multimodal/openvmp/parts:enclosure-7
         name: enclosure-7
         location: [[0, 0, 0], [0, 0, 1], 0]
 
@@ -184,11 +184,11 @@ links:
             name: motion-{{ dir_name }}-{{ side_name }}-motor
             location: [[0, 0, 0], [0, 0, 1], {{ 90 - side_dir * 90 }}]
 
-      - part: ../../parts:nema17-flush-pad
+      - part: /pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
         name: motion-{{ dir_name }}-{{ side_name }}-pad-1
         location: [[0, {{ -side_dir * 72 }}, 0], [0.71, 0, 0.71], 180]
 
-      - part: ../../parts:nema17-flush-pad
+      - part: /pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
         name: motion-{{ dir_name }}-{{ side_name }}-pad-2
         location: [[2, {{ -side_dir * 72 }}, 0], [0.71, 0, 0.71], 180]
 

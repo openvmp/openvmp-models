@@ -1,9 +1,9 @@
 links:
-  - part: ../../parts:don1-turntable
+  - part: /pub/robotics/multimodal/openvmp/parts:don1-turntable
     name: turntable
     location: [[0, 0, 2.5], [0, 0, 1], 0]
 
-  - part: ../../parts:turntable-attachment-hex
+  - part: /pub/robotics/multimodal/openvmp/parts:turntable-attachment-hex
     name: turntable-attachment
     location: [[250, 0, 139.5], [0, 1, 0], 180]
 
@@ -67,7 +67,7 @@ links:
     name: motor
     location: [[-18.25, 0, -30], [0.58, 0.58, 0.58], 120]
 
-  - part: ../../parts:nema17-mount-wide
+  - part: /pub/robotics/multimodal/openvmp/parts:nema17-mount-wide
     name: nema17-mount-wide
     location: [[-29, 2.5, -8.5], [0, 0, -1], 90]
 

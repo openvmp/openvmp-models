@@ -62,7 +62,7 @@ links:
     name: thigh-motor
     location: [[0, -141.5, 0], [-1, 0, 0], 90]
 
-  - part: ../../parts:nema17-mount
+  - part: /pub/robotics/multimodal/openvmp/parts:nema17-mount
     name: motor-mount
     location: [[0, -153, 21.5], [0, 0, 1], 0]
 
@@ -121,7 +121,7 @@ links:
     name: knee-motor
     location: [[0, -241.25, 70.53], [0, 0.38, 0.92], 180]
 
-  - part: ../../parts:nema17-flush-pad
+  - part: /pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
     name: knee-motor-flush-1
     location: [[0, -241.25, 70.53], [0, 0.38, 0.92], 180]
 

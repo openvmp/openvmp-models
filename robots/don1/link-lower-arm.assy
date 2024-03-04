@@ -96,7 +96,7 @@ links:
     location: [[-27, -304.9, 108.8], [0, 0, -1], 90]
 
   # Knee worm
-  - assembly: assembly-wormgear
+  - assembly: ":assembly-wormgear"
     name: assembly-wormgear
     location: [[46.2, -300.46, 157.63], [1, 0, 0], 225]
 
@@ -117,7 +117,7 @@ links:
     location: [[0, -263.41, 116.32], [-1, 0, 0], 45]
 
   # Knee motor
-  - part: stepper/nema17-72Ncm-with-brake
+  - part: /pub/electromechanics/stepperonline:stepper/nema17-72Ncm-with-brake
     name: knee-motor
     location: [[0, -241.25, 70.53], [0, 0.38, 0.92], 180]
 
@@ -125,7 +125,7 @@ links:
     name: knee-motor-flush-1
     location: [[0, -241.25, 70.53], [0, 0.38, 0.92], 180]
 
-  - part: nema17-flush-pad
+  - part: /pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
     name: knee-motor-flush-2
     location: [[0, -239.84, 71.95], [0, 0.38, 0.92], 180]
 

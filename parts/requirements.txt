@@ -1,1 +1,1 @@
-partcad
+partcad>=0.5.3

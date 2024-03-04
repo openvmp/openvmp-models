@@ -1,7 +1,8 @@
 import:
-  pub:
-    type: git
-    url: https://github.com/openvmp/partcad-index.git
+  # TODO(clairbee): add support for "/pub" imports
+  #pub:
+  #  type: git
+  #  url: https://github.com/openvmp/partcad-index.git
 
   robots/don1:
     type: local

@@ -6,7 +6,9 @@ assemblies:
   link-base:
     type: assy
     render:
-      svg: ../../generated_files/robots/don1/base.svg
+      svg:
+        lineWeight: 0.25
+        path: ../../generated_files/robots/don1/base.svg
       png: ../../generated_files/robots/don1/base.png
   link-camera-servo:
     type: assy
@@ -31,12 +33,16 @@ assemblies:
   link-hip:
     type: assy
     render:
-      svg: ../../generated_files/robots/don1/hip.svg
+      svg:
+        lineWeight: 0.25
+        path: ../../generated_files/robots/don1/hip.svg
       png: ../../generated_files/robots/don1/hip.png
   link-lower-arm:
     type: assy
     render:
-      svg: ../../generated_files/robots/don1/lower_arm.svg
+      svg:
+        lineWeight: 0.5
+        path: ../../generated_files/robots/don1/lower_arm.svg
       png: ../../generated_files/robots/don1/lower_arm.png
   link-turn-table:
     type: assy
@@ -46,18 +52,30 @@ assemblies:
   link-upper-arm:
     type: assy
     render:
-      svg: ../../generated_files/robots/don1/upper_arm.svg
+      svg:
+        lineWeight: 0.5
+        path: ../../generated_files/robots/don1/upper_arm.svg
       png: ../../generated_files/robots/don1/upper_arm.png
   link-wheel:
     type: assy
     render:
       svg: ../../generated_files/robots/don1/wheel.svg
       png: ../../generated_files/robots/don1/wheel.png
+      obj:
+        tolerance: 0.15
+        angulraTolerance: 0.5
   robot:
     type: assy
     render:
+      svg:
+        lineWeight: 0.25
       stl:
         path: ../../generated_files/robots/don1/robot.stl
         tolerance: 0.5
         angularTolerance: 5.0
       png: ../../generated_files/robots/don1/robot.png
+
+render:
+  obj:
+    tolerance: 0.5
+    angulraTolerance: 5.0

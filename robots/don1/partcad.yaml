@@ -1,81 +1,93 @@
 partcad: ">=0.5.3"
 
+cover:
+  assembly: robot
+
 assemblies:
   assembly-wormgear:
     type: assy
+    desc: This worm gear is used in many Don1 joints
   link-base:
     type: assy
+    desc: Where all the brains and most of robot's guts are
     render:
-      svg:
-        lineWeight: 0.25
-        path: ../../generated_files/robots/don1/base.svg
-      png: ../../generated_files/robots/don1/base.png
-  link-camera-servo:
-    type: assy
-    parameters:
-      dir:
-        type: int
-        default: 1
-        enum: [1, -1]
-    render:
-      svg: ../../generated_files/robots/don1/camera_servo.svg
-      png: ../../generated_files/robots/don1/camera_servo.png
-  link-camera:
-    type: assy
-    parameters:
-      dir:
-        type: int
-        default: 1
-        enum: [1, -1]
-    render:
-      svg: ../../generated_files/robots/don1/camera.svg
-      png: ../../generated_files/robots/don1/camera.png
-  link-hip:
-    type: assy
-    render:
-      svg:
-        lineWeight: 0.25
-        path: ../../generated_files/robots/don1/hip.svg
-      png: ../../generated_files/robots/don1/hip.png
-  link-lower-arm:
-    type: assy
-    render:
-      svg:
-        lineWeight: 0.5
-        path: ../../generated_files/robots/don1/lower_arm.svg
-      png: ../../generated_files/robots/don1/lower_arm.png
-  link-turn-table:
-    type: assy
-    render:
-      svg: ../../generated_files/robots/don1/turn_table.svg
-      png: ../../generated_files/robots/don1/turn_table.png
-  link-upper-arm:
-    type: assy
-    render:
-      svg:
-        lineWeight: 0.5
-        path: ../../generated_files/robots/don1/upper_arm.svg
-      png: ../../generated_files/robots/don1/upper_arm.png
-  link-wheel:
-    type: assy
-    render:
-      svg: ../../generated_files/robots/don1/wheel.svg
-      png: ../../generated_files/robots/don1/wheel.png
       obj:
         tolerance: 0.15
-        angulraTolerance: 0.5
+        angularTolerance: 1.0
+      png: ../../generated_files/robots/don1/base.png
+      svg: ../../generated_files/robots/don1/base.svg
+  link-camera-servo:
+    type: assy
+    desc: Adds the second degree of freedom to the camera
+    parameters:
+      dir:
+        type: int
+        default: 1
+        enum: [1, -1]
+    render:
+      png: ../../generated_files/robots/don1/camera_servo.png
+      svg: ../../generated_files/robots/don1/camera_servo.svg
+  link-camera:
+    type: assy
+    desc: The stereo-camera assembly
+    parameters:
+      dir:
+        type: int
+        default: 1
+        enum: [1, -1]
+    render:
+      png: ../../generated_files/robots/don1/camera.png
+      svg: ../../generated_files/robots/don1/camera.svg
+  link-hip:  # TODO(clairbee): rename to shoulder
+    type: assy
+    desc: Where arms, pluggable module, and robot join mechanisms are
+    render:
+      obj:
+        tolerance: 0.15
+        angularTolerance: 1.0
+      png: ../../generated_files/robots/don1/hip.png
+      svg: ../../generated_files/robots/don1/hip.svg
+  link-lower-arm:
+    type: assy
+    desc: First section of the arm which drives both shoulder and knee
+    render:
+      png: ../../generated_files/robots/don1/lower_arm.png
+      svg: ../../generated_files/robots/don1/lower_arm.svg
+  link-turn-table:
+    type: assy
+    desc: Connects a hip/shoulder to the base
+    render:
+      png: ../../generated_files/robots/don1/turn_table.png
+      svg: ../../generated_files/robots/don1/turn_table.svg
+  link-upper-arm:
+    type: assy
+    desc: The end of the arm with a wheel and a hook
+    render:
+      png: ../../generated_files/robots/don1/upper_arm.png
+      svg: ../../generated_files/robots/don1/upper_arm.svg
+  link-wheel:
+    type: assy
+    desc: This is a generic wheel
+    render:
+      obj:
+        tolerance: 0.1
+        angularTolerance: 0.1
+      png: ../../generated_files/robots/don1/wheel.png
+      svg: ../../generated_files/robots/don1/wheel.svg
   robot:
     type: assy
+    desc: The complete assembly of the Don1 robot
     render:
-      svg:
-        lineWeight: 0.25
+      obj:
+        tolerance: 0.15
+        angularTolerance: 1.0
+      png: ../../generated_files/robots/don1/robot.png
       stl:
         path: ../../generated_files/robots/don1/robot.stl
         tolerance: 0.5
         angularTolerance: 5.0
-      png: ../../generated_files/robots/don1/robot.png
 
 render:
   obj:
-    tolerance: 0.5
-    angulraTolerance: 5.0
+    tolerance: 0.1
+    angularTolerance: 0.5

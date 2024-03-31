@@ -1,3 +1,6 @@
+cover:
+  package: robots
+
 import:
   # TODO(clairbee): add support for "/pub" imports
   #pub:

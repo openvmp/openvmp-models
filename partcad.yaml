@@ -1,8 +1,11 @@
+desc: OpenVMP PartCAD packages
+partcad: ">=0.6.0"
+
 cover:
   package: robots
 
 import:
-  # TODO(clairbee): add support for "/pub" imports
-  #pub:
-  #  type: git
-  #  url: https://github.com/openvmp/partcad-index.git
+  pub:
+    onlyInRoot: True
+    type: git
+    url: https://github.com/openvmp/partcad-index.git

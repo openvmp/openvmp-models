@@ -1,5 +1,5 @@
 links:
-  - part: /pub/robotics/parts/gobilda:motion/servo_attach_arm_25t
+  - part: //pub/robotics/parts/gobilda:motion/servo_attach_arm_25t
     name: motion/servo_attach_arm_25t
     location:
       [
@@ -8,6 +8,6 @@ links:
         240,
       ]
 
-  - part: /pub/robotics/parts/gobilda:structure/u_channel_low_3
+  - part: //pub/robotics/parts/gobilda:structure/u_channel_low_3
     name: structure/u_channel_low_3
     location: [[48, -24.5, 21.5], [0, 0, 1], 90]

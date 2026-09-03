@@ -2,7 +2,7 @@ import cadquery as cq
 import partcad as pc
 
 ctx = pc.init("partcad-internal.yaml", search_root=False)
-channel = ctx.get_part_cadquery("/pub/robotics/parts/gobilda:structure/u_channel_9")
+channel = ctx.get_part_cadquery("//pub/robotics/parts/gobilda:structure/u_channel_9")
 
 channel = cq.Workplane(obj=channel)
 

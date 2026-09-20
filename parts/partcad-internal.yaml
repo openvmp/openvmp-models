@@ -1,6 +1,6 @@
-partcad: ">=0.5.6"
+partcad: ">=0.8.0"
 
-import:
+dependencies:
   pub:
     type: git
     url: https://github.com/partcad/partcad-index.git

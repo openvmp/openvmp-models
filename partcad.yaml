@@ -1,10 +1,10 @@
 desc: OpenVMP PartCAD packages
-partcad: ">=0.6.0"
+partcad: ">=0.8.0"
 
 cover:
   package: robots
 
-import:
+dependencies:
   pub:
     onlyInRoot: True
     type: git

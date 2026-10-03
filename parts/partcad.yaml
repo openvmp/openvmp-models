@@ -1,79 +1,139 @@
-partcad: ">=0.5.0"
+partcad: ">=0.8.131"
+
+# Don1 is made of goBILDA components, off-the-shelf stainless steel sheets and 3D
+# printed parts (robots/don1/README.md). The boards and the turntable are cut from
+# the sheets, as their descriptions say; the rest of what is here is printed.
 
 parts:
   nema17-mount:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: A mount for NEMA-17 motors to be installed inside of a 48mm channel (43mm inner dimension)
   nema17-mount-wide:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: A mount for NEMA-17 motors to be installed in a 48mm openning
   nema17-flush-pad:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: A pad to level the front side of Nema17 motors
   turntable-attachment-hex:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: Hex attachment for turntables
   hook:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
   enclosure-0:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: Part of the enclosure for electronic components
   enclosure-1:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: Part of the enclosure for electronic components
   enclosure-2:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: Part of the enclosure for electronic components
   enclosure-3:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: Part of the enclosure for electronic components
   enclosure-4:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: Part of the enclosure for electronic components
   enclosure-5:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: Part of the enclosure for electronic components
   enclosure-6:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: Part of the enclosure for electronic components
   enclosure-7:
     type: step
+    manufacturing:
+      method: additive
+    tolerance: 0.2
     desc: Part of the enclosure for electronic components
   don1-board-top:
     type: step
     desc: Top board of Don1
-    descLongMarkdown: |
-      ## Materials
-
-      This part is manufactured from a stainless steel sheet like [this one](https://www.lowes.com/pd/Hillman-12-in-x-24-in-Steel-Solid/3054563).
-
-      ## Instructions
-
-      The experimental parts are manufactured using jigsaw and drills.
-      CNC and Plasma table instruction are TODO.
+    # Materials: this part is manufactured from a stainless steel sheet like
+    # https://www.lowes.com/pd/Hillman-12-in-x-24-in-Steel-Solid/3054563
+    # Instructions: the experimental parts are manufactured using jigsaw and
+    # drills. CNC and plasma table instructions are TODO.
   don1-board-bottom:
     type: step
     desc: Bottom board of Don1
-    descLongMarkdown: |
-      ## Materials
-
-      This part is manufactured from a stainless steel sheet like [this one](https://www.lowes.com/pd/Hillman-12-in-x-24-in-Steel-Solid/3054563).
-
-      ## Instructions
-
-      The experimental parts are manufactured using jigsaw and drills.
-      CNC and Plasma table instruction are TODO.
+    # Materials: this part is manufactured from a stainless steel sheet like
+    # https://www.lowes.com/pd/Hillman-12-in-x-24-in-Steel-Solid/3054563
+    # Instructions: the experimental parts are manufactured using jigsaw and
+    # drills. CNC and plasma table instructions are TODO.
   don1-turntable:
     type: step
     desc: Turntable for Don1
-    descLongMarkdown: |
-      ## Materials
-
-      This part is manufactured from a stainless steel sheet like [this one](https://www.lowes.com/pd/Hillman-12-in-x-24-in-Steel-Solid/3054563).
-
-      ## Instructions
-
-      The experimental parts are manufactured using jigsaw and drills.
-      CNC and Plasma table instruction are TODO.
+    # Materials: this part is manufactured from a stainless steel sheet like
+    # https://www.lowes.com/pd/Hillman-12-in-x-24-in-Steel-Solid/3054563
+    # Instructions: the experimental parts are manufactured using jigsaw and
+    # drills. CNC and plasma table instructions are TODO.
   don1-side-channel:
     type: cadquery
+    desc: A goBILDA 9 hole U-channel with a 70mm opening cut in its side, for the Don1 hip
+    # Cut from the goBILDA channel, in that channel's own coordinates (see the
+    # script), so it is made from one and keeps its ports where they were.
+    manufacturing:
+      method: subtractive
+      source: //pub/robotics/parts/gobilda:structure/u_channel_9
+    parameters:
+      # How precisely the opening has to be cut
+      tolerance:
+        type: float
+        default: 0.2
+    # The ports of the goBILDA channel that the Don1 hip connects to, copied
+    # from //pub/robotics/parts/gobilda:structure/u_channel_9. The channel has
+    # 702 of them; these are the holes the hip uses.
+    implements:
+      "//pub/std/metric/m:m4-thru-2.5":
+        left-inner-0-0-00: [[-21.5, 8, -5.5], [0, 1, 0], -90]
+        left-outer-1-0-10: [[-24, 40, -5.5], [0, 1, 0], 90]
+        left-outer-4-0-00: [[-24, 104, -5.5], [0, 1, 0], 90]
+        left-outer-5-0-10: [[-24, 136, -5.5], [0, 1, 0], 90]
+        right-inner-0-0-00: [[21.5, 8, -5.5], [0, 1, 0], 90]
+        right-inner-9-0-10: [[21.5, 232, -5.5], [0, 1, 0], 90]
+      "//pub/std/metric/m:m-thru-depth-slotted;depth=2.5,size=4,width=4.686":
+        left-outer-8-0-01: [[-24, 200, -13.5], [0.678598, 0.281085, 0.678598], 148.600285]
+        right-outer-0-1-11: [[24, 16, -29.5], [0.678598, -0.281085, -0.678598], 148.600285]
+        right-outer-9-1-11: [[24, 232, -29.5], [0.678598, -0.281085, -0.678598], 148.600285]
+      "//pub/std/metric/m:m-thru-depth-slotted;depth=2.5,size=4,width=8.686":
+        left-inner-2-b: [[-21.5, 72, -37.5], [0, -1, 0], 90]
+        left-inner-6-b: [[-21.5, 168, -37.5], [0, -1, 0], 90]
+        left-outer-2-t: [[-24, 72, -5.5], [0, 1, 0], 90]
+        left-outer-6-t: [[-24, 168, -5.5], [0, 1, 0], 90]
+        right-inner-2-b: [[21.5, 72, -37.5], [0.707107, 0, 0.707107], 180]

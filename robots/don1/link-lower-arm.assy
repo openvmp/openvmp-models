@@ -227,10 +227,9 @@ links:
       toInstance: flange-side
 
   # The gear of the knee's worm gear, on its hub on the knee shaft. Of the turns
-  # the REX hex allows, and the holes of the hub the gear can be bolted to, these
-  # mesh its teeth with the worm's thread.
-  - part: {{ G }}:motion/hub_sonic_8mmREX
-    name: knee-gear-hub
+  # the REX hex allows, this one meshes the gear's teeth with the worm's thread.
+  - assembly: //pub/robotics/multimodal/openvmp/robots/don1:assembly-worm-gear
+    name: knee-worm-gear
     connect:
       with: {{ G }}:8mmREX-thru-10
       withInstance: flat
@@ -240,21 +239,7 @@ links:
       to: {{ G }}:8mmREX-shaft
       toInstance: clean-side
       toParams:
-        moveZ: 32.22
-
-  - part: {{ G }}:motion/worm_gear_28t
-    name: knee-gear
-    connect:
-      with: {{ G }}:4xM4-16mm-pattern-threaded-thru-4mm
-      withInstance: inner
-      withPort: inner-TL-4mm-threaded-thru-opening-m4
-      name: knee-gear-hub
-      to: {{ G }}:4xM4-16mm-pattern-thru-8mm
-      toInstance: ledged
-      toPort: ledged-TL-8mm-thru-opening-m4
-      # Meshing with the worm. The two models are not exact conjugates of each
-      # other, so their flanks share about 1mm^3.
-      interferes: worm/worm
+        moveZ: 27.22
 
   # Knee worm: its first bearing in the top of the second channel, and the
   # worm shaft through both of its bearings. The bearing may turn in its seat,
@@ -286,6 +271,9 @@ links:
       name: channel-2
       to: "{{ M }}:m14-thru-2.5"
       toInstance: top-inner-3
+      # Meshing with the gear. The two models are not exact conjugates of each
+      # other, so their flanks share about 1mm^3.
+      interferes: knee-worm-gear/gear
 
   - part: {{ G }}:motion/shaft_8mmREX_64mm
     name: knee-worm-shaft

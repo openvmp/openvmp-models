@@ -1,0 +1,22 @@
+# The gear of the worm gear that drives several Don1 joints, bolted to the hub
+# that carries it on its shaft. The shaft, and the worm it meshes with, belong
+# to the link that uses this (see assembly-worm).
+links:
+  - part: //pub/robotics/parts/gobilda:motion/hub_sonic_8mmREX
+    name: hub
+
+  # Bolted by the threaded holes of its hub side to the ledged face of the hub,
+  # the ledge in the gear's bore. (The recess on the other side of the gear is
+  # not for this hub: the hub is wider than the recess is deep.) The holes are a
+  # square, so which one goes to which only turns the gear by a multiple of 90
+  # degrees, that is of 7 teeth.
+  - part: //pub/robotics/parts/gobilda:motion/worm_gear_28t
+    name: gear
+    connect:
+      with: //pub/robotics/parts/gobilda:4xM4-16mm-pattern-threaded-thru-4mm
+      withInstance: outer
+      withPort: outer-TL-4mm-threaded-thru-opening-m4
+      name: hub
+      to: //pub/robotics/parts/gobilda:4xM4-16mm-pattern-thru-8mm
+      toInstance: ledged
+      toPort: ledged-BR-8mm-thru-opening-m4

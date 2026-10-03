@@ -1,4 +1,3 @@
 links:
   - part: //pub/robotics/parts/dfrobot:motion/rubber_wheel_136_24
-    name: motion/rubber_wheel_136_24
-    location: [[0, 0, 0], [0, 0, 1], 0]
+    name: wheel

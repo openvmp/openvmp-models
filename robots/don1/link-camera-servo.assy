@@ -1,22 +1,27 @@
 links:
   - part: //pub/robotics/parts/gobilda:motion/servo_attach_hub_low_25t
-    name: motion/servo_attach_hub_low_25t
-    location: [[0, 0, 0], [1, 0, 0], 90]
+    name: hub
 
   - part: //pub/robotics/parts/gobilda:structure/mount_servo_43mm_std
-    name: structure/mount_servo_43mm_std
-    location:
-      [
-        [{{17.0*param_dir}}, 7, {{(15.675+8.875) -15.675*param_dir}}],
-        [0, 1, 0],
-        {{90 - 90*param_dir}},
-      ]
+    name: mount
+    connect:
+      with: "//pub/std/metric/m:m4-thru-5"
+      # The mount is the other way up on the other side of the robot
+      withInstance: {{ "h27-bottom" if param_dir == 1 else "h30-top" }}
+      withParams:
+        turnZ: {{ 225 + 90 * param_dir }}
+      name: hub
+      to: "//pub/std/metric/m:m-thru-depth-slotted;depth=3,size=4,width=4.686"
+      toInstance: slot15-back
 
+  # On coordinates: the servo's model carries no port on its mounting flange,
+  # which is where it is screwed to the mount, so there is nothing to connect it
+  # by (//pub/robotics/parts/gobilda:motion/servo_hs_488hb declares only the
+  # threaded hole in its output spline).
   - part: //pub/robotics/parts/gobilda:motion/servo_hs_488hb
-    name: motion/servo_hs_488hb
-    location:
-      [
-        [{{param_dir * (-14.0)}}, 32.875, {{24.5 + 9.875 * param_dir}}],
-        [{{0.5-0.5*param_dir}}, 0, {{0.5+0.5*param_dir}}],
-        180,
-      ]
+    name: servo
+{% if param_dir == 1 %}
+    location: [[-14.04, 34.36, -32.635], [0, 0.7071, 0.7071], 180]
+{% else %}
+    location: [[14.04, 14.54, -32.635], [1, 0, 0], 90]
+{% endif %}

@@ -1,0 +1,209 @@
+{% set G = "//pub/robotics/parts/gobilda" %}
+{% set M = "//pub/std/metric/m" %}
+# One of the two drive modules of the base, front and rear alike: a channel
+# with two wheel motors in it, and the worm gear that turns the turntable.
+links:
+  - part: {{ G }}:structure/u_channel_7
+    name: channel
+
+  # The worm, its first bearing in the top of the channel. The bearing may turn
+  # in its seat, and that turns the worm: this one meshes the worm's thread with
+  # the teeth of the gear.
+  - assembly: //pub/robotics/multimodal/openvmp/robots/don1:assembly-worm
+    name: worm
+    connect:
+      with: "{{ M }}:m14-shaft-4"
+      withInstance: race-1
+      withParams:
+        turnZ: 300
+      name: channel
+      to: "{{ M }}:m14-thru-2.5"
+      toInstance: top-inner-2
+
+  # The gear shaft, in a bearing in each wall of the channel
+  - part: {{ G }}:motion/bearing_flanged_8mmREX
+    name: gear-bearing-1
+    connect:
+      with: "{{ M }}:m14-shaft-4"
+      withParams:
+        turnZ: 270
+      name: channel
+      to: "{{ M }}:m14-thru-2.5"
+      toInstance: right-inner-3
+
+  - part: {{ G }}:motion/shaft_8mmREX_72mm
+    name: gear-shaft
+    connect:
+      with: {{ G }}:8mmREX-shaft
+      withInstance: clean-side
+      withParams:
+        moveZ: 47.12
+      name: gear-bearing-1
+      to: {{ G }}:8mmREX-thru-5
+      toInstance: flange-side
+      toParams:
+        turnZ: 120
+
+  # The E-clip that comes with the shaft, in its groove
+  - part: {{ G }}:motion/shaft_8mmREX_72mm_clip
+    name: gear-shaft-clip
+    connect:
+      with: {{ G }}:8mmREX-thru-0.7
+      withInstance: side1
+      withParams:
+        turnZ: 120
+      name: gear-shaft
+      to: {{ G }}:8mmREX-shaft
+      toInstance: groove
+
+  - part: {{ G }}:motion/bearing_flanged_8mmREX
+    name: gear-bearing-2
+    connect:
+      with: "{{ M }}:m14-shaft-4"
+      withParams:
+        turnZ: 270
+      name: channel
+      to: "{{ M }}:m14-thru-2.5"
+      toInstance: left-outer-3
+
+  # The gear, on its hub on the gear shaft. Of the turns the REX hex allows,
+  # and the holes of the hub the gear can be bolted to, these mesh its teeth
+  # with the worm's thread.
+  - part: {{ G }}:motion/hub_sonic_8mmREX
+    name: gear-hub
+    connect:
+      with: {{ G }}:8mmREX-thru-10
+      withInstance: ledged
+      withParams:
+        turnZ: 180
+      name: gear-shaft
+      to: {{ G }}:8mmREX-shaft
+      toInstance: clean-side
+      toParams:
+        moveZ: 24.6
+
+  - part: {{ G }}:motion/worm_gear_28t
+    name: gear
+    connect:
+      with: {{ G }}:4xM4-16mm-pattern-threaded-thru-4mm
+      withInstance: inner
+      withPort: inner-TL-4mm-threaded-thru-opening-m4
+      name: gear-hub
+      to: {{ G }}:4xM4-16mm-pattern-thru-8mm
+      toInstance: ledged
+      toPort: ledged-BR-8mm-thru-opening-m4
+      # Meshing with the worm. The two models are not exact conjugates of each
+      # other, so their flanks share a little under 1mm^3.
+      interferes: worm/worm
+
+  - part: {{ G }}:motion/collar_clamping_8mmREX
+    name: gear-collar
+    connect:
+      with: {{ G }}:8mmREX-thru-9.5
+      withInstance: rex5-back
+      name: gear-shaft
+      to: {{ G }}:8mmREX-shaft
+      toInstance: clip
+      toParams:
+        moveZ: 20.94
+
+  # The worm shaft, through both bearings of the worm
+  - part: {{ G }}:motion/shaft_8mmREX_64mm
+    name: worm-shaft
+    connect:
+      with: {{ G }}:8mmREX-shaft
+      withInstance: clean-side
+      name: worm
+      to: {{ G }}:8mmREX-thru-5
+      toInstance: bearing-2
+      toParams:
+        turnZ: 240
+      # Through the worm's own REX bore too, which the models draw the same size
+      # as the shaft.
+      interferes: worm/worm
+
+  - part: {{ G }}:structure/mount_quad_block
+    name: worm-qbm
+    connect:
+      with: "{{ M }}:m-threaded-thru-depth;depth=8.5,size=4"
+      withInstance: side1-0
+      withParams:
+        turnZ: 180
+      name: channel
+      to: "{{ M }}:m4-thru-2.5"
+      toInstance: right-inner-3-1-10
+      # Against the second bearing of the worm: the worm, its bearings and
+      # spacers make a stack a little longer than the space between the top of
+      # the channel and this mount, so it is pressed in, which holds the worm
+      # tight.
+      interferes: worm/worm-bearing-2
+
+  - part: {{ G }}:motion/hub_sonic_8mmREX
+    name: worm-hub
+    connect:
+      with: {{ G }}:8mmREX-thru-10
+      withInstance: flat
+      withParams:
+        turnZ: 240
+      name: worm-shaft
+      to: {{ G }}:8mmREX-shaft
+      toInstance: clean-side
+      toParams:
+        moveZ: 54.94
+
+  - part: {{ G }}:motion/sprocket_plastic_14mm_16t
+    name: worm-sprocket
+    connect:
+      with: "{{ M }}:m-thru-depth;depth=2.362,size=14"
+      withInstance: h1-bottom
+      withParams:
+        turnZ: 270
+      name: worm-hub
+      to: "{{ M }}:m14-shaft-2"
+
+  # The wheel motors, one either side
+{% for side_name, side_dir, y, hole in [["left", -1, 168, "top-outer-6"], ["right", 1, 24, "top-outer-0"]] %}
+  # On coordinates: the motor declares no ports in
+  # //pub/electromechanics/stepperonline, and neither do the flush pads in
+  # //pub/robotics/multimodal/openvmp/parts; the spacer and the hub are on the
+  # motor's shaft.
+  - part: //pub/electromechanics/stepperonline:stepper/nema17-72Ncm-with-brake
+    name: {{ side_name }}-motor
+    location: [[0, {{ y }}, -4], [0, 0, 1], {{ 90 + 90 * side_dir }}]
+
+  - part: //pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
+    name: {{ side_name }}-pad-1
+    location: [[0, {{ y }}, -4], [0, 0, 1], 180]
+
+  - part: //pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
+    name: {{ side_name }}-pad-2
+    location: [[0, {{ y }}, -2], [0, 0, 1], 180]
+
+  - part: {{ G }}:hardware/spacer_plastic_5mm_1mm
+    name: {{ side_name }}-spacer
+    location: [[0, {{ y }}, -12.5], [-0.5774, -0.5774, 0.5774], 120]
+
+  - part: {{ G }}:motion/hub_sonic_5mm
+    name: {{ side_name }}-hub
+    location: [[14.5, {{ y - 4.6 }}, 4.5], [0, 0, 1], 0]
+
+  - part: {{ G }}:motion/bearing_flanged_5mm
+    name: {{ side_name }}-bearing
+    connect:
+      with: "{{ M }}:m-shaft-length;length=3.76,size=14"
+      withInstance: s2-back
+      name: channel
+      to: "{{ M }}:m14-thru-2.5"
+      toInstance: {{ hole }}
+
+  - part: {{ G }}:motion/sprocket_steel_14mm_14t
+    name: {{ side_name }}-sprocket
+    connect:
+      with: "{{ M }}:m-threaded-thru-depth;depth=10.8,size=4"
+      withInstance: h11-bottom
+      withParams:
+        turnZ: 90
+      name: {{ side_name }}-hub
+      to: "{{ M }}:m4-thru-8"
+      toInstance: h4-top
+{% endfor %}

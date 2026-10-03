@@ -1,14 +1,34 @@
-partcad: ">=0.5.3"
+partcad: ">=0.8.131"
+
+# The assemblies below join their parts through the ports and interfaces the
+# parts declare. A part that declares none where it meets another - a motor, a
+# board, a part of this repository nobody has given ports yet - is still placed
+# by coordinates, and an assembly that has such a part anywhere inside it says
+# so with 'requireAnchored: false', naming what is left.
 
 cover:
   assembly: robot
 
 assemblies:
-  assembly-wormgear:
+  assembly-worm:
     type: assy
-    desc: This worm gear is used in many Don1 joints
+    desc: The worm, its bearings and spacers, of the worm gear used in many Don1 joints
+    # What the links that use it connect it by: the REX bores the worm shaft
+    # runs through, and the outer races of the bearings that the frame holds.
+    map:
+      race-1: [worm-bearing-1, "//pub/std/metric/m:m14-shaft-4", ""]
+      race-2: [worm-bearing-2, "//pub/std/metric/m:m14-shaft-4", ""]
+      worm-0: [worm, //pub/robotics/parts/gobilda:8mmREX-thru-33, side0]
+      worm-1: [worm, //pub/robotics/parts/gobilda:8mmREX-thru-33, side1]
+      bearing-1: [worm-bearing-1, //pub/robotics/parts/gobilda:8mmREX-thru-5, clean-side]
+      bearing-2: [worm-bearing-2, //pub/robotics/parts/gobilda:8mmREX-thru-5, clean-side]
   link-base:
     type: assy
+    # Some of it is still placed by coordinates: the boards, enclosure, battery,
+    # drivers and computers, and the two drive modules on the board: none of them
+    # declares a port that meets another.
+    connectivity:
+      requireAnchored: false
     desc: Where all the brains and most of robot's guts are
     render:
       obj:
@@ -16,31 +36,69 @@ assemblies:
         angularTolerance: 1.0
       png: ../../generated_files/robots/don1/base.png
       svg: ../../generated_files/robots/don1/base.svg
+  link-base/motion:
+    type: assy
+    # Some of it is still placed by coordinates: the wheel motors, their flush
+    # pads, and the hub and spacer on each motor's shaft: the motors and pads
+    # declare no ports.
+    connectivity:
+      requireAnchored: false
+    desc: One of the two drive modules of the base, with its wheel motors and the worm gear that turns a turntable
   link-camera-servo:
     type: assy
+    # Some of it is still placed by coordinates: the servo: its model declares no
+    # port on its mounting flange.
+    connectivity:
+      requireAnchored: false
     desc: Adds the second degree of freedom to the camera
+    map:
+      # The hub, by its screw hole, onto the spline of the servo in the hip
+      hip: [hub, "//pub/std/metric/m:m-thru-depth;depth=1.1,size=3", h1-front]
+      # The spline of this assembly's own servo, which turns the camera
+      camera: [servo, "//pub/std/metric/m:m3-threaded-hole-4", h2-back]
     parameters:
       dir:
         type: int
         default: 1
-        enum: [1, -1]
+        desc: 1 or -1, for the two sides of the robot, which are mirror images
     render:
       png: ../../generated_files/robots/don1/camera_servo.png
       svg: ../../generated_files/robots/don1/camera_servo.svg
   link-camera:
     type: assy
+    # Some of it is still placed by coordinates: the channel: the stereo camera it
+    # carries is not modelled yet, and nothing on it meets the servo arm.
+    connectivity:
+      requireAnchored: false
     desc: The stereo-camera assembly
+    map:
+      # The servo arm, by its screw hole, onto the spline of the camera servo
+      servo: [arm, "//pub/std/metric/m:m-thru-depth;depth=1.1,size=3", h1-top]
     parameters:
       dir:
         type: int
         default: 1
-        enum: [1, -1]
+        desc: 1 or -1, for the two sides of the robot, which are mirror images
     render:
       png: ../../generated_files/robots/don1/camera.png
       svg: ../../generated_files/robots/don1/camera.svg
   link-hip:  # TODO(clairbee): rename to shoulder
     type: assy
+    # Some of it is still placed by coordinates: the center wheel's D-shaft and
+    # the four servos: the D-shaft declares no ports, nor do the servos' mounting
+    # flanges.
+    connectivity:
+      requireAnchored: false
     desc: Where arms, pluggable module, and robot join mechanisms are
+    map:
+      # The hub that sits on the output shaft of the turntable
+      turntable: [hub-rear, //pub/robotics/parts/gobilda:8mmREX-thru-22, rex7-top]
+      # The hubs the thighs' shafts pass through
+      thigh-left: [thign-hub-left, //pub/robotics/parts/gobilda:8mmREX-thru-22, rex7-bottom]
+      thigh-right: [thign-hub-right, //pub/robotics/parts/gobilda:8mmREX-thru-22, rex7-bottom]
+      # The splines of the servos that turn the cameras
+      vision-left: [servo-vision-left, "//pub/std/metric/m:m3-threaded-hole-4", h2-back]
+      vision-right: [servo-vision-right, "//pub/std/metric/m:m3-threaded-hole-4", h2-back]
     render:
       obj:
         tolerance: 0.15
@@ -49,19 +107,44 @@ assemblies:
       svg: ../../generated_files/robots/don1/hip.svg
   link-lower-arm:
     type: assy
+    # Some of it is still placed by coordinates: the two motors, the thigh motor's
+    # mount and gearbox, the knee motor's flush pads and the hub on its shaft:
+    # none of them declares ports.
+    connectivity:
+      requireAnchored: false
     desc: First section of the arm which drives both shoulder and knee
+    map:
+      # The shaft that passes through the hip
+      hip: [rls-shaft, //pub/robotics/parts/gobilda:8mmREX-shaft, clip]
+      # The shaft that the upper arm turns on
+      knee: [knee-shaft, //pub/robotics/parts/gobilda:8mmREX-shaft, clip-side]
     render:
       png: ../../generated_files/robots/don1/lower_arm.png
       svg: ../../generated_files/robots/don1/lower_arm.svg
   link-turn-table:
     type: assy
+    # Some of it is still placed by coordinates: the turntable attachment, the
+    # channel, the motor, its gearbox and mount: the turntable, the motor and
+    # gearbox, and the mount declare no ports.
+    connectivity:
+      requireAnchored: false
     desc: Connects a hip/shoulder to the base
+    map:
+      # The output shaft, which the hip sits on
+      output: [shaft, //pub/robotics/parts/gobilda:8mmREX-shaft, clean-side]
     render:
       png: ../../generated_files/robots/don1/turn_table.png
       svg: ../../generated_files/robots/don1/turn_table.svg
   link-upper-arm:
     type: assy
+    # Some of it is still placed by coordinates: the D-shaft and the hook: neither
+    # declares ports.
+    connectivity:
+      requireAnchored: false
     desc: The end of the arm with a wheel and a hook
+    map:
+      # The hub at one end of the knee shaft
+      knee: [hub-right, //pub/robotics/parts/gobilda:8mmREX-thru-10, flat]
     render:
       png: ../../generated_files/robots/don1/upper_arm.png
       svg: ../../generated_files/robots/don1/upper_arm.svg
@@ -74,8 +157,45 @@ assemblies:
         angularTolerance: 0.1
       png: ../../generated_files/robots/don1/wheel.png
       svg: ../../generated_files/robots/don1/wheel.svg
+  robot/vision:
+    type: assy
+    # Some of it is still placed by coordinates: what the two links it is made of
+    # place on coordinates.
+    connectivity:
+      requireAnchored: false
+    desc: A camera and the servo that tilts it
+    parameters:
+      dir:
+        type: int
+        default: 1
+        desc: 1 or -1, for the two sides of the robot, which are mirror images
+    map:
+      # The hub of the camera servo, onto the spline of the servo in the hip
+      hip: [camera-servo, "//pub/std/metric/m:m-thru-depth;depth=1.1,size=3", hip]
+  robot/foot:
+    type: assy
+    # Some of it is still placed by coordinates: the wheel, which declares no
+    # ports, and what the upper arm places on coordinates.
+    connectivity:
+      requireAnchored: false
+    desc: The upper arm, and the wheel at the end of it
+    map:
+      # The hub of the upper arm, onto the knee shaft
+      knee: [upper-arm, //pub/robotics/parts/gobilda:8mmREX-thru-10, knee]
+  robot/corner:
+    type: assy
+    # Some of it is still placed by coordinates: what the links it is made of
+    # place on coordinates.
+    connectivity:
+      requireAnchored: false
+    desc: A turntable, the hip on it, and the two arms and two cameras the hip carries
   robot:
     type: assy
+    # Some of it is still placed by coordinates: the two corners on the base,
+    # which declare no ports where they meet, and what the rest place on
+    # coordinates.
+    connectivity:
+      requireAnchored: false
     desc: The complete assembly of the Don1 robot
     render:
       obj:

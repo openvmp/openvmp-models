@@ -1,0 +1,11 @@
+# The upper arm, and the wheel at the end of it
+links:
+  - assembly: //pub/robotics/multimodal/openvmp/robots/don1:link-upper-arm
+    name: upper-arm
+
+  # On coordinates: the wheel declares no ports in
+  # //pub/robotics/parts/dfrobot, and the D-shaft it turns on declares none in
+  # //pub/robotics/parts/gobilda.
+  - assembly: //pub/robotics/multimodal/openvmp/robots/don1:link-wheel
+    name: wheel
+    location: [[0, -16.7, -21.5], [1, 0, 0], 90]

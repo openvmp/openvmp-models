@@ -1,80 +1,194 @@
 links:
   - part: //pub/robotics/multimodal/openvmp/parts:don1-turntable
     name: turntable
-    location: [[0, 0, 2.5], [0, 0, 1], 0]
 
+  # On coordinates: neither the turntable nor what is bolted to it below
+  # declares a port yet (//pub/robotics/multimodal/openvmp/parts).
   - part: //pub/robotics/multimodal/openvmp/parts:turntable-attachment-hex
     name: turntable-attachment
-    location: [[250, 0, 139.5], [0, 1, 0], 180]
+    location: [[250, 0, 137], [0, 1, 0], 180]
 
   - part: //pub/robotics/parts/gobilda:structure/u_channel_2
     name: channel
-    location: [[98.5, 0, -8.5], [0, 0, 1], 90]
+    location: [[98.5, 0, -11], [0, 0, 1], 90]
 
   - part: //pub/robotics/parts/gobilda:structure/u_channel_low_7
     name: channel-side-1
-    location: [[98.5, 48, -8.5], [0, 0, 1], 90]
+    connect:
+      with: "//pub/std/metric/m:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      withInstance: slot92-left
+      withParams:
+        turnZ: 90
+      name: channel
+      to: "//pub/std/metric/m:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      toInstance: right-outer-1-1-01
 
   - part: //pub/robotics/parts/gobilda:structure/u_channel_low_7
     name: channel-side-2
-    location: [[-93.5, -48, -8.5], [0, 0, 1], -90]
+    connect:
+      with: "//pub/std/metric/m:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      withInstance: slot88-left
+      withParams:
+        turnZ: 90
+      name: channel
+      to: "//pub/std/metric/m:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      toInstance: left-outer-2-1-11
 
+  # Radial load support: two pattern mounts inside the channel, a bearing in
+  # each, and the output shaft through both
   - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
     name: rls-qbm-1
-    location: [[82.5, 0, -30], [0, 0, 1], 90]
+    connect:
+      with: "//pub/std/metric/m:m-threaded-thru-depth;depth=8.5,size=4"
+      withInstance: side3-1
+      withParams:
+        turnZ: 270
+      name: channel
+      to: "//pub/std/metric/m:m-thru-depth-slotted;depth=2.5,size=4,width=8.686"
+      toInstance: top-inner-0-t
 
   - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
     name: rls-qbm-2
-    location: [[98.5, 0, -30], [0, 0, 1], 90]
+    connect:
+      with: "//pub/std/metric/m:m-threaded-thru-depth;depth=8.5,size=4"
+      withInstance: side0-0
+      withParams:
+        turnZ: 270
+      name: channel
+      to: "//pub/std/metric/m:m4-thru-2.5"
+      toInstance: left-inner-0-1-00
+
+  # The turn of the bearing in its seat turns the shaft, and so where the REX
+  # bore of the hip on it is: this one leaves the hip pointing where the robot
+  # is drawn with it.
+  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
+    name: bearing-1
+    connect:
+      with: "//pub/std/metric/m:m14-shaft-4"
+      withParams:
+        turnZ: 120
+      name: rls-qbm-2
+      to: "//pub/std/metric/m:m14-thru-3"
+      toInstance: rear
 
   - part: //pub/robotics/parts/gobilda:motion/shaft_8mmREX_64mm
     name: shaft
-    location: [[152, 43.4, -37], [0, 0, 1], 90]
+    connect:
+      with: //pub/robotics/parts/gobilda:8mmREX-shaft
+      withInstance: clip-side
+      withParams:
+        moveZ: 30.08
+      name: bearing-1
+      to: //pub/robotics/parts/gobilda:8mmREX-thru-5
+      toInstance: clean-side
+      toParams:
+        turnZ: 120
 
-  - part: //pub/robotics/parts/gobilda:motion/shaft_8mmREX_clip
+  # The E-clip that comes with the shaft, in its groove
+  - part: //pub/robotics/parts/gobilda:motion/shaft_8mmREX_64mm_clip
     name: shaft-clip
-    location: [[98, -7, 14], [0.58, 0.58, 0.58], 240]
+    connect:
+      with: //pub/robotics/parts/gobilda:8mmREX-thru-0.7
+      withInstance: side0
+      withParams:
+        turnZ: 210
+      name: shaft
+      to: //pub/robotics/parts/gobilda:8mmREX-shaft
+      toInstance: groove
 
-  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
-    name: bearing-1
-    location: [[98.5, 0, -30], [0, 0, 1], 90]
-
+  # Turned with the shaft, so that its REX bore fits the shaft's hex
   - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
     name: bearing-2
-    location: [[77.5, 0, -30], [0, 0, -1], 90]
+    connect:
+      with: "//pub/std/metric/m:m14-shaft-4"
+      withParams:
+        turnZ: 300
+      name: rls-qbm-1
+      to: "//pub/std/metric/m:m14-thru-3"
+      toInstance: front
 
   - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
     name: spacer-1
-    location: [[92.5, 0, -30], [0, 0, 1], 90]
+    connect:
+      with: "//pub/std/metric/m:m8-thru-1"
+      withInstance: side0
+      withParams:
+        turnZ: 105
+      name: shaft
+      to: //pub/robotics/parts/gobilda:8mmREX-shaft
+      toInstance: clip
+      toParams:
+        moveZ: 32.08
 
   - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
     name: spacer-2
-    location: [[93.5, 0, -30], [0, 0, 1], 90]
+    connect:
+      with: "//pub/std/metric/m:m8-thru-1"
+      withInstance: side1
+      withParams:
+        turnZ: 90
+      name: spacer-1
+      to: "//pub/std/metric/m:m8-thru-1"
+      toInstance: side0
 
   - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
     name: spacer-3
-    location: [[99.5, 0, -30], [0, 0, 1], 90]
+    connect:
+      with: "//pub/std/metric/m:m8-thru-1"
+      withInstance: side0
+      withParams:
+        turnZ: 105
+      name: shaft
+      to: //pub/robotics/parts/gobilda:8mmREX-shaft
+      toInstance: clip
+      toParams:
+        moveZ: 25.08
 
   - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
     name: spacer-4
-    location: [[100.5, 0, -30], [0, 0, 1], 90]
+    connect:
+      with: "//pub/std/metric/m:m8-thru-1"
+      withInstance: side1
+      withParams:
+        turnZ: 90
+      name: spacer-3
+      to: "//pub/std/metric/m:m8-thru-1"
+      toInstance: side0
 
   - part: //pub/robotics/parts/gobilda:motion/collar_clamping_8mmREX
     name: collar
-    location: [[82, 28.87, -48.87], [0, 0, 1], 90]
-
-  - part: //pub/electromechanics/stepperonline:stepper/nema17-72Ncm-with-brake
-    name: motor
-    location: [[-18.25, 0, -30], [0.58, 0.58, 0.58], 120]
-
-  - part: //pub/robotics/multimodal/openvmp/parts:nema17-mount-wide
-    name: nema17-mount-wide
-    location: [[-29, 2.5, -8.5], [0, 0, -1], 90]
-
-  - part: //pub/electromechanics/stepperonline:gearbox/nema17-planetary-100
-    name: gearbox/nema17-planetary-100
-    location: [[-10.55, -0.8, -20.25], [0, 1, 0], 90]
+    connect:
+      with: //pub/robotics/parts/gobilda:8mmREX-thru-9.5
+      withInstance: rex5-back
+      withParams:
+        turnZ: 120
+      name: bearing-2
+      to: //pub/robotics/parts/gobilda:8mmREX-thru-5
+      toInstance: flange-side
 
   - part: //pub/robotics/parts/gobilda:motion/coupler_hyper_8mm_8mmREX
     name: coupler
-    location: [[74.8, -22.15, -47.4], [0, 0, -1], 90]
+    connect:
+      with: //pub/robotics/parts/gobilda:8mmREX-thru-10.5
+      withInstance: rex1-back
+      withParams:
+        turnZ: 120
+      name: shaft
+      to: //pub/robotics/parts/gobilda:8mmREX-shaft
+      toInstance: clip
+      toParams:
+        moveZ: 47.48
+
+  # On coordinates: the motor and its gearbox declare no ports in
+  # //pub/electromechanics/stepperonline, and neither does the mount.
+  - part: //pub/electromechanics/stepperonline:stepper/nema17-72Ncm-with-brake
+    name: motor
+    location: [[-18.25, 0, -32.5], [0.58, 0.58, 0.58], 120]
+
+  - part: //pub/robotics/multimodal/openvmp/parts:nema17-mount-wide
+    name: nema17-mount-wide
+    location: [[-29, 2.5, -11], [0, 0, -1], 90]
+
+  - part: //pub/electromechanics/stepperonline:gearbox/nema17-planetary-100
+    name: gearbox/nema17-planetary-100
+    location: [[-10.55, -0.8, -22.75], [0, 1, 0], 90]

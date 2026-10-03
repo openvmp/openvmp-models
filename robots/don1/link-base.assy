@@ -1,14 +1,18 @@
 links:
   - part: //pub/robotics/multimodal/openvmp/parts:don1-board-top
     name: don1-board-top
-    location: [[0, 0, 0], [0, 0, 1], 0]
+
+  # On coordinates: nothing below declares a port that meets another. The boards,
+  # the enclosure, the battery and the drivers declare none at all
+  # (//pub/robotics/multimodal/openvmp/parts, //pub/electrical/battery/ego,
+  # //pub/electromechanics/stepperonline and //pub/electromechanics/cloudray), and
+  # the computers' ports meet nothing they are mounted to.
 
   - name: bottom-assembly
     location: [[0, 0, -5], [1, 0, 0], 0]
     links:
       - part: //pub/robotics/multimodal/openvmp/parts:don1-board-bottom
         name: don1-board-bottom
-        location: [[0, 0, 0], [0, 0, 1], 0]
 
       - part: //pub/electromechanics/stepperonline:stepper_driver/dm556rs
         name: driver-1
@@ -26,29 +30,21 @@ links:
         name: driver-5
         location: [[245, -77, -146], [1, 0, 0], 90]
 
-      - location: [[245, 77, -109], [0, 0.71, -0.71], 180]
-        links:
-          - part: //pub/electromechanics/stepperonline:stepper_driver/dm556rs
-            name: driver-3
-            location: [[0, 0, 0], [0, 1, 0], 180]
+      - part: //pub/electromechanics/stepperonline:stepper_driver/dm556rs
+        name: driver-3
+        location: [[245, 77, -109], [1, 0, 0], 270]
 
-      - location: [[-245, 77, -109], [0, 0.71, -0.71], 180]
-        links:
-          - part: //pub/electromechanics/stepperonline:stepper_driver/dm556rs
-            name: driver-4
-            location: [[0, 0, 0], [0, 1, 0], 180]
+      - part: //pub/electromechanics/stepperonline:stepper_driver/dm556rs
+        name: driver-4
+        location: [[-245, 77, -109], [1, 0, 0], 270]
 
-      - location: [[-90.5, 84.5, -109], [0, 0.71, -0.71], 180]
-        links:
-          - part: //pub/electromechanics/stepperonline:stepper_driver/dm556rs
-            name: driver-10
-            location: [[0, 0, 0], [0, 1, 0], 180]
+      - part: //pub/electromechanics/stepperonline:stepper_driver/dm556rs
+        name: driver-10
+        location: [[-90.5, 84.5, -109], [1, 0, 0], 270]
 
-      - location: [[245, 77, -146], [1, 0, 0], 90]
-        links:
-          - part: //pub/electromechanics/stepperonline:stepper_driver/dm556rs
-            name: driver-7
-            location: [[0, 0, 0], [0, 1, 0], 180]
+      - part: //pub/electromechanics/stepperonline:stepper_driver/dm556rs
+        name: driver-7
+        location: [[245, 77, -146], [0, 0.7071, 0.7071], 180]
 
       - part: //pub/electromechanics/cloudray:stepper-driver/dm556sx2
         name: driver-double-1
@@ -129,85 +125,12 @@ links:
         name: battery
         location: [[-80, -91, -49.2], [-1, 0, 0], 270]
 
-  {% for dir_name, dir in [["front", 1], ["rear", -1]] %}
-  - name: motion-{{ dir_name }}
-    location: [[{{ dir * 290 }}, 0, 27], [0, 0, 1], {{ - (dir - 1 ) * 90 }}]
-    links:
-      - part: //pub/robotics/parts/gobilda:structure/u_channel_7
-        name: motion-{{ dir_name }}-channel
-        location: [[4, -96, 0], [0, 1, 0], 90]
+  # The drive modules, front and rear. On coordinates, as above: the board they
+  # are bolted to declares no ports.
+  - assembly: //pub/robotics/multimodal/openvmp/robots/don1:link-base/motion
+    name: motion-front
+    location: [[294, -96, 27], [0, 1, 0], 90]
 
-      - assembly: //pub/robotics/multimodal/openvmp/robots/don1:assembly-wormgear
-        name: motion-{{ dir_name }}-wormgear
-        location: [[20.2, 31.3, 46.3], [0.58, -0.58, 0.58], 120]
-
-      - part: //pub/robotics/parts/gobilda:motion/shaft_8mmREX_72mm
-        name: motion-{{ dir_name }}-gear-shaft
-        location: [[26, 7, -68.5], [1, 0, 0], 90]
-
-      - part: //pub/robotics/parts/gobilda:motion/shaft_8mmREX_clip
-        name: motion-{{ dir_name }}-gear-shaft-clip
-        location: [[26, 7, -68.5], [1, 0, 0], 90]
-
-      - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
-        name: motion-{{ dir_name }}-gear-bearing-1
-        location: [[-17.36, 0.02, -25.2], [1, 0, 0], 90]
-
-      - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
-        name: motion-{{ dir_name }}-gear-bearing-2
-        location: [[-17.36, 0.02, 20], [1, 0, 0], 90]
-
-      - part: //pub/robotics/parts/gobilda:motion/collar_clamping_8mmREX
-        name: motion-{{ dir_name }}-worm-collar
-        location: [[1.2, 28.8, -20.7], [0.58, 0.58, -0.58], 240]
-
-      - part: //pub/robotics/parts/gobilda:motion/shaft_8mmREX_64mm
-        name: motion-{{ dir_name }}-worm-shaft
-        location: [[45, -67.5, 7], [0.71, -0.71, 0], 180]
-
-      - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
-        name: motion-{{ dir_name }}-worm-qmb
-        location: [[-41.5, -24, 0], [0, 0, -1], 90]
-
-      - part: //pub/robotics/parts/gobilda:motion/hub_sonic_8mmREX
-        name: motion-{{ dir_name }}-worm-hub
-        location: [[26.9, -41.7, -3.9], [0, 1, 0], 90]
-
-      - part: //pub/robotics/parts/gobilda:motion/sprocket_plastic_14mm_16t
-        name: motion-{{ dir_name }}-worm-sproket
-        location: [[21, -24, 0], [0, 1, 0], 90]
-
-      {% for side_name, side_dir in [["left", -1], ["right", 1]] %}
-      - location: [[0, {{ -side_dir * 72 }}, 0], [0.71, 0, 0.71], 180]
-        links:
-          - part: //pub/electromechanics/stepperonline:stepper/nema17-72Ncm-with-brake
-            name: motion-{{ dir_name }}-{{ side_name }}-motor
-            location: [[0, 0, 0], [0, 0, 1], {{ 90 - side_dir * 90 }}]
-
-      - part: //pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
-        name: motion-{{ dir_name }}-{{ side_name }}-pad-1
-        location: [[0, {{ -side_dir * 72 }}, 0], [0.71, 0, 0.71], 180]
-
-      - part: //pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
-        name: motion-{{ dir_name }}-{{ side_name }}-pad-2
-        location: [[2, {{ -side_dir * 72 }}, 0], [0.71, 0, 0.71], 180]
-
-      - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_5mm
-        name: motion-{{ dir_name }}-{{ side_name }}-bearing
-        location: [[2.5, {{ -side_dir * 72 }}, 0], [0, 0, -1], 90]
-
-      - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_5mm_1mm
-        name: motion-{{ dir_name }}-{{ side_name }}-spacer
-        location: [[-8.5, {{ -side_dir * 72 }}, 0], [0, 0, 1], 90]
-
-      - part: //pub/robotics/parts/gobilda:motion/hub_sonic_5mm
-        name: motion-{{ dir_name }}-{{ side_name }}-hub
-        location: [[8.5, {{ -side_dir * 72 - 4.6 }}, -14.5], [0, 1, 0], 90]
-
-      - part: //pub/robotics/parts/gobilda:motion/sprocket_steel_14mm_14t
-        name: motion-{{ dir_name }}-{{ side_name }}-sprocket
-        location: [[22, {{ -side_dir * 72 }}, 0], [0, 1, 0], 90]
-
-      {% endfor %}
-
-  {% endfor %}
+  - assembly: //pub/robotics/multimodal/openvmp/robots/don1:link-base/motion
+    name: motion-rear
+    location: [[-294, 96, 27], [-0.7071, 0, 0.7071], 180]

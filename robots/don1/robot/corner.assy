@@ -1,0 +1,63 @@
+{% set G = "//pub/robotics/parts/gobilda" %}
+{% set M = "//pub/std/metric/m" %}
+{% set D = "//pub/robotics/multimodal/openvmp/robots/don1" %}
+# One end of the robot: a turntable, the hip on its output shaft, and the arm and
+# the camera on either side of the hip
+links:
+  - assembly: {{ D }}:link-turn-table
+    name: turn-table
+
+  - assembly: {{ D }}:link-hip
+    name: hip
+    connect:
+      with: {{ G }}:8mmREX-thru-22
+      withInstance: turntable
+      withParams:
+        turnZ: 120
+      name: turn-table
+      to: {{ G }}:8mmREX-shaft
+      toInstance: output
+      toParams:
+        moveZ: 35.42
+
+{% for side, turn in [["left", 0], ["right", 180]] %}
+  # The thigh, its shaft through the hub in the hip
+  - assembly: {{ D }}:link-lower-arm
+    name: lower-arm-{{ side }}
+    connect:
+      with: {{ G }}:8mmREX-shaft
+      withInstance: hip
+      name: hip
+      to: {{ G }}:8mmREX-thru-22
+      toInstance: thigh-{{ side }}
+      {% if turn %}
+      toParams:
+        turnZ: {{ turn }}
+      {% endif %}
+
+  # The foot, its hub on the end of the knee shaft
+  - assembly: {{ D }}:robot/foot
+    name: foot-{{ side }}
+    connect:
+      with: {{ G }}:8mmREX-thru-10
+      withInstance: knee
+      name: lower-arm-{{ side }}
+      to: {{ G }}:8mmREX-shaft
+      toInstance: knee
+      toParams:
+        moveZ: 0.25
+
+  # The camera, its servo's hub on the spline of the servo in the hip
+  - assembly: {{ D }}:robot/vision
+    name: vision-{{ side }}
+    params:
+      dir: {{ 1 if side == "left" else -1 }}
+    connect:
+      with: "{{ M }}:m-thru-depth;depth=1.1,size=3"
+      withInstance: hip
+      withParams:
+        turnZ: 180
+      name: hip
+      to: "{{ M }}:m3-threaded-hole-4"
+      toInstance: vision-{{ side }}
+{% endfor %}

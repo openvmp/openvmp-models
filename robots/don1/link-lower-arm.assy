@@ -1,146 +1,393 @@
+{% set G = "//pub/robotics/parts/gobilda" %}
+{% set M = "//pub/std/metric/m" %}
 links:
   # Thigh structure
-  - part: //pub/robotics/parts/gobilda:structure/u_channel_5
+  - part: {{ G }}:structure/u_channel_5
     name: channel-1
-    location: [[0, -178, -21.5], [0, 1, 0], 180]
 
-  - part: //pub/robotics/parts/gobilda:structure/u_channel_5
-    name: channel-2
-    location: [[0, -204.66, 39.23], [0, 0.38, 0.92], 180]
-
-  - part: //pub/robotics/parts/gobilda:structure/bracket_flat_2_3
+  - part: {{ G }}:structure/bracket_flat_2_3
     name: bracket-1
-    location: [[24, -187.65, 20], [0.7, 0.7, -0.14], 164.14]
+    connect:
+      with: "{{ M }}:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      withInstance: slot32-front
+      withParams:
+        turnZ: 180
+      name: channel-1
+      to: "{{ M }}:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      toInstance: left-outer-0-1-01
 
-  - part: //pub/robotics/parts/gobilda:structure/bracket_flat_2_3
+  # 22.5 degrees off the first channel, by way of the brackets either side
+  - part: {{ G }}:structure/u_channel_5
+    name: channel-2
+    connect:
+      with: "{{ M }}:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      withInstance: left-outer-0-0-01
+      withParams:
+        turnZ: 90
+      name: bracket-1
+      to: "{{ M }}:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      toInstance: slot34-front
+
+  - part: {{ G }}:structure/bracket_flat_2_3
     name: bracket-2
-    location: [[-26.5, -187.65, 20], [0.7, 0.7, -0.14], 164.14]
+    connect:
+      with: "{{ M }}:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      withInstance: slot32-back
+      name: channel-1
+      to: "{{ M }}:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      toInstance: right-outer-0-1-01
 
   # Radial load support
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
+  - part: {{ G }}:structure/mount_quad_block
     name: rls-qbm-1
-    location: [[0, -34, 0], [0, 0, 1], 180]
+    connect:
+      with: "{{ M }}:m-threaded-thru-depth;depth=8.5,size=4"
+      withInstance: side0-0
+      withParams:
+        turnZ: 90
+      name: channel-1
+      to: "{{ M }}:m4-thru-2.5"
+      toInstance: left-inner-5-0-10
 
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
+  - part: {{ G }}:structure/mount_quad_block
     name: rls-qbm-2
-    location: [[0, -50, 0], [0, 0, 1], 180]
+    connect:
+      with: "{{ M }}:m-threaded-thru-depth;depth=8.5,size=4"
+      withInstance: side0-1
+      withParams:
+        turnZ: 90
+      name: channel-1
+      to: "{{ M }}:m-thru-depth-slotted;depth=2.5,size=4,width=8.686"
+      toInstance: left-inner-4-b
 
-  - part: //pub/robotics/parts/gobilda:motion/shaft_8mmREX_56mm
-    name: rls-shaft
-    location: [[-43.4, 17, -7], [0, 0, 1], 180]
-
-  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
+  # The turn of the bearing in its seat turns the shaft, and so where the REX
+  # bore of the hub in the hip that the shaft passes through is: this one leaves
+  # the arm where the robot is drawn with it.
+  - part: {{ G }}:motion/bearing_flanged_8mmREX
     name: rls-bearing-1
-    location: [[0, -55, 0], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m14-shaft-4"
+      withParams:
+        turnZ: 300
+      name: rls-qbm-2
+      to: "{{ M }}:m14-thru-3"
+      toInstance: front
 
-  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
+  - part: {{ G }}:motion/shaft_8mmREX_56mm
+    name: rls-shaft
+    connect:
+      with: {{ G }}:8mmREX-shaft
+      withInstance: clean-side
+      withParams:
+        moveZ: 7.42
+      name: rls-bearing-1
+      to: {{ G }}:8mmREX-thru-5
+      toInstance: clean-side
+      toParams:
+        turnZ: 300
+
+  # Turned with the shaft, so that its REX bore fits the shaft's hex
+  - part: {{ G }}:motion/bearing_flanged_8mmREX
     name: rls-bearing-2
-    location: [[0, -34, 0], [0, 0, 1], 180]
+    connect:
+      with: "{{ M }}:m14-shaft-4"
+      withParams:
+        turnZ: 120
+      name: rls-qbm-1
+      to: "{{ M }}:m14-thru-3"
+      toInstance: rear
 
-  - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
+  - part: {{ G }}:hardware/spacer_plastic_8mm_1mm
     name: rls-spacer-1
-    location: [[0, -41, 0], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m8-thru-1"
+      withInstance: side0
+      withParams:
+        turnZ: 285
+      name: rls-shaft
+      to: {{ G }}:8mmREX-shaft
+      toInstance: clean-side
+      toParams:
+        moveZ: 21.42
 
-  - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
+  - part: {{ G }}:hardware/spacer_plastic_8mm_1mm
     name: rls-spacer-2
-    location: [[0, -40, 0], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m8-thru-1"
+      withInstance: side0
+      withParams:
+        turnZ: 90
+      name: rls-spacer-1
+      to: "{{ M }}:m8-thru-1"
+      toInstance: side1
 
-  - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
+  - part: {{ G }}:hardware/spacer_plastic_8mm_1mm
     name: rls-spacer-3
-    location: [[0, -34, 0], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m8-thru-1"
+      withInstance: side0
+      withParams:
+        turnZ: 285
+      name: rls-bearing-2
+      to: {{ G }}:8mmREX-thru-5
+      toInstance: clean-side
 
-  - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
+  - part: {{ G }}:hardware/spacer_plastic_8mm_1mm
     name: rls-spacer-4
-    location: [[0, -33, 0], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m8-thru-1"
+      withInstance: side0
+      withParams:
+        turnZ: 90
+      name: rls-spacer-3
+      to: "{{ M }}:m8-thru-1"
+      toInstance: side1
 
-  - part: //pub/robotics/parts/gobilda:motion/collar_clamping_8mmREX
-    name: motion/collar_clamping_8mmREX
-    location: [[-28.9, -50.6, -18.8], [0, 0, 1], 180]
+  - part: {{ G }}:motion/collar_clamping_8mmREX
+    name: rls-collar
+    connect:
+      with: {{ G }}:8mmREX-thru-9.5
+      withInstance: rex5-back
+      withParams:
+        turnZ: 120
+      name: rls-bearing-1
+      to: {{ G }}:8mmREX-thru-5
+      toInstance: flange-side
+
+  - part: {{ G }}:motion/coupler_hyper_8mm_8mmREX
+    name: coupler
+    connect:
+      with: {{ G }}:8mmREX-thru-10.5
+      withInstance: rex1-back
+      withParams:
+        turnZ: 120
+      name: rls-shaft
+      to: {{ G }}:8mmREX-shaft
+      toInstance: clip-side
+      toParams:
+        moveZ: 49.68
+
+  # Knee. The turn of the first bearing in its seat turns the knee shaft, and so
+  # where the REX bores of the upper arm's hubs on it are: this one leaves the
+  # upper arm where the robot is drawn with it.
+  - part: {{ G }}:motion/bearing_flanged_8mmREX
+    name: knee-bearing-1
+    connect:
+      with: "{{ M }}:m14-shaft-4"
+      withParams:
+        turnZ: 39
+      name: channel-2
+      to: "{{ M }}:m14-thru-2.5"
+      toInstance: left-outer-4
+
+  - part: {{ G }}:motion/shaft_8mmREX_80mm
+    name: knee-shaft
+    connect:
+      with: {{ G }}:8mmREX-shaft
+      withInstance: clean-side
+      withParams:
+        moveZ: 60
+      name: knee-bearing-1
+      to: {{ G }}:8mmREX-thru-5
+      toInstance: clean-side
+      toParams:
+        turnZ: 300
+
+  # Turned with the shaft, so that its REX bore fits the shaft's hex
+  - part: {{ G }}:motion/bearing_flanged_8mmREX
+    name: knee-bearing-2
+    connect:
+      with: "{{ M }}:m14-shaft-4"
+      withParams:
+        turnZ: 141
+      name: channel-2
+      to: "{{ M }}:m14-thru-2.5"
+      toInstance: right-outer-4
+
+  - part: {{ G }}:hardware/spacer_steel_8mm_4mm
+    name: knee-spacer-1
+    connect:
+      with: "{{ M }}:m8-thru-4"
+      withInstance: side0
+      withParams:
+        turnZ: 105
+      name: knee-bearing-1
+      to: {{ G }}:8mmREX-thru-5
+      toInstance: flange-side
+
+  - part: {{ G }}:hardware/spacer_steel_8mm_4mm
+    name: knee-spacer-2
+    connect:
+      with: "{{ M }}:m8-thru-4"
+      withInstance: side1
+      withParams:
+        turnZ: 285
+      name: knee-bearing-2
+      to: {{ G }}:8mmREX-thru-5
+      toInstance: flange-side
+
+  # The gear of the knee's worm gear, on its hub on the knee shaft. Of the turns
+  # the REX hex allows, and the holes of the hub the gear can be bolted to, these
+  # mesh its teeth with the worm's thread.
+  - part: {{ G }}:motion/hub_sonic_8mmREX
+    name: knee-gear-hub
+    connect:
+      with: {{ G }}:8mmREX-thru-10
+      withInstance: flat
+      withParams:
+        turnZ: 120
+      name: knee-shaft
+      to: {{ G }}:8mmREX-shaft
+      toInstance: clean-side
+      toParams:
+        moveZ: 32.22
+
+  - part: {{ G }}:motion/worm_gear_28t
+    name: knee-gear
+    connect:
+      with: {{ G }}:4xM4-16mm-pattern-threaded-thru-4mm
+      withInstance: inner
+      withPort: inner-TL-4mm-threaded-thru-opening-m4
+      name: knee-gear-hub
+      to: {{ G }}:4xM4-16mm-pattern-thru-8mm
+      toInstance: ledged
+      toPort: ledged-TL-8mm-thru-opening-m4
+      # Meshing with the worm. The two models are not exact conjugates of each
+      # other, so their flanks share about 1mm^3.
+      interferes: worm/worm
+
+  # Knee worm: its first bearing in the top of the second channel, and the
+  # worm shaft through both of its bearings. The bearing may turn in its seat,
+  # and that turns the worm: this one meshes the worm's thread with the teeth of
+  # the gear.
+  - part: {{ G }}:structure/mount_quad_block
+    name: knee-worm-qbm
+    connect:
+      with: "{{ M }}:m-threaded-thru-depth;depth=8.5,size=4"
+      withInstance: side0-0
+      withParams:
+        turnZ: 180
+      name: channel-2
+      to: "{{ M }}:m4-thru-2.5"
+      toInstance: right-inner-3-1-00
+      # Against the second bearing of the worm: the worm, its bearings and
+      # spacers make a stack a little longer than the space between the top of
+      # the channel and this mount, so it is pressed in, which holds the worm
+      # tight.
+      interferes: worm/worm-bearing-2
+
+  - assembly: //pub/robotics/multimodal/openvmp/robots/don1:assembly-worm
+    name: worm
+    connect:
+      with: "{{ M }}:m14-shaft-4"
+      withInstance: race-1
+      withParams:
+        turnZ: 285
+      name: channel-2
+      to: "{{ M }}:m14-thru-2.5"
+      toInstance: top-inner-3
+
+  - part: {{ G }}:motion/shaft_8mmREX_64mm
+    name: knee-worm-shaft
+    connect:
+      with: {{ G }}:8mmREX-shaft
+      withInstance: clip-side
+      withParams:
+        moveZ: 13.03
+      name: worm
+      to: {{ G }}:8mmREX-thru-5
+      toInstance: bearing-1
+      toParams:
+        turnZ: 120
+      # Through the worm's own REX bore too, which the models draw the same size
+      # as the shaft.
+      interferes: worm/worm
+
+  - part: {{ G }}:motion/hub_sonic_8mmREX
+    name: knee-worm-hub
+    connect:
+      with: {{ G }}:8mmREX-thru-10
+      withInstance: ledged
+      name: knee-worm-shaft
+      to: {{ G }}:8mmREX-shaft
+      toInstance: clip-side
+      toParams:
+        moveZ: 1.93
+
+  - part: {{ G }}:motion/sprocket_plastic_14mm_16t
+    name: knee-worm-sprocket
+    connect:
+      with: "{{ M }}:m-thru-depth;depth=2.362,size=14"
+      withInstance: h1-bottom
+      withParams:
+        turnZ: 270
+      name: knee-worm-hub
+      to: "{{ M }}:m14-shaft-2"
 
   # Thigh locomotion
+  # On coordinates: the motor and its gearbox declare no ports in
+  # //pub/electromechanics/stepperonline, and neither does the motor mount in
+  # //pub/robotics/multimodal/openvmp/parts.
   - part: //pub/electromechanics/stepperonline:stepper/nema17-72Ncm-with-brake
     name: thigh-motor
-    location: [[0, -141.5, 0], [-1, 0, 0], 90]
+    location: [[0, 36.5, -21.5], [0, -0.7071, -0.7071], 180]
 
   - part: //pub/robotics/multimodal/openvmp/parts:nema17-mount
     name: motor-mount
-    location: [[0, -153, 21.5], [0, 0, 1], 0]
+    location: [[0, 25, -43], [0, -1, 0], 180]
 
   - part: //pub/electromechanics/stepperonline:gearbox/nema17-planetary-10
     name: gearbox
-    location: [[-9.5, -145.2, 0], [-1, 0, 0], 90]
-
-  - part: //pub/robotics/parts/gobilda:motion/coupler_hyper_8mm_8mmREX
-    name: coupler
-    location: [[22.15, -58.4, -17.5], [0, 0, 1], 0]
-
-  # Knee
-  - part: //pub/robotics/parts/gobilda:motion/shaft_8mmREX_80mm
-    name: knee-shaft
-    location: [[63.35, -261.41, 115.1], [0.15, -0.15, 0.98], 91.4]
-
-  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
-    name: knee-bearing-1
-    location: [[20, -304.9, 108.8], [0, 0, -1], 90]
-
-  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
-    name: knee-bearing-2
-    location: [[-20, -304.9, 108.8], [0, 0, 1], 90]
-
-  - part: //pub/robotics/parts/gobilda:hardware/spacer_steel_8mm_4mm
-    name: knee-spacer-1
-    location: [[27, -304.9, 108.8], [0, 0, -1], 90]
-
-  - part: //pub/robotics/parts/gobilda:hardware/spacer_steel_8mm_4mm
-    name: knee-spacer-2
-    location: [[-27, -304.9, 108.8], [0, 0, -1], 90]
-
-  # Knee worm
-  - assembly: //pub/robotics/multimodal/openvmp/robots/don1:assembly-wormgear
-    name: assembly-wormgear
-    location: [[46.2, -300.46, 157.63], [1, 0, 0], 225]
-
-  - part: //pub/robotics/parts/gobilda:motion/shaft_8mmREX_64mm
-    name: knee-worm-shaft
-    location: [[43.35, -249.26, 140.33], [1, 0, 0], 225]
-
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
-    name: knee-worm-qbm
-    location: [[0, -304.76, 74.95], [1, 0, 0], 45]
-
-  - part: //pub/robotics/parts/gobilda:motion/hub_sonic_8mmREX
-    name: knee-worm-hub
-    location: [[3.9, -271.66, 133.08], [-1, 0, 0], 45]
-
-  - part: //pub/robotics/parts/gobilda:motion/sprocket_plastic_14mm_16t
-    name: knee-worm-sprocket
-    location: [[0, -263.41, 116.32], [-1, 0, 0], 45]
+    location: [[9.5, 32.8, -21.5], [0, -0.7071, -0.7071], 180]
 
   # Knee motor
+  # On coordinates, as above: the motor, its flush pads and the hub on its
+  # shaft have nothing to be connected to.
   - part: //pub/electromechanics/stepperonline:stepper/nema17-72Ncm-with-brake
     name: knee-motor
-    location: [[0, -241.25, 70.53], [0, 0.38, 0.92], 180]
+    location: [[0, -63.266, -92.076], [-1, 0, 0], 135]
 
   - part: //pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
     name: knee-motor-flush-1
-    location: [[0, -241.25, 70.53], [0, 0.38, 0.92], 180]
+    location: [[0, -63.266, -92.076], [-1, 0, 0], 135]
 
   - part: //pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
     name: knee-motor-flush-2
-    location: [[0, -239.84, 71.95], [0, 0.38, 0.92], 180]
+    location: [[0, -61.853, -93.493], [-1, 0, 0], 135]
 
-  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_5mm
+  - part: {{ G }}:motion/bearing_flanged_5mm
     name: knee-motor-bearing
-    location: [[0, -239.84, 71.95], [0, 0.92, 0.38], 180]
+    connect:
+      with: "{{ M }}:m-shaft-length;length=3.76,size=14"
+      withInstance: s2-back
+      withParams:
+        turnZ: 90
+      name: channel-2
+      to: "{{ M }}:m14-thru-2.5"
+      toInstance: top-outer-1
 
-  - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_5mm_1mm
+  - part: {{ G }}:hardware/spacer_plastic_5mm_1mm
     name: knee-motor-spacer
-    location: [[0, -236.3, 75.49], [1, 0, 0], 45]
+    connect:
+      with: "{{ M }}:m5-thru-1"
+      withInstance: h1-front
+      withParams:
+        turnZ: 270
+      name: knee-motor-bearing
+      to: "{{ M }}:m5-thru-5"
+      toInstance: h1-back
 
-  - part: //pub/robotics/parts/gobilda:motion/hub_sonic_5mm
+  - part: {{ G }}:motion/hub_sonic_5mm
     name: knee-motor-hub
-    location: [[14.6, -238.88, 79.41], [-1, 0, 0], 45]
+    location: [[-14.6, -60.878, -100.951], [0, -0.9239, -0.3827], 180]
 
-  - part: //pub/robotics/parts/gobilda:motion/sprocket_plastic_14mm_16t
+  - part: {{ G }}:motion/sprocket_plastic_14mm_16t
     name: knee-motor-sprocket
-    location: [[0, -229.64, 82.13], [-1, 0, 0], 45]
+    connect:
+      with: "{{ M }}:m-thru-depth-slotted;depth=2.362,size=4,width=4.686"
+      withInstance: slot7-bottom
+      withParams:
+        turnZ: 315
+      name: knee-motor-hub
+      to: "{{ M }}:m4-thru-8"
+      toInstance: h2-top

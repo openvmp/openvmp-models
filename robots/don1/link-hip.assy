@@ -1,119 +1,322 @@
+{% set G = "//pub/robotics/parts/gobilda" %}
+{% set M = "//pub/std/metric/m" %}
+{% set M4 = M ~ ":m4-thru-2.5" %}
+{% set SLOT4 = M ~ ":m-thru-depth-slotted;depth=2.5,size=4,width=4.686" %}
+{% set SLOT8 = M ~ ":m-thru-depth-slotted;depth=2.5,size=4,width=8.686" %}
+{% set QBM = M ~ ":m-threaded-thru-depth;depth=8.5,size=4" %}
 links:
-  - part: //pub/robotics/parts/gobilda:structure/u_channel_9
+  - part: {{ G }}:structure/u_channel_9
     name: channel-bottom
-    location: [[210.5, 0, 21.35], [0, 0, 1], 90]
 
-  - part: //pub/robotics/parts/gobilda:structure/u_channel_9
+  - part: {{ G }}:structure/u_channel_9
     name: channel-top
-    location: [[210.5, 0, 26.35], [0.71, -0.71, 0], 180]
+    connect:
+      with: "{{ M4 }}"
+      withInstance: top-outer-0-1-00
+      withParams:
+        turnZ: 270
+      name: channel-bottom
+      to: "{{ M4 }}"
+      toInstance: top-outer-0-0-00
 
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
+  - part: {{ G }}:structure/mount_quad_block
     name: qbm-bottom-rear
-    location: [[-29.5, 0, 0], [0, 0, -1], 90]
+    connect:
+      with: "{{ QBM }}"
+      withInstance: side3-0
+      withParams:
+        turnZ: 90
+      name: channel-bottom
+      to: "{{ M4 }}"
+      toInstance: top-inner-9-1-10
 
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
+  - part: {{ G }}:structure/mount_quad_block
     name: qbm-bottom-front
-    location: [[210.5, 0, 0], [0, 0, 1], 90]
+    connect:
+      with: "{{ QBM }}"
+      withInstance: side0-0
+      withParams:
+        turnZ: 270
+      name: channel-bottom
+      to: "{{ M4 }}"
+      toInstance: left-inner-0-1-00
 
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
+  - part: {{ G }}:structure/mount_quad_block
     name: qbm-top-rear
-    location: [[-29.5, 0, 48], [0, 0, -1], 90]
+    connect:
+      with: "{{ QBM }}"
+      withInstance: side0-1
+      withParams:
+        turnZ: 90
+      name: channel-top
+      to: "{{ M4 }}"
+      toInstance: left-inner-9-1-10
 
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
+  - part: {{ G }}:structure/mount_quad_block
     name: qbm-top-front
-    location: [[210.5, 0, 48], [0, 0, 1], 90]
+    connect:
+      with: "{{ QBM }}"
+      withInstance: side2-0
+      withParams:
+        turnZ: 270
+      name: channel-top
+      to: "{{ M4 }}"
+      toInstance: left-inner-0-1-00
 
-  - part: //pub/robotics/parts/gobilda:structure/standoff_m4_43mm
+  - part: {{ G }}:structure/standoff_m4_43mm
     name: standoff-bottom-rear
-    location: [[58.5, 0, -16.2], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m4-threaded-hole-8"
+      withInstance: h3-front
+      withParams:
+        turnZ: 180
+      name: channel-bottom
+      to: "{{ M4 }}"
+      toInstance: left-inner-6-1-00
 
-  - part: //pub/robotics/parts/gobilda:structure/standoff_m4_43mm
+  - part: {{ G }}:structure/standoff_m4_43mm
     name: standoff-bottom-front
-    location: [[122.5, 0, -16.2], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m4-threaded-hole-8"
+      withInstance: h3-front
+      withParams:
+        turnZ: 180
+      name: channel-bottom
+      to: "{{ M4 }}"
+      toInstance: left-inner-3-1-10
 
-  - part: //pub/robotics/parts/gobilda:structure/standoff_m4_43mm
+  - part: {{ G }}:structure/standoff_m4_43mm
     name: standoff-top-rear
-    location: [[18.5, 0, 63.8], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m4-threaded-hole-8"
+      withInstance: h4-back
+      withParams:
+        turnZ: 180
+      name: channel-top
+      to: "{{ SLOT8 }}"
+      toInstance: left-inner-7-b
 
-  - part: //pub/robotics/parts/gobilda:structure/standoff_m4_43mm
+  - part: {{ G }}:structure/standoff_m4_43mm
     name: standoff-top-front
-    location: [[162.5, 0, 63.8], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m4-threaded-hole-8"
+      withInstance: h4-back
+      withParams:
+        turnZ: 180
+      name: channel-top
+      to: "{{ SLOT8 }}"
+      toInstance: left-inner-1-b
 
-  - part: //pub/robotics/parts/gobilda:motion/hub_hyper_8mmREX
+  # Where the hip sits on the turntable's output shaft
+  - part: {{ G }}:motion/hub_hyper_8mmREX
     name: hub-rear
-    location: [[-26.5, 5.75, 15.375], [0, 1, 0], -90]
+    connect:
+      with: "{{ M }}:m4-hole-10"
+      withInstance: h6-bottom
+      withParams:
+        turnZ: 315
+      name: qbm-bottom-rear
+      to: "{{ M }}:m-thru-depth-slotted;depth=4,size=4,width=4.686"
+      toInstance: front-0-1-11
 
-  - part: //pub/robotics/parts/gobilda:motion/shaft_6mmD_70mm
+  # On coordinates: the D-shaft declares no ports in its package
+  # ({{ G }}:motion/shaft_6mmD_70mm). It is on the axis of the two bearings it
+  # runs in, below.
+  - part: {{ G }}:motion/shaft_6mmD_70mm
     name: axle-center-wheel
-    location: [[90.5, -35, 48], [0, 0, 1], 0]
+    location: [[-35, 120, 26.5], [0, 0, -1], 90]
 
-  {% for dir in [-1.0, 1.0] %}
+{% set sides = [
+  {"name": "left",
+   "side": [SLOT4, "right-outer-9-1-11", "left-outer-0-0-01"],
+   "qbm_rear": ["side0-1", 270, "left-inner-0-0-00"],
+   "qbm_front": ["side0-1", 90, "right-inner-9-0-10"],
+   "leaf": [M4, "left-outer-0-0-10", 90, "left-outer-1-0-10"],
+   "standoff_rear": ["h3-front", 180, "right-inner-2-b"],
+   "standoff_front": ["h4-back", 0, "left-inner-6-b"],
+   "thigh": "right-outer-4",
+   "beam1": [SLOT8, "left-outer-6-t"],
+   "beam2": "left-outer-5-0-10",
+   "servo_mount": ["h17-back", "h31-top"],
+   "servo": [[85.76, 256.76, 16.54], [0.7071, 0, -0.7071], 180],
+   "vision": [[141.96, 97.76, 24.74], [0, -0.7071, -0.7071], 180]},
+  {"name": "right",
+   "side": [SLOT4, "right-outer-0-1-11", "right-outer-0-0-11"],
+   "qbm_rear": ["side0-1", 90, "right-inner-9-0-10"],
+   "qbm_front": ["side2-0", 270, "right-inner-0-0-00"],
+   "leaf": [SLOT4, "right-outer-0-0-11", 0, "left-outer-8-0-01"],
+   "standoff_rear": ["h3-front", 180, "left-inner-6-b"],
+   "standoff_front": ["h3-front", 180, "left-inner-2-b"],
+   "thigh": "left-outer-4",
+   "beam1": [SLOT8, "left-outer-2-t"],
+   "beam2": "left-outer-4-0-00",
+   "servo_mount": ["h15-back", "h25-top"],
+   "servo": [[-106.04, 256.76, 16.54], [0.7071, 0, -0.7071], 180],
+   "vision": [[-141.96, 78.04, 24.74], [1, 0, 0], 90]},
+] %}
+{% for s in sides %}
   # Side channel
   - part: //pub/robotics/multimodal/openvmp/parts:don1-side-channel
-    name: channel-side
-    location: [[{{ 210.5 -120 + 120*dir}}, {{ dir * -48.0 }}, 69.35], [0, 0, 1], {{ dir * 90 }}]
+    name: channel-side-{{ s.name }}
+    connect:
+      with: "{{ s.side[0] }}"
+      withInstance: {{ s.side[1] }}
+      withParams:
+        turnZ: 90
+      name: channel-top
+      to: "{{ s.side[0] }}"
+      toInstance: {{ s.side[2] }}
 
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
-    name: qbm-side-rear
-    location: [[-29.5, {{ dir * -48.0 }}, 48], [0, 0, -1], 90]
+  - part: {{ G }}:structure/mount_quad_block
+    name: qbm-side-rear-{{ s.name }}
+    connect:
+      with: "{{ QBM }}"
+      withInstance: {{ s.qbm_rear[0] }}
+      withParams:
+        turnZ: {{ s.qbm_rear[1] }}
+      name: channel-side-{{ s.name }}
+      to: "{{ M4 }}"
+      toInstance: {{ s.qbm_rear[2] }}
 
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
-    name: qbm-side-front
-    location: [[210.5, {{ dir * -48 }}, 48], [0, 0, 1], 90]
+  - part: {{ G }}:structure/mount_quad_block
+    name: qbm-side-front-{{ s.name }}
+    connect:
+      with: "{{ QBM }}"
+      withInstance: {{ s.qbm_front[0] }}
+      withParams:
+        turnZ: {{ s.qbm_front[1] }}
+      name: channel-side-{{ s.name }}
+      to: "{{ M4 }}"
+      toInstance: {{ s.qbm_front[2] }}
 
   # Side leaf channel
-  - part: //pub/robotics/parts/gobilda:structure/u_channel_2
-    name: channel-side-leaf
-    location: [[26.5, {{ dir * -96 }}, 69.35], [0, 0, 1], 90]
+  - part: {{ G }}:structure/u_channel_2
+    name: channel-side-leaf-{{ s.name }}
+    connect:
+      with: "{{ s.leaf[0] }}"
+      withInstance: {{ s.leaf[1] }}
+      withParams:
+        turnZ: {{ s.leaf[2] }}
+      name: channel-side-{{ s.name }}
+      to: "{{ s.leaf[0] }}"
+      toInstance: {{ s.leaf[3] }}
 
-  - part: //pub/robotics/parts/gobilda:structure/standoff_m4_43mm
-    name: standoff-side-rear
-    location: [[42.5, {{ dir * -48 }}, 31.8], [0, 0, 1], 0]
+  - part: {{ G }}:structure/standoff_m4_43mm
+    name: standoff-side-rear-{{ s.name }}
+    connect:
+      with: "{{ M }}:m4-threaded-hole-8"
+      withInstance: {{ s.standoff_rear[0] }}
+      withParams:
+        turnZ: {{ s.standoff_rear[1] }}
+      name: channel-side-{{ s.name }}
+      to: "{{ SLOT8 }}"
+      toInstance: {{ s.standoff_rear[2] }}
 
-  - part: //pub/robotics/parts/gobilda:structure/standoff_m4_43mm
-    name: standoff-side-front
-    location: [[138.5, {{ dir * -48 }}, 31.8], [0, 0, 1], 0]
+  - part: {{ G }}:structure/standoff_m4_43mm
+    name: standoff-side-front-{{ s.name }}
+    connect:
+      with: "{{ M }}:m4-threaded-hole-8"
+      withInstance: {{ s.standoff_front[0] }}
+      withParams:
+        turnZ: {{ s.standoff_front[1] }}
+      name: channel-side-{{ s.name }}
+      to: "{{ SLOT8 }}"
+      toInstance: {{ s.standoff_front[2] }}
 
   # Servo assembly
-  - part: //pub/robotics/parts/gobilda:structure/mount_servo_43mm_std
-    name: servo-mount-side
-    location: [[-20, {{ dir * -111.5 + dir*15.5 - 15.5 }}, 7], [0.58, -0.58, -0.58], 240]
+  - part: {{ G }}:structure/mount_servo_43mm_std
+    name: servo-mount-side-{{ s.name }}
+    connect:
+      with: "{{ M }}:m4-thru-4.5"
+      withInstance: h26-left
+      withParams:
+        turnZ: 180
+      name: channel-side-leaf-{{ s.name }}
+      to: "{{ SLOT8 }}"
+      toInstance: top-inner-1-b
 
-  - part: //pub/robotics/parts/gobilda:motion/servo_hs_488hb
-    name: servo-side
-    location: [[-46, {{ dir * -105.9 + dir*10 - 10 }}, 38], [0.58, 0.58, -0.58], 120]
-
-  # Center wheel axle
-  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_6mm
-    name: center-wheel-bearing-side
-    location: [[90.5, {{ dir * 20 }}, 48], [0, 0, 1], {{ 90 - dir * 90 }}]
-
-  - part: //pub/robotics/parts/gobilda:motion/collar_set_6mm
-    name: center-wheel-bearing-collar
-    location: [[{{ 149.75 - 59.25 + dir * 59.25 }}, {{ dir * -39 }}, 23.2], [0, 0, 1], {{ 90 - dir * 90 }}]
+  # On coordinates: the servo's model carries no port on its mounting flange
+  # ({{ G }}:motion/servo_hs_488hb declares only the threaded hole in its
+  # output spline), so there is nothing to connect it to its mount by.
+  - part: {{ G }}:motion/servo_hs_488hb
+    name: servo-side-{{ s.name }}
+    location: {{ s.servo }}
 
   # Mounting for a thigh
-  - part: //pub/robotics/parts/gobilda:motion/hub_hyper_8mmREX
-    name: thign-hub
-    location: [[84.75, {{ dir * -21 }}, {{ dir * 15.375 }}], [{{ dir * -0.58 }} , {{ dir * 0.58 }}, -0.58], 240]
+  - part: {{ G }}:motion/hub_hyper_8mmREX
+    name: thign-hub-{{ s.name }}
+    connect:
+      with: "{{ M }}:m14-shaft-2"
+      withInstance: s8-top
+      withParams:
+        turnZ: 270
+      name: channel-bottom
+      to: "{{ M }}:m14-thru-2.5"
+      toInstance: {{ s.thigh }}
 
-  # Vision assembly
-  - name: vision
-    location: [[142.5, {{ dir * -151.75 }}, 135.75], [0, 0, 1], 0]
-    links:
-      - part: //pub/robotics/parts/gobilda:structure/beam_15
-        name: beam-vision-1
-        location: [[-4, {{ dir * -36.25 }}, -71.75], [0, 0, 1], {{ 90 - dir * 90 }}]
+  # Vision assembly: two beams on the side channel, carrying the servo that
+  # turns the camera
+  - part: {{ G }}:structure/beam_15
+    name: beam-vision-1-{{ s.name }}
+    connect:
+      with: "{{ M }}:m-thru-depth;depth=10.593,size=4"
+      withInstance: h4-back
+      withParams:
+        turnZ: 180
+      name: channel-side-{{ s.name }}
+      to: "{{ s.beam1[0] }}"
+      toInstance: {{ s.beam1[1] }}
 
-      - part: //pub/robotics/parts/gobilda:structure/beam_15
-        name: beam-vision-2
-        location: [[-36, {{ dir * -36.25 }}, -71.75], [0, 0, 1], {{ 90 - dir * 90 }}]
+  - part: {{ G }}:structure/beam_15
+    name: beam-vision-2-{{ s.name }}
+    connect:
+      with: "{{ M }}:m-thru-depth;depth=10.593,size=4"
+      withInstance: h4-back
+      withParams:
+        turnZ: 180
+      name: channel-side-{{ s.name }}
+      to: "{{ M4 }}"
+      toInstance: {{ s.beam2 }}
 
-      - part: //pub/robotics/parts/gobilda:structure/mount_servo_43mm_std
-        name: servo-mount-vision
-        location: [[{{ -20.1 - dir * 15.5 }}, {{ dir * -21.25 }}, -63.5], [0.58, {{ dir * -0.58 }}, {{ dir * 0.58 }}], 240]
+  - part: {{ G }}:structure/mount_servo_43mm_std
+    name: servo-mount-vision-{{ s.name }}
+    connect:
+      with: "{{ M }}:m4-thru-6"
+      withInstance: {{ s.servo_mount[0] }}
+      name: beam-vision-1-{{ s.name }}
+      to: "{{ M }}:m4-thru-8"
+      toInstance: {{ s.servo_mount[1] }}
 
-      - part: //pub/robotics/parts/gobilda:motion/servo_hs_488hb
-        name: servo-vision
-        location: [[{{ -20 + dir * 10 }}, {{ dir * 9.75 }}, -89.5], [0.58, {{ dir * 0.58 }}, {{ dir * 0.58 }}], 120]
-  {% endfor %}
+  # On coordinates, for the same reason as the servo above
+  - part: {{ G }}:motion/servo_hs_488hb
+    name: servo-vision-{{ s.name }}
+    location: {{ s.vision }}
+{% endfor %}
+
+  # Center wheel axle: a bearing in each wall of the top channel, and a set
+  # collar against the inside of each
+{% for side, outer, turn in [["right", "right-outer-4", 0], ["left", "left-outer-4", 180]] %}
+  - part: {{ G }}:motion/bearing_flanged_6mm
+    name: center-wheel-bearing-{{ side }}
+    connect:
+      with: "{{ M }}:m14-shaft-3.5"
+      withInstance: s4-back
+      {% if turn %}
+      withParams:
+        turnZ: {{ turn }}
+      {% endif %}
+      name: channel-top
+      to: "{{ M }}:m14-thru-2.5"
+      toInstance: {{ outer }}
+
+  - part: {{ G }}:motion/collar_set_6mm
+    name: center-wheel-collar-{{ side }}
+    connect:
+      with: "{{ M }}:m-thru-depth;depth=8.5,size=6"
+      withInstance: h4-back
+      withParams:
+        turnZ: 270
+      name: center-wheel-bearing-{{ side }}
+      to: "{{ M }}:m6-thru-5"
+      toInstance: h1-back
+{% endfor %}

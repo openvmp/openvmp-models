@@ -1,0 +1,19 @@
+# A camera on the servo that tilts it
+links:
+  - assembly: //pub/robotics/multimodal/openvmp/robots/don1:link-camera-servo
+    name: camera-servo
+    params:
+      dir: {{ param_dir }}
+
+  - assembly: //pub/robotics/multimodal/openvmp/robots/don1:link-camera
+    name: camera
+    params:
+      dir: {{ param_dir }}
+    connect:
+      with: "//pub/std/metric/m:m-thru-depth;depth=1.1,size=3"
+      withInstance: servo
+      withParams:
+        turnZ: 90
+      name: camera-servo
+      to: "//pub/std/metric/m:m3-threaded-hole-4"
+      toInstance: camera

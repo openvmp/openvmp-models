@@ -1,66 +1,167 @@
+{% set G = "//pub/robotics/parts/gobilda" %}
+{% set M = "//pub/std/metric/m" %}
 links:
   # Main channels
-  - part: //pub/robotics/parts/gobilda:structure/u_channel_7
+  - part: {{ G }}:structure/u_channel_7
     name: main-channel-1
-    location: [[0, -276.8, -53.7], [0, 0, 1], 0]
-
-  - part: //pub/robotics/parts/gobilda:structure/u_channel_7
-    name: main-channel-2
-    location: [[0, -231.3, -291.2], [0, 0.71, 0.71], 180]
 
   # Radial load support
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
+  - part: {{ G }}:structure/mount_quad_block
     name: rls-qmb-1
-    location: [[0, -276.8, -75.2], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m-threaded-thru-depth;depth=8.5,size=4"
+      withInstance: side0-0
+      withParams:
+        turnZ: 270
+      name: main-channel-1
+      to: "{{ M }}:m4-thru-2.5"
+      toInstance: left-inner-0-1-00
 
-  - part: //pub/robotics/parts/gobilda:structure/mount_quad_block
+  - part: {{ G }}:structure/mount_quad_block
     name: rls-qmb-2
-    location: [[0, -236.8, -75.2], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m-threaded-thru-depth;depth=8.5,size=4"
+      withInstance: side0-0
+      withParams:
+        turnZ: 270
+      name: main-channel-1
+      to: "{{ M }}:m-thru-depth-slotted;depth=2.5,size=4,width=8.686"
+      toInstance: left-inner-1-b
 
-  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_6mm
+  - part: {{ G }}:motion/bearing_flanged_6mm
     name: rls-bearing-1
-    location: [[0, -276.8, -75.2], [0, 0, 1], 0]
+    connect:
+      with: "{{ M }}:m14-shaft-3.5"
+      withInstance: s4-back
+      withParams:
+        turnZ: 90
+      name: rls-qmb-1
+      to: "{{ M }}:m14-thru-3"
+      toInstance: rear
 
-  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_6mm
+  - part: {{ G }}:motion/bearing_flanged_6mm
     name: rls-bearing-2
-    location: [[0, -231.8, -75.2], [0, 0, 1], 180]
+    connect:
+      with: "{{ M }}:m14-shaft-3.5"
+      withInstance: s4-back
+      withParams:
+        turnZ: 270
+      name: rls-qmb-2
+      to: "{{ M }}:m14-thru-3"
+      toInstance: front
 
-  - part: //pub/robotics/parts/gobilda:motion/shaft_6mmD_70mm
+  # On coordinates: the D-shaft declares no ports in its package
+  # ({{ G }}:motion/shaft_6mmD_70mm), so nothing can be connected to it and it
+  # cannot be connected to the bearings it runs in.
+  - part: {{ G }}:motion/shaft_6mmD_70mm
     name: rls-shaft
-    location: [[0, -293.5, -75.2], [0, 0, 1], 0]
+    location: [[0, -16.7, -21.5], [0, 0, 1], 0]
+
+  # Symmetric parts, either side of the main channel
+{% set sides = [
+  {"name": "left", "wall": "left", "face": "top", "back": "bottom", "turn": 90,
+   "b23": "h11-back", "b23turn": 337.44, "b12": "h3-back", "b12to": "h2-front", "b12turn": 157.43,
+   "slot": "slot25-front", "hubport": "TR", "hubturn": 225.13, "b23nut": "h15-back", "plate": "h2-back"},
+  {"name": "right", "wall": "right", "face": "bottom", "back": "top", "turn": 270,
+   "b23": "h11-front", "b23turn": 202.56, "b12": "h3-front", "b12to": "h2-back", "b12turn": 22.57,
+   "slot": "slot26-back", "hubport": "BL", "hubturn": 224.87, "b23nut": "h15-front", "plate": "h2-front"},
+] %}
+{% for s in sides %}
+  - part: {{ G }}:hardware/nut_m4_0_7mm
+    name: nut-{{ s.name }}-1
+    connect:
+      with: "{{ M }}:m-threaded-thru-depth;depth=2.75,size=4"
+      withInstance: h2-{{ s.face }}
+      withParams:
+        turnZ: {{ s.turn }}
+      name: main-channel-1
+      to: "{{ M }}:m4-thru-2.5"
+      toInstance: {{ s.wall }}-outer-6-0-00
+
+  - part: {{ G }}:structure/bracket_flat_2_3
+    name: bracket-2-3-{{ s.name }}
+    connect:
+      with: "{{ M }}:m4-thru-2.5"
+      withInstance: {{ s.b23 }}
+      withParams:
+        turnZ: {{ s.b23turn }}
+      name: nut-{{ s.name }}-1
+      to: "{{ M }}:m-threaded-thru-depth;depth=2.75,size=4"
+      toInstance: h2-{{ s.back }}
+
+  - part: {{ G }}:structure/bracket_flat_1_2
+    name: bracket-1-2-{{ s.name }}
+    connect:
+      with: "{{ M }}:m4-thru-2.5"
+      withInstance: {{ s.b12 }}
+      withParams:
+        turnZ: {{ s.b12turn }}
+      name: bracket-2-3-{{ s.name }}
+      to: "{{ M }}:m4-thru-2.5"
+      toInstance: {{ s.b12to }}
+
+  - part: {{ G }}:motion/hub_sonic_8mmREX
+    name: hub-{{ s.name }}
+    connect:
+      with: {{ G }}:4xM4-16mm-pattern-thru-8mm
+      withInstance: ledged
+      withPort: ledged-{{ s.hubport }}-8mm-thru-opening-m4
+      withParams:
+        turnZ: {{ s.hubturn }}
+      name: bracket-1-2-{{ s.name }}
+      to: "{{ M }}:m-thru-depth-slotted;depth=2.5,size=4,width=4.686"
+      toInstance: {{ s.slot }}
+
+  - part: {{ G }}:hardware/nut_m4_0_7mm
+    name: nut-{{ s.name }}-2
+    connect:
+      with: "{{ M }}:m-threaded-thru-depth;depth=2.75,size=4"
+      withInstance: h2-{{ s.back }}
+      withParams:
+        turnZ: {{ s.b23turn }}
+      name: bracket-2-3-{{ s.name }}
+      to: "{{ M }}:m4-thru-2.5"
+      toInstance: {{ s.b23nut }}
+
+  - part: {{ G }}:hardware/nut_m4_0_7mm
+    name: nut-{{ s.name }}-3
+    connect:
+      with: "{{ M }}:m-threaded-thru-depth;depth=2.75,size=4"
+      withInstance: h2-{{ s.face }}
+      withParams:
+        turnZ: {{ s.turn }}
+      name: main-channel-1
+      to: "{{ M }}:m4-thru-2.5"
+      toInstance: {{ s.wall }}-outer-7-0-00
+
+  # Joins the two main channels. The plate is not symmetric, so the one on
+  # the left is the same plate turned over.
+  - part: {{ G }}:hardware/plate_channel_conn
+    name: plate-{{ s.name }}
+    connect:
+      with: "{{ M }}:m4-thru-3"
+      withInstance: {{ s.plate }}
+      withParams:
+        turnZ: 180
+      name: main-channel-1
+      to: "{{ M }}:m4-thru-2.5"
+      toInstance: {{ s.wall }}-outer-1-1-10
+{% endfor %}
+
+  - part: {{ G }}:structure/u_channel_7
+    name: main-channel-2
+    connect:
+      with: "{{ M }}:m4-thru-2.5"
+      withInstance: left-outer-7-0-10
+      withParams:
+        turnZ: 90
+      name: plate-right
+      to: "{{ M }}:m4-thru-3"
+      toInstance: h1-front
 
   # Hook
+  # On coordinates: the hook declares no ports yet
+  # (//pub/robotics/multimodal/openvmp/parts).
   - part: //pub/robotics/multimodal/openvmp/parts:hook
     name: hook
-    location: [[0, -252.8, -291.2], [0, 0, 1], 0]
-
-  # Symmetric parts
-  {% for dir in [-1, 1] %}
-  - part: //pub/robotics/parts/gobilda:motion/hub_sonic_8mmREX
-    name: motion/hub_sonic_8mmREX
-    location: [[{{ dir * 25.75 }}, -17.7, {{dir * 3.9}}], [0, {{ dir * -1 }}, 0], {{ 90}}]
-
-  - part: //pub/robotics/parts/gobilda:structure/bracket_flat_1_2
-    name: structure/bracket_flat_1_2
-    location: [[{{ dir * 30.76 }}, 0, 0], [0.68, 0.68, -0.28], 148.6]
-
-  - part: //pub/robotics/parts/gobilda:structure/bracket_flat_2_3
-    name: structure/bracket_flat_2_3
-    location: [[{{ dir * 28.25 - 1.25 }}, -83.13, -55.14], [0.7, 0.7, 0.14], 195.85]
-
-  - part: //pub/robotics/parts/gobilda:hardware/nut_m4_0_7mm
-    name: hardware/nut_m4_0_7mm
-    location: [[{{ dir * 25.5}}, -124.7, -59.2], [0, 1, 0], 90]
-
-  - part: //pub/robotics/parts/gobilda:hardware/nut_m4_0_7mm
-    name: hardware/nut_m4_0_7mm-2
-    location: [[{{ dir * 25.5 }}, -124.7, -67.2], [0, 1, 0], 90]
-
-  - part: //pub/robotics/parts/gobilda:hardware/nut_m4_0_7mm
-    name: hardware/nut_m4_0_7mm-3
-    location: [[{{ dir * 25.5 }}, -100.7, -59.2], [0, 1, 0], 90]
-
-  - part: //pub/robotics/parts/gobilda:hardware/plate_channel_conn
-    name: hardware/plate_channel_conn
-    location: [[{{ dir * 24.1}}, -252.8, -99.2], [0, 0, -1], 90]
-  {% endfor %}
+    location: [[0, 24, -237.5], [0, 0, 1], 0]

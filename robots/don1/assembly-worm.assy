@@ -1,0 +1,75 @@
+# The worm of the worm gear that drives several Don1 joints, with the bearings
+# and spacers that sit on the worm shaft either side of it. The shaft, the gear
+# and the frame the bearings are held in differ from joint to joint, so they
+# belong to the link that uses this.
+links:
+  - part: //pub/robotics/parts/gobilda:motion/worm_8mmREX
+    name: worm
+
+  # Between the worm and the first bearing
+  - part: //pub/robotics/parts/gobilda:hardware/spacer_steel_8mm_4mm
+    name: spacer-steel
+    connect:
+      with: "//pub/std/metric/m:m8-thru-4"
+      withInstance: side1
+      withParams:
+        turnZ: 15
+      name: worm
+      to: //pub/robotics/parts/gobilda:8mmREX-thru-33
+      toInstance: side0
+
+  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
+    name: worm-bearing-1
+    connect:
+      with: //pub/robotics/parts/gobilda:8mmREX-thru-5
+      withInstance: flange-side
+      withParams:
+        turnZ: 135
+      name: spacer-steel
+      to: "//pub/std/metric/m:m8-thru-4"
+      toInstance: side0
+
+  # Three 1mm spacers between the other end of the worm and the second bearing
+  - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
+    name: worm-spacer-1
+    connect:
+      with: "//pub/std/metric/m:m8-thru-1"
+      withInstance: side0
+      withParams:
+        turnZ: 195
+      name: worm
+      to: //pub/robotics/parts/gobilda:8mmREX-thru-33
+      toInstance: side1
+
+  - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
+    name: worm-spacer-2
+    connect:
+      with: "//pub/std/metric/m:m8-thru-1"
+      withInstance: side0
+      withParams:
+        turnZ: 90
+      name: worm-spacer-1
+      to: "//pub/std/metric/m:m8-thru-1"
+      toInstance: side1
+
+  - part: //pub/robotics/parts/gobilda:hardware/spacer_plastic_8mm_1mm
+    name: worm-spacer-3
+    connect:
+      with: "//pub/std/metric/m:m8-thru-1"
+      withInstance: side0
+      withParams:
+        turnZ: 90
+      name: worm-spacer-2
+      to: "//pub/std/metric/m:m8-thru-1"
+      toInstance: side1
+
+  - part: //pub/robotics/parts/gobilda:motion/bearing_flanged_8mmREX
+    name: worm-bearing-2
+    connect:
+      with: //pub/robotics/parts/gobilda:8mmREX-thru-5
+      withInstance: flange-side
+      withParams:
+        turnZ: 315
+      name: worm-spacer-3
+      to: "//pub/std/metric/m:m8-thru-1"
+      toInstance: side1

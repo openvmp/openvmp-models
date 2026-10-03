@@ -1,5 +1,6 @@
+name: //pub/robotics/multimodal/openvmp
 desc: OpenVMP PartCAD packages
-partcad: ">=0.8.0"
+partcad: ">=0.8.131"
 
 cover:
   package: robots

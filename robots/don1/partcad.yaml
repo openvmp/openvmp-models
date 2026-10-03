@@ -22,6 +22,18 @@ assemblies:
       worm-1: [worm, //pub/robotics/parts/gobilda:8mmREX-thru-33, side1]
       bearing-1: [worm-bearing-1, //pub/robotics/parts/gobilda:8mmREX-thru-5, clean-side]
       bearing-2: [worm-bearing-2, //pub/robotics/parts/gobilda:8mmREX-thru-5, clean-side]
+  assembly-worm-gear:
+    type: assy
+    desc: The gear, on its hub, of the worm gear used in many Don1 joints
+    # What the links that use it connect it by: the REX bore of the hub, from
+    # either end: the flat face of the hub, or the top of its ledge, which is
+    # inside the gear's bore.
+    map:
+      ledged: [hub, //pub/robotics/parts/gobilda:8mmREX-thru-10, ledged]
+      flat: [hub, //pub/robotics/parts/gobilda:8mmREX-thru-10, flat]
+  test/worm-gear-fit:
+    type: assy
+    desc: A test of how assembly-worm and assembly-worm-gear fit together, held as the drive modules of the base hold them
   link-base:
     type: assy
     # Some of it is still placed by coordinates: the boards, enclosure, battery,

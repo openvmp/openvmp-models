@@ -1,7 +1,12 @@
 {% set G = "//pub/robotics/parts/gobilda" %}
 {% set M = "//pub/std/metric/m" %}
-# One of the two drive modules of the base, front and rear alike: a channel
-# with two wheel motors in it, and the worm gear that turns the turntable.
+# How assembly-worm and assembly-worm-gear fit together: the two pieces held
+# by a channel at the distance of their centres, as in the drive modules of
+# the base (link-base/motion), less what the motors bring. Every part is joined
+# to another by its ports, so the tests hold this to everything an assembly
+# can be checked for: that it is all connected, that nothing overlaps but what
+# is declared (the worm's thread in the gear's teeth), and that it can be
+# bought.
 links:
   - part: {{ G }}:structure/u_channel_7
     name: channel
@@ -126,73 +131,3 @@ links:
       # the channel and this mount, so it is pressed in, which holds the worm
       # tight.
       interferes: worm/worm-bearing-2
-
-  - part: {{ G }}:motion/hub_sonic_8mmREX
-    name: worm-hub
-    connect:
-      with: {{ G }}:8mmREX-thru-10
-      withInstance: flat
-      withParams:
-        turnZ: 240
-      name: worm-shaft
-      to: {{ G }}:8mmREX-shaft
-      toInstance: clean-side
-      toParams:
-        moveZ: 54.94
-
-  - part: {{ G }}:motion/sprocket_plastic_14mm_16t
-    name: worm-sprocket
-    connect:
-      with: "{{ M }}:m-thru-depth;depth=2.362,size=14"
-      withInstance: h1-bottom
-      withParams:
-        turnZ: 270
-      name: worm-hub
-      to: "{{ M }}:m14-shaft-2"
-
-  # The wheel motors, one either side
-{% for side_name, side_dir, y, hole in [["left", -1, 168, "top-outer-6"], ["right", 1, 24, "top-outer-0"]] %}
-  # On coordinates: the motor declares no ports in
-  # //pub/electromechanics/stepperonline, and neither do the flush pads in
-  # //pub/robotics/multimodal/openvmp/parts; the spacer and the hub are on the
-  # motor's shaft.
-  - part: //pub/electromechanics/stepperonline:stepper/nema17-72Ncm-with-brake
-    name: {{ side_name }}-motor
-    location: [[0, {{ y }}, -4], [0, 0, 1], {{ 90 + 90 * side_dir }}]
-
-  - part: //pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
-    name: {{ side_name }}-pad-1
-    location: [[0, {{ y }}, -4], [0, 0, 1], 180]
-
-  - part: //pub/robotics/multimodal/openvmp/parts:nema17-flush-pad
-    name: {{ side_name }}-pad-2
-    location: [[0, {{ y }}, -2], [0, 0, 1], 180]
-
-  - part: {{ G }}:hardware/spacer_plastic_5mm_1mm
-    name: {{ side_name }}-spacer
-    location: [[0, {{ y }}, -12.5], [-0.5774, -0.5774, 0.5774], 120]
-
-  - part: {{ G }}:motion/hub_sonic_5mm
-    name: {{ side_name }}-hub
-    location: [[14.5, {{ y - 4.6 }}, 4.5], [0, 0, 1], 0]
-
-  - part: {{ G }}:motion/bearing_flanged_5mm
-    name: {{ side_name }}-bearing
-    connect:
-      with: "{{ M }}:m-shaft-length;length=3.76,size=14"
-      withInstance: s2-back
-      name: channel
-      to: "{{ M }}:m14-thru-2.5"
-      toInstance: {{ hole }}
-
-  - part: {{ G }}:motion/sprocket_steel_14mm_14t
-    name: {{ side_name }}-sprocket
-    connect:
-      with: "{{ M }}:m-threaded-thru-depth;depth=10.8,size=4"
-      withInstance: h11-bottom
-      withParams:
-        turnZ: 90
-      name: {{ side_name }}-hub
-      to: "{{ M }}:m4-thru-8"
-      toInstance: h4-top
-{% endfor %}

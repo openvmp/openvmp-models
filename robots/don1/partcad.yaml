@@ -1,5 +1,13 @@
 partcad: ">=0.8.131"
 
+# Not designed for manufacturing as it stands: most of what Don1 is built from
+# besides goBILDA is bought from vendors no store in PartCAD carries yet
+# (STEPPERONLINE, CloudRay, Intel, Raspberry Pi, Arduino, DFRobot, EGO), and the
+# parts of this repository it uses include sheet parts with no manufacturing
+# instructions (see ../../parts). 'pc test' reports what it finds on this package
+# as warnings rather than failures - except on test/worm-gear-fit, below.
+manufacturable: false
+
 # The assemblies below join their parts through the ports and interfaces the
 # parts declare. A part that declares none where it meets another - a motor, a
 # board, a part of this repository nobody has given ports yet - is still placed
@@ -34,6 +42,9 @@ assemblies:
   test/worm-gear-fit:
     type: assy
     desc: A test of how assembly-worm and assembly-worm-gear fit together, held as the drive modules of the base hold them
+    # Made only of what can be had, so held to every check, and its contents
+    # with it.
+    manufacturable: true
   link-base:
     type: assy
     # Some of it is still placed by coordinates: the boards, enclosure, battery,

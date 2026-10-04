@@ -1,5 +1,11 @@
 partcad: ">=0.8.131"
 
+# Not designed for manufacturing as it stands: the boards and the turntable are
+# cut from steel sheets, but nothing here records which sheet or to what
+# tolerance, so PartCAD cannot tell how to make them. 'pc test' reports what it
+# finds on this package as warnings rather than failures.
+manufacturable: false
+
 # Don1 is made of goBILDA components, off-the-shelf stainless steel sheets and 3D
 # printed parts (robots/don1/README.md). The boards and the turntable are cut from
 # the sheets, as their descriptions say; the rest of what is here is printed.

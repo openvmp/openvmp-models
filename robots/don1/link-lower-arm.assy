@@ -259,7 +259,9 @@ links:
       # spacers make a stack a little longer than the space between the top of
       # the channel and this mount, so it is pressed in, which holds the worm
       # tight.
-      interferes: worm/worm-bearing-2
+      # PartCAD excuses an overlap with something inside a sub-assembly by the
+      # sub-assembly's name, whole: it does not reach into one ('worm/worm-bearing-2').
+      interferes: worm
 
   - assembly: //pub/robotics/multimodal/openvmp/robots/don1:assembly-worm
     name: worm
@@ -273,7 +275,9 @@ links:
       toInstance: top-inner-3
       # Meshing with the gear. The two models are not exact conjugates of each
       # other, so their flanks share about 1mm^3.
-      interferes: knee-worm-gear/gear
+      # PartCAD excuses an overlap with something inside a sub-assembly by the
+      # sub-assembly's name, whole: it does not reach into one ('knee-worm-gear/gear').
+      interferes: knee-worm-gear
 
   - part: {{ G }}:motion/shaft_8mmREX_64mm
     name: knee-worm-shaft
@@ -289,7 +293,9 @@ links:
         turnZ: 120
       # Through the worm's own REX bore too, which the models draw the same size
       # as the shaft.
-      interferes: worm/worm
+      # PartCAD excuses an overlap with something inside a sub-assembly by the
+      # sub-assembly's name, whole: it does not reach into one ('worm/worm').
+      interferes: worm
 
   - part: {{ G }}:motion/hub_sonic_8mmREX
     name: knee-worm-hub

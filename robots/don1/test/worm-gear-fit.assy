@@ -26,7 +26,9 @@ links:
       toInstance: top-inner-2
       # Meshing with the gear. The two models are not exact conjugates of each
       # other, so their flanks share about 1mm^3.
-      interferes: worm-gear/gear
+      # PartCAD excuses an overlap with something inside a sub-assembly by the
+      # sub-assembly's name, whole: it does not reach into one ('worm-gear/gear').
+      interferes: worm-gear
 
   # The gear shaft, in a bearing in each wall of the channel
   - part: {{ G }}:motion/bearing_flanged_8mmREX
@@ -114,7 +116,9 @@ links:
         turnZ: 240
       # Through the worm's own REX bore too, which the models draw the same size
       # as the shaft.
-      interferes: worm/worm
+      # PartCAD excuses an overlap with something inside a sub-assembly by the
+      # sub-assembly's name, whole: it does not reach into one ('worm/worm').
+      interferes: worm
 
   - part: {{ G }}:structure/mount_quad_block
     name: worm-qbm
@@ -130,4 +134,6 @@ links:
       # spacers make a stack a little longer than the space between the top of
       # the channel and this mount, so it is pressed in, which holds the worm
       # tight.
-      interferes: worm/worm-bearing-2
+      # PartCAD excuses an overlap with something inside a sub-assembly by the
+      # sub-assembly's name, whole: it does not reach into one ('worm/worm-bearing-2').
+      interferes: worm

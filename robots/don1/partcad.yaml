@@ -4,8 +4,8 @@ partcad: ">=0.8.131"
 # besides goBILDA is bought from vendors no store in PartCAD carries yet
 # (STEPPERONLINE, CloudRay, Intel, Raspberry Pi, Arduino, DFRobot, EGO), and the
 # parts of this repository it uses include sheet parts with no manufacturing
-# instructions (see ../../parts). 'pc test' reports what it finds on this package
-# as warnings rather than failures - except on test/worm-gear-fit, below.
+# instructions (see ../../parts). 'pc qual test' reports what it finds on this
+# package as warnings rather than failures - except on test/worm-gear-fit, below.
 manufacturable: false
 
 # The assemblies below join their parts through the ports and interfaces the
@@ -50,8 +50,10 @@ assemblies:
     # Some of it is still placed by coordinates: the boards, enclosure, battery,
     # drivers and computers, and the two drive modules on the board: none of them
     # declares a port that meets another.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: Where all the brains and most of robot's guts are
     render:
       obj:
@@ -64,15 +66,19 @@ assemblies:
     # Some of it is still placed by coordinates: the wheel motors, their flush
     # pads, and the hub and spacer on each motor's shaft: the motors and pads
     # declare no ports.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: One of the two drive modules of the base, with its wheel motors and the worm gear that turns a turntable
   link-camera-servo:
     type: assy
     # Some of it is still placed by coordinates: the servo: its model declares no
     # port on its mounting flange.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: Adds the second degree of freedom to the camera
     map:
       # The hub, by its screw hole, onto the spline of the servo in the hip
@@ -91,8 +97,10 @@ assemblies:
     type: assy
     # Some of it is still placed by coordinates: the channel: the stereo camera it
     # carries is not modelled yet, and nothing on it meets the servo arm.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: The stereo-camera assembly
     map:
       # The servo arm, by its screw hole, onto the spline of the camera servo
@@ -110,8 +118,10 @@ assemblies:
     # Some of it is still placed by coordinates: the center wheel's D-shaft and
     # the four servos: the D-shaft declares no ports, nor do the servos' mounting
     # flanges.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: Where arms, pluggable module, and robot join mechanisms are
     map:
       # The hub that sits on the output shaft of the turntable
@@ -133,8 +143,10 @@ assemblies:
     # Some of it is still placed by coordinates: the two motors, the thigh motor's
     # mount and gearbox, the knee motor's flush pads and the hub on its shaft:
     # none of them declares ports.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: First section of the arm which drives both shoulder and knee
     map:
       # The shaft that passes through the hip
@@ -149,8 +161,10 @@ assemblies:
     # Some of it is still placed by coordinates: the turntable attachment, the
     # channel, the motor, its gearbox and mount: the turntable, the motor and
     # gearbox, and the mount declare no ports.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: Connects a hip/shoulder to the base
     map:
       # The output shaft, which the hip sits on
@@ -162,8 +176,10 @@ assemblies:
     type: assy
     # Some of it is still placed by coordinates: the D-shaft and the hook: neither
     # declares ports.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: The end of the arm with a wheel and a hook
     map:
       # The hub at one end of the knee shaft
@@ -184,8 +200,10 @@ assemblies:
     type: assy
     # Some of it is still placed by coordinates: what the two links it is made of
     # place on coordinates.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: A camera and the servo that tilts it
     parameters:
       dir:
@@ -199,8 +217,10 @@ assemblies:
     type: assy
     # Some of it is still placed by coordinates: the wheel, which declares no
     # ports, and what the upper arm places on coordinates.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: The upper arm, and the wheel at the end of it
     map:
       # The hub of the upper arm, onto the knee shaft
@@ -209,16 +229,20 @@ assemblies:
     type: assy
     # Some of it is still placed by coordinates: what the links it is made of
     # place on coordinates.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: A turntable, the hip on it, and the two arms and two cameras the hip carries
   robot:
     type: assy
     # Some of it is still placed by coordinates: the two corners on the base,
     # which declare no ports where they meet, and what the rest place on
     # coordinates.
-    connectivity:
-      requireAnchored: false
+    qual:
+      basic:
+        connectivity:
+          requireAnchored: false
     desc: The complete assembly of the Don1 robot
     render:
       obj:

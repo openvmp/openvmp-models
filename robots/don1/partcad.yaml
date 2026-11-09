@@ -1,4 +1,6 @@
-partcad: ">=0.8.131"
+# 0.10.0 is the release that reads 'qual:', which the qualification settings
+# below are declared in; an older PartCAD would read none of them.
+partcad: ">=0.10.0"
 
 # Not designed for manufacturing as it stands: most of what Don1 is built from
 # besides goBILDA is bought from vendors no store in PartCAD carries yet
